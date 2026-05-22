@@ -6,17 +6,18 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		080686222FC0A96B0054E5ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0806861E2FC0A96B0054E5ED /* Assets.xcassets */; };
+		080686232FC0A96B0054E5ED /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0806861F2FC0A96B0054E5ED /* ContentView.swift */; };
+		080686242FC0A96B0054E5ED /* CornpassApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080686202FC0A96B0054E5ED /* CornpassApp.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		0806861E2FC0A96B0054E5ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0806861F2FC0A96B0054E5ED /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		080686202FC0A96B0054E5ED /* CornpassApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornpassApp.swift; sourceTree = "<group>"; };
 		084F914F2FC0A116007D11F5 /* Cornpass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cornpass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		084F91512FC0A116007D11F5 /* Cornpass */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Cornpass;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		084F914C2FC0A116007D11F5 /* Frameworks */ = {
@@ -29,10 +30,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		080686212FC0A96B0054E5ED /* Cornpass */ = {
+			isa = PBXGroup;
+			children = (
+				080686202FC0A96B0054E5ED /* CornpassApp.swift */,
+				0806861F2FC0A96B0054E5ED /* ContentView.swift */,
+				0806861E2FC0A96B0054E5ED /* Assets.xcassets */,
+			);
+			path = Cornpass;
+			sourceTree = "<group>";
+		};
 		084F91462FC0A116007D11F5 = {
 			isa = PBXGroup;
 			children = (
-				084F91512FC0A116007D11F5 /* Cornpass */,
+				080686212FC0A96B0054E5ED /* Cornpass */,
 				084F91502FC0A116007D11F5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,9 +70,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				084F91512FC0A116007D11F5 /* Cornpass */,
 			);
 			name = Cornpass;
 			packageProductDependencies = (
@@ -109,6 +117,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				080686222FC0A96B0054E5ED /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +128,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				080686232FC0A96B0054E5ED /* ContentView.swift in Sources */,
+				080686242FC0A96B0054E5ED /* CornpassApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
