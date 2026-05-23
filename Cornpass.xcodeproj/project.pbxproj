@@ -15,6 +15,9 @@
 		080686372FC1803D0054E5ED /* SFUIDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 080686332FC1803D0054E5ED /* SFUIDisplay-Medium.otf */; };
 		080686382FC1803D0054E5ED /* SFUIDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 080686342FC1803D0054E5ED /* SFUIDisplay-Regular.otf */; };
 		080686392FC1803D0054E5ED /* SFUIDisplay-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 080686352FC1803D0054E5ED /* SFUIDisplay-Semibold.otf */; };
+		08CFD17C2FC1BDAA00F95A12 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD17B2FC1BDAA00F95A12 /* LandingView.swift */; };
+		08CFD17E2FC1F52600F95A12 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD17D2FC1F52600F95A12 /* LoginView.swift */; };
+		08CFD1822FC1FAD700F95A12 /* SwiftUIExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1812FC1FAD700F95A12 /* SwiftUIExt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		080686342FC1803D0054E5ED /* SFUIDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Regular.otf"; sourceTree = "<group>"; };
 		080686352FC1803D0054E5ED /* SFUIDisplay-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Semibold.otf"; sourceTree = "<group>"; };
 		084F914F2FC0A116007D11F5 /* Cornpass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cornpass.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		08CFD17B2FC1BDAA00F95A12 /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
+		08CFD17D2FC1F52600F95A12 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		08CFD1812FC1FAD700F95A12 /* SwiftUIExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,8 +54,11 @@
 				0806861F2FC0A96B0054E5ED /* ContentView.swift */,
 				0806861E2FC0A96B0054E5ED /* Assets.xcassets */,
 				0806862F2FC17EC80054E5ED /* Info.plist */,
-				080686282FC17DE10054E5ED /* Fonts */,
 				080686302FC17F6A0054E5ED /* AppFont.swift */,
+				08CFD17B2FC1BDAA00F95A12 /* LandingView.swift */,
+				08CFD1812FC1FAD700F95A12 /* SwiftUIExt.swift */,
+				08CFD17D2FC1F52600F95A12 /* LoginView.swift */,
+				080686282FC17DE10054E5ED /* Fonts */,
 			);
 			path = Cornpass;
 			sourceTree = "<group>";
@@ -157,8 +166,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08CFD17C2FC1BDAA00F95A12 /* LandingView.swift in Sources */,
 				080686232FC0A96B0054E5ED /* ContentView.swift in Sources */,
+				08CFD1822FC1FAD700F95A12 /* SwiftUIExt.swift in Sources */,
 				080686242FC0A96B0054E5ED /* CornpassApp.swift in Sources */,
+				08CFD17E2FC1F52600F95A12 /* LoginView.swift in Sources */,
 				080686312FC17F6A0054E5ED /* AppFont.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
