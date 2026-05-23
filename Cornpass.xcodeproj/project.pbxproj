@@ -10,12 +10,23 @@
 		080686222FC0A96B0054E5ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0806861E2FC0A96B0054E5ED /* Assets.xcassets */; };
 		080686232FC0A96B0054E5ED /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0806861F2FC0A96B0054E5ED /* ContentView.swift */; };
 		080686242FC0A96B0054E5ED /* CornpassApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080686202FC0A96B0054E5ED /* CornpassApp.swift */; };
+		080686312FC17F6A0054E5ED /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080686302FC17F6A0054E5ED /* AppFont.swift */; };
+		080686362FC1803D0054E5ED /* SFUIDisplay-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 080686322FC1803D0054E5ED /* SFUIDisplay-Bold.ttf */; };
+		080686372FC1803D0054E5ED /* SFUIDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 080686332FC1803D0054E5ED /* SFUIDisplay-Medium.otf */; };
+		080686382FC1803D0054E5ED /* SFUIDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 080686342FC1803D0054E5ED /* SFUIDisplay-Regular.otf */; };
+		080686392FC1803D0054E5ED /* SFUIDisplay-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 080686352FC1803D0054E5ED /* SFUIDisplay-Semibold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0806861E2FC0A96B0054E5ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0806861F2FC0A96B0054E5ED /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		080686202FC0A96B0054E5ED /* CornpassApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornpassApp.swift; sourceTree = "<group>"; };
+		0806862F2FC17EC80054E5ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		080686302FC17F6A0054E5ED /* AppFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
+		080686322FC1803D0054E5ED /* SFUIDisplay-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Bold.ttf"; sourceTree = "<group>"; };
+		080686332FC1803D0054E5ED /* SFUIDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Medium.otf"; sourceTree = "<group>"; };
+		080686342FC1803D0054E5ED /* SFUIDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Regular.otf"; sourceTree = "<group>"; };
+		080686352FC1803D0054E5ED /* SFUIDisplay-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Semibold.otf"; sourceTree = "<group>"; };
 		084F914F2FC0A116007D11F5 /* Cornpass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cornpass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -36,8 +47,22 @@
 				080686202FC0A96B0054E5ED /* CornpassApp.swift */,
 				0806861F2FC0A96B0054E5ED /* ContentView.swift */,
 				0806861E2FC0A96B0054E5ED /* Assets.xcassets */,
+				0806862F2FC17EC80054E5ED /* Info.plist */,
+				080686282FC17DE10054E5ED /* Fonts */,
+				080686302FC17F6A0054E5ED /* AppFont.swift */,
 			);
 			path = Cornpass;
+			sourceTree = "<group>";
+		};
+		080686282FC17DE10054E5ED /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				080686322FC1803D0054E5ED /* SFUIDisplay-Bold.ttf */,
+				080686332FC1803D0054E5ED /* SFUIDisplay-Medium.otf */,
+				080686342FC1803D0054E5ED /* SFUIDisplay-Regular.otf */,
+				080686352FC1803D0054E5ED /* SFUIDisplay-Semibold.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		084F91462FC0A116007D11F5 = {
@@ -118,6 +143,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				080686222FC0A96B0054E5ED /* Assets.xcassets in Resources */,
+				080686362FC1803D0054E5ED /* SFUIDisplay-Bold.ttf in Resources */,
+				080686372FC1803D0054E5ED /* SFUIDisplay-Medium.otf in Resources */,
+				080686382FC1803D0054E5ED /* SFUIDisplay-Regular.otf in Resources */,
+				080686392FC1803D0054E5ED /* SFUIDisplay-Semibold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +159,7 @@
 			files = (
 				080686232FC0A96B0054E5ED /* ContentView.swift in Sources */,
 				080686242FC0A96B0054E5ED /* CornpassApp.swift in Sources */,
+				080686312FC17F6A0054E5ED /* AppFont.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +297,7 @@
 				DEVELOPMENT_TEAM = 649YS6C548;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Cornpass/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +330,7 @@
 				DEVELOPMENT_TEAM = 649YS6C548;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Cornpass/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
