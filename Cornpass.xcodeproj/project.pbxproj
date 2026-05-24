@@ -18,6 +18,9 @@
 		08CFD17C2FC1BDAA00F95A12 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD17B2FC1BDAA00F95A12 /* LandingView.swift */; };
 		08CFD17E2FC1F52600F95A12 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD17D2FC1F52600F95A12 /* LoginView.swift */; };
 		08CFD1822FC1FAD700F95A12 /* SwiftUIExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1812FC1FAD700F95A12 /* SwiftUIExt.swift */; };
+		08CFD1842FC2E08900F95A12 /* GenrePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1832FC2E08900F95A12 /* GenrePickerView.swift */; };
+		08CFD1862FC2FAF100F95A12 /* GravityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1852FC2FAE000F95A12 /* GravityView.swift */; };
+		08CFD1882FC2FC7C00F95A12 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1872FC2FC7800F95A12 /* Genre.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		08CFD17B2FC1BDAA00F95A12 /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		08CFD17D2FC1F52600F95A12 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		08CFD1812FC1FAD700F95A12 /* SwiftUIExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExt.swift; sourceTree = "<group>"; };
+		08CFD1832FC2E08900F95A12 /* GenrePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenrePickerView.swift; sourceTree = "<group>"; };
+		08CFD1852FC2FAE000F95A12 /* GravityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityView.swift; sourceTree = "<group>"; };
+		08CFD1872FC2FC7800F95A12 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,9 @@
 				08CFD17B2FC1BDAA00F95A12 /* LandingView.swift */,
 				08CFD1812FC1FAD700F95A12 /* SwiftUIExt.swift */,
 				08CFD17D2FC1F52600F95A12 /* LoginView.swift */,
+				08CFD1832FC2E08900F95A12 /* GenrePickerView.swift */,
+				08CFD1872FC2FC7800F95A12 /* Genre.swift */,
+				08CFD1852FC2FAE000F95A12 /* GravityView.swift */,
 				080686282FC17DE10054E5ED /* Fonts */,
 			);
 			path = Cornpass;
@@ -166,10 +175,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08CFD1882FC2FC7C00F95A12 /* Genre.swift in Sources */,
+				08CFD1842FC2E08900F95A12 /* GenrePickerView.swift in Sources */,
 				08CFD17C2FC1BDAA00F95A12 /* LandingView.swift in Sources */,
 				080686232FC0A96B0054E5ED /* ContentView.swift in Sources */,
 				08CFD1822FC1FAD700F95A12 /* SwiftUIExt.swift in Sources */,
 				080686242FC0A96B0054E5ED /* CornpassApp.swift in Sources */,
+				08CFD1862FC2FAF100F95A12 /* GravityView.swift in Sources */,
 				08CFD17E2FC1F52600F95A12 /* LoginView.swift in Sources */,
 				080686312FC17F6A0054E5ED /* AppFont.swift in Sources */,
 			);
@@ -310,11 +322,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cornpass/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -343,11 +355,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cornpass/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
