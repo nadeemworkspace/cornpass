@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MARK: PRIMARY BUTTON
 struct PrimaryButton: View {
     let title: String
     var background: Color = .white
@@ -25,6 +26,7 @@ struct PrimaryButton: View {
     }
 }
 
+// MARK: LOGIN ACTION BUTTON
 struct LoginActionButton: View {
     let title: String
     let image: ImageResource
@@ -49,6 +51,24 @@ struct LoginActionButton: View {
         }
     }
 }
+
+// MARK: TOOL BAR BUTTONS
+struct ToolbarActionButton: View {
+    let image: String
+    let action: () -> Void
+    var body: some View {
+        Button(action: action){
+            Image(image)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 16, height: 16)
+                .padding(20)
+                .background(Color(hex: "#14181B"))
+                .clipShape(Circle())
+        }
+    }
+}
+
 
 // MARK: CUSTOM TEXT FIELD
 struct CustomTextField: View {
@@ -169,5 +189,11 @@ struct VerticalDottedLine: Shape {
         path.move(to: CGPoint(x: rect.midX, y: rect.minY))
         path.addLine(to: CGPoint(x: rect.midX, y: rect.maxY))
         return path
+    }
+}
+
+struct AppHelper {
+    static func formattedAmount(_ amount: Double) -> String {
+        String(format: "%.2f", amount)
     }
 }

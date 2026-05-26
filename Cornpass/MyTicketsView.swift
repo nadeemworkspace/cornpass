@@ -16,19 +16,13 @@ struct MyTicketsView: View {
             VStack {
                 // Header
                 HStack {
-                    Circle()
-                        .fill(.white.opacity(0.5))
-                        .frame(width: 56, height: 56)
                     Spacer()
                     Text("My Tickets")
                         .font(AppFont.semiBold.font(size: 18))
                         .foregroundStyle(.white)
                     Spacer()
-                    Circle()
-                        .fill(.clear)
-                        .frame(width: 56, height: 56)
                 }
-                .padding(.horizontal)
+                .padding()
                 
                 // Seach Field
                 Rectangle()
