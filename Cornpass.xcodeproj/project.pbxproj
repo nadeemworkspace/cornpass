@@ -27,6 +27,7 @@
 		08CFD1902FC4557E00F95A12 /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD18F2FC4557E00F95A12 /* TicketView.swift */; };
 		08CFD1922FC4579400F95A12 /* TicketDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1912FC4579400F95A12 /* TicketDetailView.swift */; };
 		08CFD1942FC466DE00F95A12 /* MainTicketShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1932FC466DE00F95A12 /* MainTicketShape.swift */; };
+		08CFD1962FC5AF3200F95A12 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1952FC5AF3200F95A12 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		08CFD18F2FC4557E00F95A12 /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
 		08CFD1912FC4579400F95A12 /* TicketDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDetailView.swift; sourceTree = "<group>"; };
 		08CFD1932FC466DE00F95A12 /* MainTicketShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTicketShape.swift; sourceTree = "<group>"; };
+		08CFD1952FC5AF3200F95A12 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,8 +72,7 @@
 			children = (
 				080686202FC0A96B0054E5ED /* CornpassApp.swift */,
 				0806861F2FC0A96B0054E5ED /* ContentView.swift */,
-				0806861E2FC0A96B0054E5ED /* Assets.xcassets */,
-				0806862F2FC17EC80054E5ED /* Info.plist */,
+				08CFD1952FC5AF3200F95A12 /* HomeView.swift */,
 				080686302FC17F6A0054E5ED /* AppFont.swift */,
 				08CFD17B2FC1BDAA00F95A12 /* LandingView.swift */,
 				08CFD1812FC1FAD700F95A12 /* SwiftUIExt.swift */,
@@ -85,6 +86,7 @@
 				08CFD18D2FC4518F00F95A12 /* MovieTicket.swift */,
 				08CFD18B2FC356BE00F95A12 /* TicketShape.swift */,
 				08CFD1852FC2FAE000F95A12 /* GravityView.swift */,
+				0806862F2FC17EC80054E5ED /* Info.plist */,
 				080686282FC17DE10054E5ED /* Fonts */,
 			);
 			path = Cornpass;
@@ -93,6 +95,7 @@
 		080686282FC17DE10054E5ED /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				0806861E2FC0A96B0054E5ED /* Assets.xcassets */,
 				080686322FC1803D0054E5ED /* SFUIDisplay-Bold.ttf */,
 				080686332FC1803D0054E5ED /* SFUIDisplay-Medium.otf */,
 				080686342FC1803D0054E5ED /* SFUIDisplay-Regular.otf */,
@@ -206,6 +209,7 @@
 				08CFD18E2FC4518F00F95A12 /* MovieTicket.swift in Sources */,
 				08CFD1862FC2FAF100F95A12 /* GravityView.swift in Sources */,
 				08CFD17E2FC1F52600F95A12 /* LoginView.swift in Sources */,
+				08CFD1962FC5AF3200F95A12 /* HomeView.swift in Sources */,
 				08CFD1942FC466DE00F95A12 /* MainTicketShape.swift in Sources */,
 				080686312FC17F6A0054E5ED /* AppFont.swift in Sources */,
 			);
