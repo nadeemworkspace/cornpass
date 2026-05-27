@@ -8,9 +8,35 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State private var currentPosterIndex: Int = 0
     var body: some View {
-        CinemaRootView()
+        ZStack {
+            Color.black
+                .ignoresSafeArea()
+
+            ScrollView {
+                VStack(spacing: 0) {
+                    // POster
+                    HeroBannerSection(heroIndex: $currentPosterIndex)
+                    // Sections
+                    VStack(spacing: 28) {
+                        HorizontalMovieSection(title: "Now Showing", movies: nowShowingMovies, cardWidth: 160, cardHeight: 220, showBadge: false)
+                        ComingSoonSection(movies: comingSoonMovies)
+                        GenreSection(genres: genres)
+                        FeaturedPickSection()
+                        HorizontalMovieSection(title: "Animation", movies: animationMovies, cardWidth: 140, cardHeight: 200, showBadge: false)
+                    }
+                    .padding(.top, 20)
+                    .padding(.bottom, 40)
+                }
+            }
+        }
+        .ignoresSafeArea(edges: .top)
     }
+}
+
+#Preview {
+    HomeView()
 }
 
 struct Movie: Identifiable {
@@ -68,29 +94,6 @@ struct CinemaHomeView: View {
     @State private var heroIndex = 0
 
     var body: some View {
-        ZStack {
-            Color.black
-                .ignoresSafeArea()
-
-            ScrollView {
-                VStack(spacing: 0) {
-
-                    // MARK: Hero Pager
-                    HeroBannerSection(heroIndex: $heroIndex)
-
-                    // Sections
-                    VStack(spacing: 28) {
-                        HorizontalMovieSection(title: "Now Showing", movies: nowShowingMovies, cardWidth: 160, cardHeight: 220, showBadge: false)
-                        ComingSoonSection(movies: comingSoonMovies)
-                        GenreSection(genres: genres)
-                        FeaturedPickSection()
-                        HorizontalMovieSection(title: "Animation", movies: animationMovies, cardWidth: 140, cardHeight: 200, showBadge: false)
-                    }
-                    .padding(.top, 20)
-                    .padding(.bottom, 40)
-                }
-            }
-        }
     }
 }
 
@@ -489,17 +492,4 @@ struct FeaturedPickSection: View {
         }
         .padding(.horizontal, 16)
     }
-}
-
-struct CinemaRootView: View {
-    var body: some View {
-        ZStack(alignment: .top) {
-            CinemaHomeView()
-        }
-        .ignoresSafeArea(edges: .top)
-    }
-}
-
-#Preview {
-    CinemaRootView()
 }
