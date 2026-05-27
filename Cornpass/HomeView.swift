@@ -36,7 +36,7 @@ struct HomeView: View {
                         )
                         // Genre
                         GenreSection(
-                            genres: genres
+                            genres: Genre.all
                         )
                         // Featured Movie
                         FeaturedMovieView()
@@ -187,8 +187,6 @@ struct TrailerButton: View {
     }
 }
 
-// MARK: - Section Header
-
 struct SectionHeader: View {
     let title: String
     let actionLabel: String
@@ -210,7 +208,7 @@ struct SectionHeader: View {
                 }
             }
         }
-        .padding(.horizontal, 16)
+        .padding(.horizontal)
     }
 }
 
@@ -224,20 +222,24 @@ struct HorizontalMovieSection: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             SectionHeader(title: title, actionLabel: "More")
-
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 10) {
                     ForEach(movies) { movie in
-                        SkeletonMovieCard(movie: movie, width: cardWidth, height: cardHeight, showBadge: showBadge)
+                        MovieCard(
+                            movie: movie,
+                            width: cardWidth,
+                            height: cardHeight,
+                            showBadge: showBadge
+                        )
                     }
                 }
-                .padding(.horizontal, 16)
+                .padding(.horizontal)
             }
         }
     }
 }
 
-struct SkeletonMovieCard: View {
+struct MovieCard: View {
     let movie: Movie
     let width: CGFloat
     let height: CGFloat
@@ -245,28 +247,16 @@ struct SkeletonMovieCard: View {
 
     var body: some View {
         ZStack(alignment: .topLeading) {
-            RoundedRectangle(cornerRadius: 10)
-                .fill(
-                    .white
-//                    LinearGradient(
-//                        colors: [movie.color, movie.color.opacity(0.6)],
-//                        startPoint: .topLeading,
-//                        endPoint: .bottomTrailing
-//                    )
-                )
+            Image(movie.image)
+                .resizable()
+                .scaledToFill()
                 .frame(width: width, height: height)
-                .overlay(
-                    Image(systemName: "photo")
-                        .font(.system(size: 28))
-                        .foregroundColor(.white.opacity(0.08))
-                )
-
             if showBadge {
                 BadgeView(text: movie.badge)
                     .padding(8)
             }
         }
-        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .clipShape(RoundedRectangle(cornerRadius: 14))
     }
 }
 
@@ -283,7 +273,7 @@ struct ComingSoonSection: View {
                         ComingSoonCard(movie: movie)
                     }
                 }
-                .padding(.horizontal, 16)
+                .padding(.horizontal)
             }
         }
     }
@@ -294,22 +284,10 @@ struct ComingSoonCard: View {
 
     var body: some View {
         ZStack(alignment: .bottom) {
-            RoundedRectangle(cornerRadius: 10)
-                .fill(
-                    .white
-//                    LinearGradient(
-//                        colors: [movie.color, movie.color.opacity(0.5)],
-//                        startPoint: .top,
-//                        endPoint: .bottom
-//                    )
-                )
+            Image(movie.image)
+                .resizable()
+                .scaledToFill()
                 .frame(width: 110, height: 150)
-                .overlay(
-                    Image(systemName: "photo")
-                        .font(.system(size: 22))
-                        .foregroundColor(.white.opacity(0.08))
-                )
-            // Soon Badge
             HStack {
                 Image(.soonBadge)
                     .resizable()
@@ -319,7 +297,7 @@ struct ComingSoonCard: View {
             }
             .padding(10)
         }
-        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .clipShape(RoundedRectangle(cornerRadius: 14))
     }
 }
 
@@ -338,7 +316,7 @@ struct BadgeView: View {
 }
 
 struct GenreSection: View {
-    let genres: [Genre1]
+    let genres: [Genre]
     @State private var selectedGenres: Set<String> = []
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -353,7 +331,7 @@ struct GenreSection: View {
                         .foregroundColor(.white.opacity(0.55))
                 }
             }
-            .padding(.horizontal, 16)
+            .padding(.horizontal)
 
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
@@ -361,12 +339,12 @@ struct GenreSection: View {
                         genreChip(genre: genre)
                     }
                 }
-                .padding(.horizontal, 16)
+                .padding(.horizontal)
             }
         }
     }
 
-    func genreChip(genre: Genre1) -> some View {
+    func genreChip(genre: Genre) -> some View {
         Text(genre.name)
             .foregroundStyle(selectedGenres.contains(genre.name) ? .black : .white)
             .font(AppFont.medium.font(size: 16))
@@ -382,84 +360,6 @@ struct GenreSection: View {
                 }
             }
             .animation(.spring, value: selectedGenres)
-    }
-}
-
-struct FeaturedPickSection: View {
-    var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            ZStack(alignment: .bottomLeading) {
-                // Large skeleton card
-                RoundedRectangle(cornerRadius: 14)
-                    .fill(
-                        LinearGradient(
-                            colors: [
-                                Color(red: 0.20, green: 0.45, blue: 0.65),
-                                Color(red: 0.10, green: 0.60, blue: 0.50),
-                            ],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 200)
-                    .overlay(
-                        Image(systemName: "film.fill")
-                            .font(.system(size: 50))
-                            .foregroundColor(.white.opacity(0.06))
-                    )
-
-                // Bottom info overlay
-                LinearGradient(
-                    colors: [.clear, .black.opacity(0.75)],
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-                .clipShape(RoundedRectangle(cornerRadius: 14))
-
-                HStack(alignment: .bottom) {
-                    VStack(alignment: .leading, spacing: 3) {
-                        Text("NEW · Animation · 1h 49m")
-                            .font(.system(size: 10))
-                            .foregroundColor(.white.opacity(0.7))
-                        HStack(spacing: 4) {
-                            Text("Loca")
-                                .font(.system(size: 18, weight: .bold))
-                                .foregroundColor(.white)
-                            Label("Our Pick", systemImage: "hand.thumbsup.fill")
-                                .font(.system(size: 10, weight: .semibold))
-                                .foregroundColor(.white)
-                                .padding(.horizontal, 7)
-                                .padding(.vertical, 3)
-                                .background(Color(red: 0.15, green: 0.55, blue: 0.40))
-                                .clipShape(Capsule())
-                        }
-                    }
-
-                    Spacer()
-
-                    VStack(alignment: .trailing, spacing: 3) {
-                        HStack(spacing: 2) {
-                            Text("8.9/10")
-                                .font(.system(size: 11, weight: .bold))
-                                .foregroundColor(.white)
-                            Text("IMDb")
-                                .font(.system(size: 9, weight: .semibold))
-                                .foregroundColor(Color(red: 0.95, green: 0.72, blue: 0.10))
-                        }
-                        Text("EN")
-                            .font(.system(size: 10, weight: .bold))
-                            .foregroundColor(.white)
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 3)
-                            .background(Color.white.opacity(0.2))
-                            .clipShape(RoundedRectangle(cornerRadius: 4))
-                    }
-                }
-                .padding(14)
-            }
-        }
-        .padding(.horizontal)
     }
 }
 
