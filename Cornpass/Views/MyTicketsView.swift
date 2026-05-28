@@ -33,7 +33,7 @@ struct MyTicketsView: View {
                     .padding(.horizontal)
                 
                 ScrollView {
-                    ForEach(MovieTicket.tickets) { ticket in
+                    ForEach(Ticket.tickets) { ticket in
                         NavigationLink {
                             TicketDetailView(ticket: ticket)
                         } label: {

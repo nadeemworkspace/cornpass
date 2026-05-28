@@ -10,7 +10,7 @@ import SwiftUI
 struct TicketDetailView: View {
     
     @Environment(\.dismiss) private var dismiss
-    let ticket: MovieTicket
+    let ticket: Ticket
     private let columns = Array(repeating: GridItem(.flexible(), alignment: .center), count: 3)
     
     var body: some View {
