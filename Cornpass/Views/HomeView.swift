@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var currentPosterIndex: Int = 0
+    let movies = loadMovies()
     var body: some View {
         ZStack {
             Color.black
@@ -18,6 +19,7 @@ struct HomeView: View {
                 VStack(spacing: 0) {
                     // Poster
                     HeroBannerSection(
+                        movies: movies?.heroMovies ?? [],
                         heroIndex: $currentPosterIndex
                     )
                     // Sections
@@ -25,14 +27,14 @@ struct HomeView: View {
                         // Now Showing
                         HorizontalMovieSection(
                             title: "Now Showing",
-                            movies: Movie.nowShowingMovies,
+                            movies: movies?.nowShowingMovies ?? [],
                             cardWidth: 160,
                             cardHeight: 220,
                             showBadge: false
                         )
                         // Coming soon
                         ComingSoonSection(
-                            movies: Movie.comingSoonMovies
+                            movies: movies?.comingSoonMovies ?? []
                         )
                         // Genre
                         GenreSection(
@@ -43,7 +45,7 @@ struct HomeView: View {
                         // Animated Movies
                         HorizontalMovieSection(
                             title: "Animation",
-                            movies: Movie.animationMovies,
+                            movies: movies?.animationMovies ?? [],
                             cardWidth: 140,
                             cardHeight: 200,
                             showBadge: false
@@ -64,14 +66,15 @@ struct HomeView: View {
 }
 
 struct HeroBannerSection: View {
+    let movies: [Movie]
     @Binding var heroIndex: Int
 
     var body: some View {
         ZStack(alignment: .bottom) {
             // Pager
             TabView(selection: $heroIndex) {
-                ForEach(Movie.heroMovies.indices, id: \.self) { index in
-                    PosterCard(movie: Movie.heroMovies[index])
+                ForEach(movies.indices, id: \.self) { index in
+                    PosterCard(movie: movies[index])
                         .tag(index)
                 }
             }
@@ -99,12 +102,12 @@ struct HeroBannerSection: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 22, height: 22)
-                        Text(Movie.heroMovies[heroIndex].title)
+                        Text(movies[heroIndex].title)
                             .font(AppFont.semiBold.font(size: 24))
 
                     }
 
-                    Text("\(Movie.heroMovies[heroIndex].badge) • \(Movie.heroMovies[heroIndex].genre) • \(Movie.heroMovies[heroIndex].rating) • \(Movie.heroMovies[heroIndex].duration)")
+                    Text("\(movies[heroIndex].badge) • \(movies[heroIndex].genre) • \(movies[heroIndex].rating) • \(movies[heroIndex].duration)")
                         .font(AppFont.medium.font(size: 14))
                 }
                 .foregroundColor(.white)
@@ -112,7 +115,7 @@ struct HeroBannerSection: View {
 
                 // Page Control
                 HStack(spacing: 5) {
-                    ForEach(Movie.heroMovies.indices, id: \.self) { i in
+                    ForEach(movies.indices, id: \.self) { i in
                         Capsule()
                             .fill(i == heroIndex ? Color.white : Color.white.opacity(0.35))
                             .frame(width: i == heroIndex ? 18 : 6, height: 6)
@@ -126,7 +129,7 @@ struct HeroBannerSection: View {
                     CircleIconButton(icon: "plus") {
                         print("TODO: Add to watchlist")
                     }
-                    TrailerButton(movie: Movie.heroMovies[heroIndex])
+                    TrailerButton(movie: movies[heroIndex])
                     CircleIconButton(icon: "info") {
                         print("TODO: Info")
                     }
@@ -250,16 +253,20 @@ struct MovieCard: View {
 
     var body: some View {
         ZStack(alignment: .topLeading) {
-            Image(movie.image)
-                .resizable()
-                .scaledToFill()
-                .frame(width: width, height: height)
-            if showBadge {
-                BadgeView(text: movie.badge)
-                    .padding(8)
+            NavigationLink {
+                MovieDetailView(movie: movie)
+            } label: {
+                Image(movie.image)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: width, height: height)
+                if showBadge {
+                    BadgeView(text: movie.badge)
+                        .padding(8)
+                }
             }
         }
-        .clipShape(RoundedRectangle(cornerRadius: 14))
+        .clipShape(.rect(cornerRadius: 14))
     }
 }
 
@@ -274,7 +281,11 @@ struct ComingSoonSection: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 10) {
                     ForEach(movies) { movie in
-                        ComingSoonCard(movie: movie)
+                        NavigationLink {
+                            MovieDetailView(movie: movie)
+                        } label: {
+                            ComingSoonCard(movie: movie)
+                        }
                     }
                 }
                 .padding(.horizontal)
