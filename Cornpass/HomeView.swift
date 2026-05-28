@@ -8,65 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    var body: some View {
-        CinemaRootView()
-    }
-}
-
-struct Movie: Identifiable {
-    let id = UUID()
-    let title: String
-    let badge: String
-    let genre: String
-    let rating: String
-    let duration: String
-    let color: Color
-}
-
-struct Genre1: Identifiable {
-    let id = UUID()
-    let icon: String
-    let name: String
-}
-
-let heroMovies: [Movie] = [
-    Movie(title: "Arrival", badge: "NEW", genre: "Mystery", rating: "PG-13", duration: "1h 56m", color: Color(red: 0.25, green: 0.30, blue: 0.38)),
-    Movie(title: "Dune: Part Two", badge: "NEW", genre: "Sci-Fi", rating: "PG-13", duration: "2h 46m", color: Color(red: 0.42, green: 0.30, blue: 0.18)),
-    Movie(title: "Oppenheimer", badge: "HOT", genre: "Drama", rating: "R", duration: "3h 0m", color: Color(red: 0.15, green: 0.15, blue: 0.20)),
-]
-
-let nowShowingMovies: [Movie] = [
-    Movie(title: "Peaky Blinders", badge: "", genre: "Crime", rating: "TV-MA", duration: "1h 0m", color: Color(red: 0.50, green: 0.38, blue: 0.20)),
-    Movie(title: "Avatar 2", badge: "", genre: "Action", rating: "PG-13", duration: "3h 12m", color: Color(red: 0.08, green: 0.28, blue: 0.45)),
-    Movie(title: "Interstellar", badge: "", genre: "Sci-Fi", rating: "PG-13", duration: "2h 49m", color: Color(red: 0.10, green: 0.12, blue: 0.22)),
-]
-
-let comingSoonMovies: [Movie] = [
-    Movie(title: "Minions 3", badge: "SO ON", genre: "Animation", rating: "PG", duration: "1h 30m", color: Color(red: 0.90, green: 0.72, blue: 0.10)),
-    Movie(title: "Napoleon", badge: "SO ON", genre: "History", rating: "R", duration: "2h 38m", color: Color(red: 0.35, green: 0.22, blue: 0.15)),
-    Movie(title: "Gladiator II", badge: "SO ON", genre: "Action", rating: "R", duration: "2h 28m", color: Color(red: 0.40, green: 0.28, blue: 0.18)),
-    Movie(title: "Furiosa", badge: "SO ON", genre: "Action", rating: "R", duration: "2h 28m", color: Color(red: 0.55, green: 0.18, blue: 0.12)),
-]
-
-let genres: [Genre1] = [
-    Genre1(icon: "🗺️", name: "Adventure"),
-    Genre1(icon: "😄", name: "Comedy"),
-    Genre1(icon: "💕", name: "Romance"),
-    Genre1(icon: "🔪", name: "Thriller"),
-    Genre1(icon: "👻", name: "Horror"),
-]
-
-let animationMovies: [Movie] = [
-    Movie(title: "Penguins", badge: "", genre: "Animation", rating: "PG", duration: "1h 32m", color: Color(red: 0.10, green: 0.22, blue: 0.40)),
-    Movie(title: "Lion King", badge: "", genre: "Animation", rating: "G", duration: "1h 28m", color: Color(red: 0.60, green: 0.38, blue: 0.08)),
-    Movie(title: "Brave", badge: "", genre: "Animation", rating: "PG", duration: "1h 33m", color: Color(red: 0.20, green: 0.35, blue: 0.22)),
-]
-
-// MARK: - Main View
-
-struct CinemaHomeView: View {
-    @State private var heroIndex = 0
-
+    @State private var currentPosterIndex: Int = 0
     var body: some View {
         ZStack {
             Color.black
@@ -74,27 +16,52 @@ struct CinemaHomeView: View {
 
             ScrollView {
                 VStack(spacing: 0) {
-
-                    // MARK: Hero Pager
-                    HeroBannerSection(heroIndex: $heroIndex)
-
+                    // Poster
+                    HeroBannerSection(
+                        heroIndex: $currentPosterIndex
+                    )
                     // Sections
                     VStack(spacing: 28) {
-                        HorizontalMovieSection(title: "Now Showing", movies: nowShowingMovies, cardWidth: 160, cardHeight: 220, showBadge: false)
-                        ComingSoonSection(movies: comingSoonMovies)
-                        GenreSection(genres: genres)
-                        FeaturedPickSection()
-                        HorizontalMovieSection(title: "Animation", movies: animationMovies, cardWidth: 140, cardHeight: 200, showBadge: false)
+                        // Now Showing
+                        HorizontalMovieSection(
+                            title: "Now Showing",
+                            movies: Movie.nowShowingMovies,
+                            cardWidth: 160,
+                            cardHeight: 220,
+                            showBadge: false
+                        )
+                        // Coming soon
+                        ComingSoonSection(
+                            movies: Movie.comingSoonMovies
+                        )
+                        // Genre
+                        GenreSection(
+                            genres: Genre.all
+                        )
+                        // Featured Movie
+                        FeaturedMovieView()
+                        // Animated Movies
+                        HorizontalMovieSection(
+                            title: "Animation",
+                            movies: Movie.animationMovies,
+                            cardWidth: 140,
+                            cardHeight: 200,
+                            showBadge: false
+                        )
                     }
                     .padding(.top, 20)
                     .padding(.bottom, 40)
                 }
             }
+            .scrollIndicators(.hidden)
         }
+        .ignoresSafeArea(edges: .top)
     }
 }
 
-// MARK: - Hero Banner
+#Preview {
+    HomeView()
+}
 
 struct HeroBannerSection: View {
     @Binding var heroIndex: Int
@@ -103,13 +70,13 @@ struct HeroBannerSection: View {
         ZStack(alignment: .bottom) {
             // Pager
             TabView(selection: $heroIndex) {
-                ForEach(heroMovies.indices, id: \.self) { index in
-                    PosterCard(movie: heroMovies[index])
+                ForEach(Movie.heroMovies.indices, id: \.self) { index in
+                    PosterCard(movie: Movie.heroMovies[index])
                         .tag(index)
                 }
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
-            .frame(height: 480)
+            .frame(height: 540)
             // Dark gradient overlay
             LinearGradient(
                 stops: [
@@ -120,28 +87,32 @@ struct HeroBannerSection: View {
                 startPoint: .top,
                 endPoint: .bottom
             )
-            .frame(height: 190)
+            .frame(height: 200)
             .allowsHitTesting(false)
 
             // Info + Controls
             VStack(spacing: 8) {
                 // Movie badge + title
-                HStack(spacing: 6) {
-                    Image(systemName: "square.grid.2x2.fill")
-                        .font(.system(size: 11))
-                        .foregroundColor(.white)
-                    Text(heroMovies[heroIndex].title)
-                        .font(.system(size: 17, weight: .semibold))
-                        .foregroundColor(.white)
+                Group {
+                    HStack(spacing: 6) {
+                        Image(.soonBadge)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 22, height: 22)
+                        Text(Movie.heroMovies[heroIndex].title)
+                            .font(AppFont.semiBold.font(size: 24))
+
+                    }
+
+                    Text("\(Movie.heroMovies[heroIndex].badge) • \(Movie.heroMovies[heroIndex].genre) • \(Movie.heroMovies[heroIndex].rating) • \(Movie.heroMovies[heroIndex].duration)")
+                        .font(AppFont.medium.font(size: 14))
                 }
+                .foregroundColor(.white)
+                .animation(.smooth, value: heroIndex)
 
-                Text("\(heroMovies[heroIndex].badge) · \(heroMovies[heroIndex].genre) · \(heroMovies[heroIndex].rating) · \(heroMovies[heroIndex].duration)")
-                    .font(.system(size: 12))
-                    .foregroundColor(.white.opacity(0.65))
-
-                // Page dots
+                // Page Control
                 HStack(spacing: 5) {
-                    ForEach(heroMovies.indices, id: \.self) { i in
+                    ForEach(Movie.heroMovies.indices, id: \.self) { i in
                         Capsule()
                             .fill(i == heroIndex ? Color.white : Color.white.opacity(0.35))
                             .frame(width: i == heroIndex ? 18 : 6, height: 6)
@@ -152,25 +123,28 @@ struct HeroBannerSection: View {
 
                 // Action buttons
                 HStack(spacing: 16) {
-                    CircleIconButton(icon: "plus")
-                    TrailerButton()
-                    CircleIconButton(icon: "info")
+                    CircleIconButton(icon: "plus") {
+                        print("TODO: Add to watchlist")
+                    }
+                    TrailerButton(movie: Movie.heroMovies[heroIndex])
+                    CircleIconButton(icon: "info") {
+                        print("TODO: Info")
+                    }
                 }
                 .padding(.top, 6)
             }
             .padding(.bottom, 20)
         }
-        .frame(height: 480)
+        .frame(height: 540)
         .clipped()
     }
 }
 
 struct PosterCard: View {
     let movie: Movie
-
     var body: some View {
         ZStack {
-            Image(.oppenheimer)
+            Image(movie.image)
                 .resizable()
                 .scaledToFill()
         }
@@ -180,9 +154,9 @@ struct PosterCard: View {
 
 struct CircleIconButton: View {
     let icon: String
-
+    let action: () -> Void
     var body: some View {
-        Button(action: {}) {
+        Button(action: action) {
             Image(systemName: icon)
                 .font(.system(size: 15, weight: .medium))
                 .foregroundColor(.white)
@@ -194,13 +168,16 @@ struct CircleIconButton: View {
 }
 
 struct TrailerButton: View {
+    let movie: Movie
     var body: some View {
-        Button(action: {}) {
+        NavigationLink {
+            VideoPlayerView(movie: movie)
+        } label: {
             HStack(spacing: 6) {
                 Image(systemName: "play.fill")
                     .font(.system(size: 13))
                 Text("Trailer")
-                    .font(.system(size: 14, weight: .semibold))
+                    .font(AppFont.medium.font(size: 18))
             }
             .foregroundColor(.black)
             .padding(.horizontal, 22)
@@ -210,8 +187,6 @@ struct TrailerButton: View {
         }
     }
 }
-
-// MARK: - Section Header
 
 struct SectionHeader: View {
     let title: String
@@ -234,11 +209,9 @@ struct SectionHeader: View {
                 }
             }
         }
-        .padding(.horizontal, 16)
+        .padding(.horizontal)
     }
 }
-
-// MARK: - Horizontal Movie Section (Now Showing / Animation)
 
 struct HorizontalMovieSection: View {
     let title: String
@@ -250,20 +223,24 @@ struct HorizontalMovieSection: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             SectionHeader(title: title, actionLabel: "More")
-
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 10) {
                     ForEach(movies) { movie in
-                        SkeletonMovieCard(movie: movie, width: cardWidth, height: cardHeight, showBadge: showBadge)
+                        MovieCard(
+                            movie: movie,
+                            width: cardWidth,
+                            height: cardHeight,
+                            showBadge: showBadge
+                        )
                     }
                 }
-                .padding(.horizontal, 16)
+                .padding(.horizontal)
             }
         }
     }
 }
 
-struct SkeletonMovieCard: View {
+struct MovieCard: View {
     let movie: Movie
     let width: CGFloat
     let height: CGFloat
@@ -271,31 +248,18 @@ struct SkeletonMovieCard: View {
 
     var body: some View {
         ZStack(alignment: .topLeading) {
-            RoundedRectangle(cornerRadius: 10)
-                .fill(
-                    LinearGradient(
-                        colors: [movie.color, movie.color.opacity(0.6)],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-                )
+            Image(movie.image)
+                .resizable()
+                .scaledToFill()
                 .frame(width: width, height: height)
-                .overlay(
-                    Image(systemName: "photo")
-                        .font(.system(size: 28))
-                        .foregroundColor(.white.opacity(0.08))
-                )
-
             if showBadge {
                 BadgeView(text: movie.badge)
                     .padding(8)
             }
         }
-        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .clipShape(RoundedRectangle(cornerRadius: 14))
     }
 }
-
-// MARK: - Coming Soon Section
 
 struct ComingSoonSection: View {
     let movies: [Movie]
@@ -310,7 +274,7 @@ struct ComingSoonSection: View {
                         ComingSoonCard(movie: movie)
                     }
                 }
-                .padding(.horizontal, 16)
+                .padding(.horizontal)
             }
         }
     }
@@ -321,29 +285,20 @@ struct ComingSoonCard: View {
 
     var body: some View {
         ZStack(alignment: .bottom) {
-            RoundedRectangle(cornerRadius: 10)
-                .fill(
-                    LinearGradient(
-                        colors: [movie.color, movie.color.opacity(0.5)],
-                        startPoint: .top,
-                        endPoint: .bottom
-                    )
-                )
+            Image(movie.image)
+                .resizable()
+                .scaledToFill()
                 .frame(width: 110, height: 150)
-                .overlay(
-                    Image(systemName: "photo")
-                        .font(.system(size: 22))
-                        .foregroundColor(.white.opacity(0.08))
-                )
-
-            // Badge bottom-left
             HStack {
-                BadgeView(text: movie.badge)
+                Image(.soonBadge)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 22, height: 22)
                 Spacer()
             }
-            .padding(6)
+            .padding(10)
         }
-        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .clipShape(RoundedRectangle(cornerRadius: 14))
     }
 }
 
@@ -361,11 +316,9 @@ struct BadgeView: View {
     }
 }
 
-// MARK: - Genre Section
-
 struct GenreSection: View {
-    let genres: [Genre1]
-
+    let genres: [Genre]
+    @State private var selectedGenres: Set<String> = []
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
@@ -379,127 +332,94 @@ struct GenreSection: View {
                         .foregroundColor(.white.opacity(0.55))
                 }
             }
-            .padding(.horizontal, 16)
+            .padding(.horizontal)
 
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
                     ForEach(genres) { genre in
-                        GenreChip(genre: genre)
+                        genreChip(genre: genre)
                     }
                 }
-                .padding(.horizontal, 16)
+                .padding(.horizontal)
             }
         }
     }
-}
 
-struct GenreChip: View {
-    let genre: Genre1
-
-    var body: some View {
-        HStack(spacing: 5) {
-            Text(genre.icon)
-                .font(.system(size: 14))
-            Text(genre.name)
-                .font(.system(size: 13, weight: .medium))
-                .foregroundColor(.white)
-        }
-        .padding(.horizontal, 14)
-        .padding(.vertical, 8)
-        .background(Color(red: 0.15, green: 0.15, blue: 0.20))
-        .clipShape(Capsule())
+    func genreChip(genre: Genre) -> some View {
+        Text(genre.name)
+            .foregroundStyle(selectedGenres.contains(genre.name) ? .black : .white)
+            .font(AppFont.medium.font(size: 16))
+            .padding(.vertical)
+            .padding(.horizontal, 20)
+            .background(selectedGenres.contains(genre.name) ? .white : Color(hex: "#14181B"))
+            .clipShape(Capsule())
+            .onTapGesture {
+                if selectedGenres.contains(genre.name) {
+                    selectedGenres.remove(genre.name)
+                } else {
+                    selectedGenres.insert(genre.name)
+                }
+            }
+            .animation(.spring, value: selectedGenres)
     }
 }
 
-// MARK: - Featured Pick Section (Luca-style card)
-
-struct FeaturedPickSection: View {
+struct FeaturedMovieView: View {
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            ZStack(alignment: .bottomLeading) {
-                // Large skeleton card
-                RoundedRectangle(cornerRadius: 14)
-                    .fill(
-                        LinearGradient(
-                            colors: [
-                                Color(red: 0.20, green: 0.45, blue: 0.65),
-                                Color(red: 0.10, green: 0.60, blue: 0.50),
-                            ],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 200)
-                    .overlay(
-                        Image(systemName: "film.fill")
-                            .font(.system(size: 50))
-                            .foregroundColor(.white.opacity(0.06))
-                    )
-
-                // Bottom info overlay
-                LinearGradient(
-                    colors: [.clear, .black.opacity(0.75)],
-                    startPoint: .top,
-                    endPoint: .bottom
+        ZStack(alignment: .bottom) {
+            Image(.featuredLuca)
+                .resizable()
+                .scaledToFit()
+            HStack(alignment: .center) {
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("NEW • Animation • 1h 49m")
+                        .font(AppFont.regular.font(size: 10))
+                    HStack {
+                        Text("Loca")
+                            .font(AppFont.semiBold.font(size: 24))
+                        HStack(alignment: .center, spacing: 5) {
+                            Image(.toppick)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 12, height: 12)
+                            Text("Our Pick")
+                                .foregroundStyle(.black)
+                                .font(AppFont.semiBold.font(size: 10))
+                        }
+                        .padding(.horizontal, 5)
+                        .padding(.vertical, 5)
+                        .background(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                    }
+                }
+                Spacer()
+                VStack(alignment: .trailing) {
+                    HStack(alignment: .center) {
+                        Text("8.9")
+                            .font(AppFont.bold.font(size: 12))
+                        Image(.imdb)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 26, height: 10)
+                    }
+                    // Rating - Language
+                    HStack(alignment: .center) {
+                        MovieAgeRatingView(rating: "PG13+", forgroundColor: .black, backgroundColor: .white)
+                        MovieLanguageView(language: "EN", accentColor: .white)
+                    }
+                }
+            }
+            .foregroundStyle(.white)
+            .padding()
+            .background(
+                VariableBlurView(
+                    maxBlurRadius: 10,
+                    direction: .blurredBottomClearTop,
+                    startOffset: 10
                 )
-                .clipShape(RoundedRectangle(cornerRadius: 14))
-
-                HStack(alignment: .bottom) {
-                    VStack(alignment: .leading, spacing: 3) {
-                        Text("NEW · Animation · 1h 49m")
-                            .font(.system(size: 10))
-                            .foregroundColor(.white.opacity(0.7))
-                        HStack(spacing: 4) {
-                            Text("Loca")
-                                .font(.system(size: 18, weight: .bold))
-                                .foregroundColor(.white)
-                            Label("Our Pick", systemImage: "hand.thumbsup.fill")
-                                .font(.system(size: 10, weight: .semibold))
-                                .foregroundColor(.white)
-                                .padding(.horizontal, 7)
-                                .padding(.vertical, 3)
-                                .background(Color(red: 0.15, green: 0.55, blue: 0.40))
-                                .clipShape(Capsule())
-                        }
-                    }
-
-                    Spacer()
-
-                    VStack(alignment: .trailing, spacing: 3) {
-                        HStack(spacing: 2) {
-                            Text("8.9/10")
-                                .font(.system(size: 11, weight: .bold))
-                                .foregroundColor(.white)
-                            Text("IMDb")
-                                .font(.system(size: 9, weight: .semibold))
-                                .foregroundColor(Color(red: 0.95, green: 0.72, blue: 0.10))
-                        }
-                        Text("EN")
-                            .font(.system(size: 10, weight: .bold))
-                            .foregroundColor(.white)
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 3)
-                            .background(Color.white.opacity(0.2))
-                            .clipShape(RoundedRectangle(cornerRadius: 4))
-                    }
-                }
-                .padding(14)
-            }
+            )
         }
-        .padding(.horizontal, 16)
+        .clipShape(.rect(cornerRadius: 14))
+        .padding(.horizontal)
     }
-}
-
-struct CinemaRootView: View {
-    var body: some View {
-        ZStack(alignment: .top) {
-            CinemaHomeView()
-        }
-        .ignoresSafeArea(edges: .top)
-    }
-}
-
-#Preview {
-    CinemaRootView()
 }

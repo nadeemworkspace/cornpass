@@ -92,24 +92,8 @@ extension TicketDetailView {
                         .frame(height: 10)
                     HStack(alignment: .center) {
                         HStack(spacing: 5) {
-                            Text(ticket.rating)
-                                .foregroundStyle(.white)
-                                .font(AppFont.bold.font(size: 10))
-                                .fixedSize(horizontal: true, vertical: false)
-                                .frame(height: 22)
-                                .padding(.horizontal, 8)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 4)
-                                        .fill(.gray.opacity(0.6))
-                                )
-                            Text(ticket.language)
-                                .foregroundStyle(.gray.opacity(0.7))
-                                .font(AppFont.bold.font(size: 10))
-                                .frame(width: 28, height: 22)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 4)
-                                        .stroke(.gray.opacity(0.7))
-                                )
+                            MovieAgeRatingView(rating: ticket.rating, backgroundColor: .gray.opacity(0.6))
+                            MovieLanguageView(language: ticket.language, accentColor: .gray.opacity(0.7))
                         }
                         Text(ticket.format)
                             .font(AppFont.medium.font(size: 14))
@@ -146,7 +130,7 @@ extension TicketDetailView {
         }
         .padding()
     }
-    
+
     @ViewBuilder
     private var subheaderView: some View {
         HStack(spacing: 6) {
@@ -196,6 +180,46 @@ extension TicketDetailView {
         .padding(.bottom, 30)
     }
     
+}
+
+struct MovieAgeRatingView: View {
+    let rating: String
+    let forgroundColor: Color
+    let backgroundColor: Color
+
+    init(rating: String, forgroundColor: Color = .white, backgroundColor: Color = .gray) {
+        self.rating = rating
+        self.forgroundColor = forgroundColor
+        self.backgroundColor = backgroundColor
+    }
+
+    var body: some View {
+        Text(rating)
+            .foregroundStyle(forgroundColor)
+            .font(AppFont.bold.font(size: 10))
+            .fixedSize(horizontal: true, vertical: false)
+            .frame(height: 22)
+            .padding(.horizontal, 8)
+            .background(
+                RoundedRectangle(cornerRadius: 4)
+                    .fill(backgroundColor)
+            )
+    }
+}
+
+struct MovieLanguageView: View {
+    let language: String
+    let accentColor: Color
+    var body: some View {
+        Text(language)
+            .foregroundStyle(accentColor)
+            .font(AppFont.bold.font(size: 10))
+            .frame(width: 28, height: 22)
+            .overlay(
+                RoundedRectangle(cornerRadius: 4)
+                    .stroke(accentColor)
+            )
+    }
 }
 
 #Preview {
