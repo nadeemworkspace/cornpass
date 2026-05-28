@@ -62,7 +62,7 @@ struct ToolbarActionButton: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 16, height: 16)
-                .padding(20)
+                .padding(16)
                 .background(Color(hex: "#14181B"))
                 .clipShape(Circle())
         }

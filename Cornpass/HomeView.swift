@@ -25,14 +25,14 @@ struct HomeView: View {
                         // Now Showing
                         HorizontalMovieSection(
                             title: "Now Showing",
-                            movies: nowShowingMovies,
+                            movies: Movie.nowShowingMovies,
                             cardWidth: 160,
                             cardHeight: 220,
                             showBadge: false
                         )
                         // Coming soon
                         ComingSoonSection(
-                            movies: comingSoonMovies
+                            movies: Movie.comingSoonMovies
                         )
                         // Genre
                         GenreSection(
@@ -43,7 +43,7 @@ struct HomeView: View {
                         // Animated Movies
                         HorizontalMovieSection(
                             title: "Animation",
-                            movies: animationMovies,
+                            movies: Movie.animationMovies,
                             cardWidth: 140,
                             cardHeight: 200,
                             showBadge: false
@@ -59,9 +59,9 @@ struct HomeView: View {
     }
 }
 
-//#Preview {
-//    HomeView()
-//}
+#Preview {
+    HomeView()
+}
 
 struct HeroBannerSection: View {
     @Binding var heroIndex: Int
@@ -70,8 +70,8 @@ struct HeroBannerSection: View {
         ZStack(alignment: .bottom) {
             // Pager
             TabView(selection: $heroIndex) {
-                ForEach(heroMovies.indices, id: \.self) { index in
-                    PosterCard(movie: heroMovies[index])
+                ForEach(Movie.heroMovies.indices, id: \.self) { index in
+                    PosterCard(movie: Movie.heroMovies[index])
                         .tag(index)
                 }
             }
@@ -99,12 +99,12 @@ struct HeroBannerSection: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 22, height: 22)
-                        Text(heroMovies[heroIndex].title)
+                        Text(Movie.heroMovies[heroIndex].title)
                             .font(AppFont.semiBold.font(size: 24))
 
                     }
 
-                    Text("\(heroMovies[heroIndex].badge) • \(heroMovies[heroIndex].genre) • \(heroMovies[heroIndex].rating) • \(heroMovies[heroIndex].duration)")
+                    Text("\(Movie.heroMovies[heroIndex].badge) • \(Movie.heroMovies[heroIndex].genre) • \(Movie.heroMovies[heroIndex].rating) • \(Movie.heroMovies[heroIndex].duration)")
                         .font(AppFont.medium.font(size: 14))
                 }
                 .foregroundColor(.white)
@@ -112,7 +112,7 @@ struct HeroBannerSection: View {
 
                 // Page Control
                 HStack(spacing: 5) {
-                    ForEach(heroMovies.indices, id: \.self) { i in
+                    ForEach(Movie.heroMovies.indices, id: \.self) { i in
                         Capsule()
                             .fill(i == heroIndex ? Color.white : Color.white.opacity(0.35))
                             .frame(width: i == heroIndex ? 18 : 6, height: 6)
@@ -126,7 +126,7 @@ struct HeroBannerSection: View {
                     CircleIconButton(icon: "plus") {
                         print("TODO: Add to watchlist")
                     }
-                    TrailerButton()
+                    TrailerButton(movie: Movie.heroMovies[heroIndex])
                     CircleIconButton(icon: "info") {
                         print("TODO: Info")
                     }
@@ -168,9 +168,10 @@ struct CircleIconButton: View {
 }
 
 struct TrailerButton: View {
+    let movie: Movie
     var body: some View {
-        Button {
-            print("TODO: Play triler")
+        NavigationLink {
+            VideoPlayerView(movie: movie)
         } label: {
             HStack(spacing: 6) {
                 Image(systemName: "play.fill")
@@ -421,8 +422,4 @@ struct FeaturedMovieView: View {
         .clipShape(.rect(cornerRadius: 14))
         .padding(.horizontal)
     }
-}
-
-#Preview {
-    FeaturedMovieView()
 }
