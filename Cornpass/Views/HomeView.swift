@@ -191,22 +191,22 @@ struct TrailerButton: View {
 struct SectionHeader: View {
     let title: String
     let actionLabel: String
+    let action: () -> Void
 
     var body: some View {
         HStack {
             Text(title)
-                .font(.system(size: 16, weight: .bold))
+                .font(AppFont.semiBold.font(size: 18))
                 .foregroundColor(.white)
             Spacer()
-            Button(action: {}) {
+            Button(action: action) {
                 HStack(spacing: 2) {
                     Text(actionLabel)
-                        .font(.system(size: 13))
-                        .foregroundColor(.white.opacity(0.55))
+                        .font(AppFont.medium.font(size: 14))
                     Image(systemName: "chevron.right")
-                        .font(.system(size: 11))
-                        .foregroundColor(.white.opacity(0.55))
+                        .font(AppFont.medium.font(size: 12))
                 }
+                .foregroundStyle(.white)
             }
         }
         .padding(.horizontal)
@@ -222,7 +222,9 @@ struct HorizontalMovieSection: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            SectionHeader(title: title, actionLabel: "More")
+            SectionHeader(title: title, actionLabel: "More") {
+                print("TODO: More action")
+            }
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 10) {
                     ForEach(movies) { movie in
@@ -266,8 +268,9 @@ struct ComingSoonSection: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            SectionHeader(title: "Coming Soon", actionLabel: "More")
-
+            SectionHeader(title: "Coming Soon", actionLabel: "More") {
+                print("TODO: More action")
+            }
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 10) {
                     ForEach(movies) { movie in
@@ -326,11 +329,6 @@ struct GenreSection: View {
                     .font(.system(size: 16, weight: .bold))
                     .foregroundColor(.white)
                 Spacer()
-                Button(action: {}) {
-                    Text("All >")
-                        .font(.system(size: 13))
-                        .foregroundColor(.white.opacity(0.55))
-                }
             }
             .padding(.horizontal)
 

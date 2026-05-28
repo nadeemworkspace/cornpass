@@ -84,6 +84,8 @@
 				08CFD1992FC76D9100F95A12 /* Custom */,
 				08CFD1982FC76D6100F95A12 /* Models */,
 				080686282FC17DE10054E5ED /* Fonts */,
+				0806862F2FC17EC80054E5ED /* Info.plist */,
+				0806861E2FC0A96B0054E5ED /* Assets 2.xcassets */,
 			);
 			path = Cornpass;
 			sourceTree = "<group>";
@@ -103,8 +105,6 @@
 			isa = PBXGroup;
 			children = (
 				080686212FC0A96B0054E5ED /* Cornpass */,
-				0806861E2FC0A96B0054E5ED /* Assets 2.xcassets */,
-				0806862F2FC17EC80054E5ED /* Info.plist */,
 				084F91502FC0A116007D11F5 /* Products */,
 			);
 			sourceTree = "<group>";
