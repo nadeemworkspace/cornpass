@@ -18,6 +18,20 @@
 		08CFD17C2FC1BDAA00F95A12 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD17B2FC1BDAA00F95A12 /* LandingView.swift */; };
 		08CFD17E2FC1F52600F95A12 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD17D2FC1F52600F95A12 /* LoginView.swift */; };
 		08CFD1822FC1FAD700F95A12 /* SwiftUIExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1812FC1FAD700F95A12 /* SwiftUIExt.swift */; };
+		08CFD1842FC2E08900F95A12 /* GenrePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1832FC2E08900F95A12 /* GenrePickerView.swift */; };
+		08CFD1862FC2FAF100F95A12 /* GravityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1852FC2FAE000F95A12 /* GravityView.swift */; };
+		08CFD1882FC2FC7C00F95A12 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1872FC2FC7800F95A12 /* Genre.swift */; };
+		08CFD18A2FC3402500F95A12 /* MyTicketsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1892FC3402500F95A12 /* MyTicketsView.swift */; };
+		08CFD18C2FC356BE00F95A12 /* TicketShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD18B2FC356BE00F95A12 /* TicketShape.swift */; };
+		08CFD18E2FC4518F00F95A12 /* MovieTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD18D2FC4518F00F95A12 /* MovieTicket.swift */; };
+		08CFD1902FC4557E00F95A12 /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD18F2FC4557E00F95A12 /* TicketView.swift */; };
+		08CFD1922FC4579400F95A12 /* TicketDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1912FC4579400F95A12 /* TicketDetailView.swift */; };
+		08CFD1942FC466DE00F95A12 /* MainTicketShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1932FC466DE00F95A12 /* MainTicketShape.swift */; };
+		08CFD1962FC5AF3200F95A12 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1952FC5AF3200F95A12 /* HomeView.swift */; };
+		08CFD1B72FC770B500F95A12 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1B62FC770B500F95A12 /* VideoPlayerView.swift */; };
+		08CFD1BA2FC770CB00F95A12 /* YouTubePlayerKit in Frameworks */ = {isa = PBXBuildFile; productRef = 08CFD1B92FC770CB00F95A12 /* YouTubePlayerKit */; };
+		30385EE52FC6CF6A0088283C /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30385EE42FC6CF6A0088283C /* Movie.swift */; };
+		30385EE72FC705470088283C /* VariableBlurDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30385EE62FC705470088283C /* VariableBlurDirection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +48,19 @@
 		08CFD17B2FC1BDAA00F95A12 /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		08CFD17D2FC1F52600F95A12 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		08CFD1812FC1FAD700F95A12 /* SwiftUIExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExt.swift; sourceTree = "<group>"; };
+		08CFD1832FC2E08900F95A12 /* GenrePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenrePickerView.swift; sourceTree = "<group>"; };
+		08CFD1852FC2FAE000F95A12 /* GravityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityView.swift; sourceTree = "<group>"; };
+		08CFD1872FC2FC7800F95A12 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
+		08CFD1892FC3402500F95A12 /* MyTicketsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTicketsView.swift; sourceTree = "<group>"; };
+		08CFD18B2FC356BE00F95A12 /* TicketShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketShape.swift; sourceTree = "<group>"; };
+		08CFD18D2FC4518F00F95A12 /* MovieTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTicket.swift; sourceTree = "<group>"; };
+		08CFD18F2FC4557E00F95A12 /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
+		08CFD1912FC4579400F95A12 /* TicketDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDetailView.swift; sourceTree = "<group>"; };
+		08CFD1932FC466DE00F95A12 /* MainTicketShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTicketShape.swift; sourceTree = "<group>"; };
+		08CFD1952FC5AF3200F95A12 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		08CFD1B62FC770B500F95A12 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
+		30385EE42FC6CF6A0088283C /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		30385EE62FC705470088283C /* VariableBlurDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariableBlurDirection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08CFD1BA2FC770CB00F95A12 /* YouTubePlayerKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,14 +78,21 @@
 		080686212FC0A96B0054E5ED /* Cornpass */ = {
 			isa = PBXGroup;
 			children = (
-				080686202FC0A96B0054E5ED /* CornpassApp.swift */,
+				08CFD19B2FC76DEB00F95A12 /* App */,
 				0806861F2FC0A96B0054E5ED /* ContentView.swift */,
-				0806861E2FC0A96B0054E5ED /* Assets.xcassets */,
-				0806862F2FC17EC80054E5ED /* Info.plist */,
-				080686302FC17F6A0054E5ED /* AppFont.swift */,
+				08CFD1952FC5AF3200F95A12 /* HomeView.swift */,
 				08CFD17B2FC1BDAA00F95A12 /* LandingView.swift */,
-				08CFD1812FC1FAD700F95A12 /* SwiftUIExt.swift */,
 				08CFD17D2FC1F52600F95A12 /* LoginView.swift */,
+				08CFD1832FC2E08900F95A12 /* GenrePickerView.swift */,
+				08CFD1892FC3402500F95A12 /* MyTicketsView.swift */,
+				08CFD1912FC4579400F95A12 /* TicketDetailView.swift */,
+				08CFD18F2FC4557E00F95A12 /* TicketView.swift */,
+				08CFD1B62FC770B500F95A12 /* VideoPlayerView.swift */,
+				0806862F2FC17EC80054E5ED /* Info.plist */,
+				0806861E2FC0A96B0054E5ED /* Assets.xcassets */,
+				08CFD19A2FC76DDA00F95A12 /* Enum */,
+				08CFD1992FC76D9100F95A12 /* Custom */,
+				08CFD1982FC76D6100F95A12 /* Models */,
 				080686282FC17DE10054E5ED /* Fonts */,
 			);
 			path = Cornpass;
@@ -90,6 +125,44 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		08CFD1982FC76D6100F95A12 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				08CFD1872FC2FC7800F95A12 /* Genre.swift */,
+				08CFD18D2FC4518F00F95A12 /* MovieTicket.swift */,
+				30385EE42FC6CF6A0088283C /* Movie.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		08CFD1992FC76D9100F95A12 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				08CFD1812FC1FAD700F95A12 /* SwiftUIExt.swift */,
+				08CFD18B2FC356BE00F95A12 /* TicketShape.swift */,
+				08CFD1852FC2FAE000F95A12 /* GravityView.swift */,
+				08CFD1932FC466DE00F95A12 /* MainTicketShape.swift */,
+				30385EE62FC705470088283C /* VariableBlurDirection.swift */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		08CFD19A2FC76DDA00F95A12 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				080686302FC17F6A0054E5ED /* AppFont.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
+		08CFD19B2FC76DEB00F95A12 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				080686202FC0A96B0054E5ED /* CornpassApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -107,6 +180,7 @@
 			);
 			name = Cornpass;
 			packageProductDependencies = (
+				08CFD1B92FC770CB00F95A12 /* YouTubePlayerKit */,
 			);
 			productName = Cornpass;
 			productReference = 084F914F2FC0A116007D11F5 /* Cornpass.app */;
@@ -136,6 +210,9 @@
 			);
 			mainGroup = 084F91462FC0A116007D11F5;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				08CFD1B82FC770CB00F95A12 /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 084F91502FC0A116007D11F5 /* Products */;
 			projectDirPath = "";
@@ -166,12 +243,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08CFD1882FC2FC7C00F95A12 /* Genre.swift in Sources */,
+				08CFD1B72FC770B500F95A12 /* VideoPlayerView.swift in Sources */,
+				08CFD1902FC4557E00F95A12 /* TicketView.swift in Sources */,
+				30385EE72FC705470088283C /* VariableBlurDirection.swift in Sources */,
+				08CFD1842FC2E08900F95A12 /* GenrePickerView.swift in Sources */,
 				08CFD17C2FC1BDAA00F95A12 /* LandingView.swift in Sources */,
 				080686232FC0A96B0054E5ED /* ContentView.swift in Sources */,
+				08CFD1922FC4579400F95A12 /* TicketDetailView.swift in Sources */,
 				08CFD1822FC1FAD700F95A12 /* SwiftUIExt.swift in Sources */,
 				080686242FC0A96B0054E5ED /* CornpassApp.swift in Sources */,
+				08CFD18C2FC356BE00F95A12 /* TicketShape.swift in Sources */,
+				08CFD18A2FC3402500F95A12 /* MyTicketsView.swift in Sources */,
+				08CFD18E2FC4518F00F95A12 /* MovieTicket.swift in Sources */,
+				08CFD1862FC2FAF100F95A12 /* GravityView.swift in Sources */,
 				08CFD17E2FC1F52600F95A12 /* LoginView.swift in Sources */,
+				08CFD1962FC5AF3200F95A12 /* HomeView.swift in Sources */,
+				08CFD1942FC466DE00F95A12 /* MainTicketShape.swift in Sources */,
 				080686312FC17F6A0054E5ED /* AppFont.swift in Sources */,
+				30385EE52FC6CF6A0088283C /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,11 +400,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cornpass/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -343,11 +433,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cornpass/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -387,6 +477,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		08CFD1B82FC770CB00F95A12 /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SvenTiigi/YouTubePlayerKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		08CFD1B92FC770CB00F95A12 /* YouTubePlayerKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 08CFD1B82FC770CB00F95A12 /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */;
+			productName = YouTubePlayerKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 084F91472FC0A116007D11F5 /* Project object */;
 }

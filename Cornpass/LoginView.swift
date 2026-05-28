@@ -38,7 +38,7 @@ struct LoginView: View {
                 
                 // TextField
                 VStack(spacing: 16) {
-                    CustomTextField(title: "Email", text: $email)
+                    CustomTextField(title: "Email", text: $email, keyboardType: .emailAddress)
                     CustomTextField(title: "Password", text: $password, isSecured: true)
                 }
                 .padding(.vertical)
