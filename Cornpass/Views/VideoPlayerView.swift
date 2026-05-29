@@ -61,5 +61,5 @@ extension VideoPlayerView {
 }
 
 #Preview {
-    VideoPlayerView(movie: Movie.animationMovies.first!)
+    VideoPlayerView(movie: Movie.dummy)
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TicketView: View {
     
-    let ticket: MovieTicket
+    let ticket: Ticket
     
     var body: some View {
         ZStack(alignment: .leading) {
