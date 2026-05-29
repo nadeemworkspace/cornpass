@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var currentPosterIndex: Int = 0
+    let movies = loadMovies()
     var body: some View {
         ZStack {
             Color.black
@@ -18,6 +19,7 @@ struct HomeView: View {
                 VStack(spacing: 0) {
                     // Poster
                     HeroBannerSection(
+                        movies: movies?.heroMovies ?? [],
                         heroIndex: $currentPosterIndex
                     )
                     // Sections
@@ -25,14 +27,14 @@ struct HomeView: View {
                         // Now Showing
                         HorizontalMovieSection(
                             title: "Now Showing",
-                            movies: Movie.nowShowingMovies,
+                            movies: movies?.nowShowingMovies ?? [],
                             cardWidth: 160,
                             cardHeight: 220,
                             showBadge: false
                         )
                         // Coming soon
                         ComingSoonSection(
-                            movies: Movie.comingSoonMovies
+                            movies: movies?.comingSoonMovies ?? []
                         )
                         // Genre
                         GenreSection(
@@ -43,7 +45,7 @@ struct HomeView: View {
                         // Animated Movies
                         HorizontalMovieSection(
                             title: "Animation",
-                            movies: Movie.animationMovies,
+                            movies: movies?.animationMovies ?? [],
                             cardWidth: 140,
                             cardHeight: 200,
                             showBadge: false
@@ -64,14 +66,15 @@ struct HomeView: View {
 }
 
 struct HeroBannerSection: View {
+    let movies: [Movie]
     @Binding var heroIndex: Int
 
     var body: some View {
         ZStack(alignment: .bottom) {
             // Pager
             TabView(selection: $heroIndex) {
-                ForEach(Movie.heroMovies.indices, id: \.self) { index in
-                    PosterCard(movie: Movie.heroMovies[index])
+                ForEach(movies.indices, id: \.self) { index in
+                    PosterCard(movie: movies[index])
                         .tag(index)
                 }
             }
@@ -99,12 +102,12 @@ struct HeroBannerSection: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 22, height: 22)
-                        Text(Movie.heroMovies[heroIndex].title)
+                        Text(movies[heroIndex].title)
                             .font(AppFont.semiBold.font(size: 24))
 
                     }
 
-                    Text("\(Movie.heroMovies[heroIndex].badge) • \(Movie.heroMovies[heroIndex].genre) • \(Movie.heroMovies[heroIndex].rating) • \(Movie.heroMovies[heroIndex].duration)")
+                    Text("\(movies[heroIndex].badge) • \(movies[heroIndex].genre) • \(movies[heroIndex].rating) • \(movies[heroIndex].duration)")
                         .font(AppFont.medium.font(size: 14))
                 }
                 .foregroundColor(.white)
@@ -112,7 +115,7 @@ struct HeroBannerSection: View {
 
                 // Page Control
                 HStack(spacing: 5) {
-                    ForEach(Movie.heroMovies.indices, id: \.self) { i in
+                    ForEach(movies.indices, id: \.self) { i in
                         Capsule()
                             .fill(i == heroIndex ? Color.white : Color.white.opacity(0.35))
                             .frame(width: i == heroIndex ? 18 : 6, height: 6)
@@ -123,12 +126,16 @@ struct HeroBannerSection: View {
 
                 // Action buttons
                 HStack(spacing: 16) {
-                    CircleIconButton(icon: "plus") {
+                    Button {
                         print("TODO: Add to watchlist")
+                    } label: {
+                        CircleIconView(icon: "plus")
                     }
-                    TrailerButton(movie: Movie.heroMovies[heroIndex])
-                    CircleIconButton(icon: "info") {
-                        print("TODO: Info")
+                    TrailerButton(movie: movies[heroIndex])
+                    NavigationLink {
+                        MovieDetailView(movie: movies[heroIndex])
+                    } label: {
+                        CircleIconView(icon: "info")
                     }
                 }
                 .padding(.top, 6)
@@ -152,18 +159,15 @@ struct PosterCard: View {
     }
 }
 
-struct CircleIconButton: View {
+struct CircleIconView: View {
     let icon: String
-    let action: () -> Void
     var body: some View {
-        Button(action: action) {
-            Image(systemName: icon)
-                .font(.system(size: 15, weight: .medium))
-                .foregroundColor(.white)
-                .frame(width: 42, height: 42)
-                .background(Color.white.opacity(0.15))
-                .clipShape(Circle())
-        }
+        Image(systemName: icon)
+            .font(.system(size: 15, weight: .medium))
+            .foregroundColor(.white)
+            .frame(width: 42, height: 42)
+            .background(Color.white.opacity(0.15))
+            .clipShape(Circle())
     }
 }
 
@@ -191,22 +195,22 @@ struct TrailerButton: View {
 struct SectionHeader: View {
     let title: String
     let actionLabel: String
+    let action: () -> Void
 
     var body: some View {
         HStack {
             Text(title)
-                .font(.system(size: 16, weight: .bold))
+                .font(AppFont.semiBold.font(size: 18))
                 .foregroundColor(.white)
             Spacer()
-            Button(action: {}) {
+            Button(action: action) {
                 HStack(spacing: 2) {
                     Text(actionLabel)
-                        .font(.system(size: 13))
-                        .foregroundColor(.white.opacity(0.55))
+                        .font(AppFont.medium.font(size: 14))
                     Image(systemName: "chevron.right")
-                        .font(.system(size: 11))
-                        .foregroundColor(.white.opacity(0.55))
+                        .font(AppFont.medium.font(size: 12))
                 }
+                .foregroundStyle(.white)
             }
         }
         .padding(.horizontal)
@@ -222,7 +226,9 @@ struct HorizontalMovieSection: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            SectionHeader(title: title, actionLabel: "More")
+            SectionHeader(title: title, actionLabel: "More") {
+                print("TODO: More action")
+            }
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 10) {
                     ForEach(movies) { movie in
@@ -248,16 +254,20 @@ struct MovieCard: View {
 
     var body: some View {
         ZStack(alignment: .topLeading) {
-            Image(movie.image)
-                .resizable()
-                .scaledToFill()
-                .frame(width: width, height: height)
-            if showBadge {
-                BadgeView(text: movie.badge)
-                    .padding(8)
+            NavigationLink {
+                MovieDetailView(movie: movie)
+            } label: {
+                Image(movie.image)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: width, height: height)
+                if showBadge {
+                    BadgeView(text: movie.badge)
+                        .padding(8)
+                }
             }
         }
-        .clipShape(RoundedRectangle(cornerRadius: 14))
+        .clipShape(.rect(cornerRadius: 14))
     }
 }
 
@@ -266,12 +276,17 @@ struct ComingSoonSection: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            SectionHeader(title: "Coming Soon", actionLabel: "More")
-
+            SectionHeader(title: "Coming Soon", actionLabel: "More") {
+                print("TODO: More action")
+            }
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 10) {
                     ForEach(movies) { movie in
-                        ComingSoonCard(movie: movie)
+                        NavigationLink {
+                            MovieDetailView(movie: movie)
+                        } label: {
+                            ComingSoonCard(movie: movie)
+                        }
                     }
                 }
                 .padding(.horizontal)
@@ -326,11 +341,6 @@ struct GenreSection: View {
                     .font(.system(size: 16, weight: .bold))
                     .foregroundColor(.white)
                 Spacer()
-                Button(action: {}) {
-                    Text("All >")
-                        .font(.system(size: 13))
-                        .foregroundColor(.white.opacity(0.55))
-                }
             }
             .padding(.horizontal)
 

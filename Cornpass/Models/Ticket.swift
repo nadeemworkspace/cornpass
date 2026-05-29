@@ -1,5 +1,5 @@
 //
-//  MovieTicket.swift
+//  Ticket.swift
 //  Cornpass
 //
 //  Created by Muhammed Nadeem on 25/05/26.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MovieTicket: Identifiable {
+struct Ticket: Identifiable {
     let id = UUID()
     // Movie Details
     let movieTitle: String
@@ -29,8 +29,8 @@ struct MovieTicket: Identifiable {
     let totalAmount: Double
     let currency: String
     
-    static let tickets: [MovieTicket] = [
-        MovieTicket(
+    static let tickets: [Ticket] = [
+        Ticket(
             movieTitle: "Oppenheimer",
             genre: "Biography",
             rating: "+13",
@@ -48,7 +48,7 @@ struct MovieTicket: Identifiable {
             totalAmount: 59.98,
             currency: "USD"
         ),
-        MovieTicket(
+        Ticket(
             movieTitle: "Luca",
             genre: "Animation",
             rating: "PG",
@@ -66,7 +66,7 @@ struct MovieTicket: Identifiable {
             totalAmount: 24.99,
             currency: "USD"
         ),
-        MovieTicket(
+        Ticket(
             movieTitle: "Avatar",
             genre: "Fantasy",
             rating: "PG-13",
@@ -84,7 +84,7 @@ struct MovieTicket: Identifiable {
             totalAmount: 89.99,
             currency: "USD"
         ),
-        MovieTicket(
+        Ticket(
             movieTitle: "Michael",
             genre: "Biography",
             rating: "PG-13",
@@ -102,7 +102,7 @@ struct MovieTicket: Identifiable {
             totalAmount: 48.50,
             currency: "USD"
         ),
-        MovieTicket(
+        Ticket(
             movieTitle: "Pacific Rim",
             genre: "Sci-Fi",
             rating: "PG-13",
@@ -120,7 +120,7 @@ struct MovieTicket: Identifiable {
             totalAmount: 32.00,
             currency: "USD"
         ),
-        MovieTicket(
+        Ticket(
             movieTitle: "Joker",
             genre: "Thriller",
             rating: "R",
