@@ -126,12 +126,16 @@ struct HeroBannerSection: View {
 
                 // Action buttons
                 HStack(spacing: 16) {
-                    CircleIconButton(icon: "plus") {
+                    Button {
                         print("TODO: Add to watchlist")
+                    } label: {
+                        CircleIconView(icon: "plus")
                     }
                     TrailerButton(movie: movies[heroIndex])
-                    CircleIconButton(icon: "info") {
-                        print("TODO: Info")
+                    NavigationLink {
+                        MovieDetailView(movie: movies[heroIndex])
+                    } label: {
+                        CircleIconView(icon: "info")
                     }
                 }
                 .padding(.top, 6)
@@ -155,18 +159,15 @@ struct PosterCard: View {
     }
 }
 
-struct CircleIconButton: View {
+struct CircleIconView: View {
     let icon: String
-    let action: () -> Void
     var body: some View {
-        Button(action: action) {
-            Image(systemName: icon)
-                .font(.system(size: 15, weight: .medium))
-                .foregroundColor(.white)
-                .frame(width: 42, height: 42)
-                .background(Color.white.opacity(0.15))
-                .clipShape(Circle())
-        }
+        Image(systemName: icon)
+            .font(.system(size: 15, weight: .medium))
+            .foregroundColor(.white)
+            .frame(width: 42, height: 42)
+            .background(Color.white.opacity(0.15))
+            .clipShape(Circle())
     }
 }
 

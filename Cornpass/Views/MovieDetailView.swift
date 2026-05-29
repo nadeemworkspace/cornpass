@@ -7,33 +7,10 @@
 
 import SwiftUI
 
-/*
- {
-   "id": "1",
-   "title": "Alien: Romulus",
-   "badge": "HOT",
-   "genre": "Sci-Fi",
-   "rating": "R",
-   "duration": "1h 56m",
-   "image": "alien_home",
-   "videoURL": "https://www.youtube.com/watch?v=OzY2r2JXsDM",
-   "description": "Young space colonizers come face to face with the most terrifying life-form in the universe.",
-   "ageBadge": "+18",
-   "languageTags": ["EN", "Sub EN/FR"],
-   "imdbRating": "8.1/10",
-   "rottenTomatoesRating": "81%",
-   "cornPassRating": "8.4/10",
-   "gallery": ["alien_scene_1", "alien_scene_2"],
-   "director": ["Fede Álvarez"],
-   "writers": ["Fede Álvarez", "Rodo Sayagues"],
-   "stars": ["Cailee Spaeny", "David Jonsson", "Archie Renaux"],
-   "classification": "R"
- }
- */
-
 struct MovieDetailView: View {
     let movie: Movie
     @Environment(\.dismiss) private var dismiss
+    private let grid = GridItem(.flexible(), alignment: .topLeading)
     var body: some View {
         ZStack {
             Color.black
@@ -113,7 +90,7 @@ struct MovieDetailView: View {
                         .foregroundStyle(.gray)
                         .font(AppFont.regular.font(size: 16))
                         .padding(.horizontal)
-                    
+                    // Screenshots
                     ScrollView(.horizontal) {
                         HStack {
                             ForEach(0...3, id: \.self) { _ in
@@ -126,8 +103,75 @@ struct MovieDetailView: View {
                     }
                     .scrollIndicators(.hidden)
                     .padding(.vertical, 20)
+                    // Cast and Crew
+                    LazyVGrid(columns: [grid, grid], alignment: .leading,spacing: 20) {
+                        // Director
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text("Director")
+                                .font(AppFont.medium.font(size: 10))
+                                .foregroundStyle(.gray)
+                            ForEach(movie.director, id: \.self) { director in
+                                Text(director)
+                                    .foregroundStyle(.white)
+                                    .font(AppFont.regular.font(size: 14))
+                            }
+                        }
+                        // Writers
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text("Writers")
+                                .font(AppFont.medium.font(size: 10))
+                                .foregroundStyle(.gray)
+                            ForEach(movie.writers, id: \.self) { writer in
+                                Text(writer)
+                                    .foregroundStyle(.white)
+                                    .font(AppFont.regular.font(size: 14))
+                            }
+                        }
+                        // Stars
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text("Stars")
+                                .font(AppFont.medium.font(size: 10))
+                                .foregroundStyle(.gray)
+                            
+                            ForEach(movie.stars, id: \.self) { star in
+                                Text(star)
+                                    .foregroundStyle(.white)
+                                    .font(AppFont.regular.font(size: 14))
+                            }
+                        }
+                        // Classification
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text("Classification")
+                                .font(AppFont.medium.font(size: 10))
+                                .foregroundStyle(.gray)
+                            HStack(spacing: 8) {
+                                MovieAgeRatingView(
+                                    rating: movie.rating,
+                                    forgroundColor: .black,
+                                    backgroundColor: .white
+                                )
+                                ForEach(movie.languageTags, id: \.self) { tag in
+                                    MovieLanguageView(
+                                        language: tag,
+                                        accentColor: .white
+                                    )
+                                }
+                            }
+                        }
+                    }
+                    .padding(.horizontal)
+                    // Recommendation
+                    HorizontalMovieSection(
+                        title: "You may also like",
+                        movies: loadMovies()?.nowShowingMovies.filter { $0.id != movie.id } ?? [],
+                        cardWidth: 110,
+                        cardHeight: 156,
+                        showBadge: false
+                    )
+                    .padding(.vertical)
                 }
             }
+            .scrollIndicators(.hidden)
             .ignoresSafeArea(edges: .top)
         }
         .overlay(alignment: .top) {
