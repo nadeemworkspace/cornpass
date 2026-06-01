@@ -50,6 +50,8 @@ struct HomeView: View {
                             cardHeight: 200,
                             showBadge: false
                         )
+                        // Branding
+                        brandingView
                     }
                     .padding(.top, 20)
                     .padding(.bottom, 40)
@@ -59,6 +61,26 @@ struct HomeView: View {
         }
         .ignoresSafeArea(edges: .top)
     }
+}
+
+extension HomeView {
+    
+    @ViewBuilder
+    private var brandingView: some View {
+        VStack(spacing: 5) {
+            Text("made with love ♥️")
+                .foregroundStyle(.white)
+                .font(AppFont.semiBold.font(size: 12))
+            Image(.logoWhite)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 80, height: 80)
+        }
+        .opacity(0.6)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding()
+    }
+    
 }
 
 #Preview {
