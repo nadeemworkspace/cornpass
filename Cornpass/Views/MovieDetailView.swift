@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct MovieDetailView: View {
+
     let movie: Movie
     @Environment(\.dismiss) private var dismiss
     private let grid = GridItem(.flexible(), alignment: .topLeading)
+
     var body: some View {
         ZStack {
             Color.black
@@ -20,7 +22,7 @@ struct MovieDetailView: View {
                     // Poster
                     ZStack(alignment: .bottom) {
                         PosterCard(movie: movie)
-                            .frame(height: 400, alignment: .top)
+                            .frame(height: 420, alignment: .top)
                         LinearGradient(
                             stops: [
                                 .init(color: .clear, location: 0.0),

@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct LoginView: View {
-    
-    @State private var email: String = ""
-    @State private var password: String = ""
-    
+
+    @State private var viewModel = LoginViewModel()
+
     var body: some View {
         ZStack {
             Color.black
@@ -38,8 +37,8 @@ struct LoginView: View {
                 
                 // TextField
                 VStack(spacing: 16) {
-                    CustomTextField(title: "Email", text: $email, keyboardType: .emailAddress)
-                    CustomTextField(title: "Password", text: $password, isSecured: true)
+                    CustomTextField(title: "Email", text: $viewModel.email, keyboardType: .emailAddress)
+                    CustomTextField(title: "Password", text: $viewModel.password, isSecured: true)
                 }
                 .padding(.vertical)
                 
@@ -57,7 +56,7 @@ struct LoginView: View {
                 
                 // Primary Button
                 PrimaryButton(title: "Sign In") {
-                        print("TODO: Sign in action")
+                    viewModel.validateAndLogin()
                 }
                 .padding(.top)
                 .padding(.bottom, 16)
@@ -87,7 +86,28 @@ struct LoginView: View {
             }
             .padding(.horizontal)
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationDestination(isPresented: $viewModel.navigateToGenrePicker) {
+            GenrePickerView()
+        }
     }
+}
+
+@Observable
+class LoginViewModel {
+
+    var email: String = ""
+    var password: String = ""
+    var navigateToGenrePicker: Bool = false
+
+    func validateAndLogin() {
+        // Need regex check and show validation errors to the user.
+        UserDefaults.standard.setValue(email, forKey: UserDefaultKeys.email.rawValue)
+        UserDefaults.standard.setValue(password, forKey: UserDefaultKeys.password.rawValue)
+        UserDefaults.standard.setValue(true, forKey: UserDefaultKeys.userLoggedIn.rawValue)
+        navigateToGenrePicker = true
+    }
+
 }
 
 #Preview {

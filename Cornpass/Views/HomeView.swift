@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct HomeView: View {
+
     @State private var currentPosterIndex: Int = 0
     let movies = loadMovies()
+
     var body: some View {
         ZStack {
             Color.black
@@ -60,6 +62,7 @@ struct HomeView: View {
             .scrollIndicators(.hidden)
         }
         .ignoresSafeArea(edges: .top)
+        .navigationBarBackButtonHidden(true)
     }
 }
 

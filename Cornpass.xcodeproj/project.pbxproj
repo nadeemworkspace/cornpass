@@ -10,12 +10,12 @@
 		080686222FC0A96B0054E5ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0806861E2FC0A96B0054E5ED /* Assets.xcassets */; };
 		080686232FC0A96B0054E5ED /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0806861F2FC0A96B0054E5ED /* ContentView.swift */; };
 		080686242FC0A96B0054E5ED /* CornpassApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080686202FC0A96B0054E5ED /* CornpassApp.swift */; };
-		080686312FC17F6A0054E5ED /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080686302FC17F6A0054E5ED /* AppFont.swift */; };
+		080686312FC17F6A0054E5ED /* AppAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080686302FC17F6A0054E5ED /* AppAssets.swift */; };
 		080686362FC1803D0054E5ED /* SFUIDisplay-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 080686322FC1803D0054E5ED /* SFUIDisplay-Bold.ttf */; };
 		080686372FC1803D0054E5ED /* SFUIDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 080686332FC1803D0054E5ED /* SFUIDisplay-Medium.otf */; };
 		080686382FC1803D0054E5ED /* SFUIDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 080686342FC1803D0054E5ED /* SFUIDisplay-Regular.otf */; };
 		080686392FC1803D0054E5ED /* SFUIDisplay-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 080686352FC1803D0054E5ED /* SFUIDisplay-Semibold.otf */; };
-		08CFD17C2FC1BDAA00F95A12 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD17B2FC1BDAA00F95A12 /* LandingView.swift */; };
+		08CFD17C2FC1BDAA00F95A12 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD17B2FC1BDAA00F95A12 /* WelcomeView.swift */; };
 		08CFD17E2FC1F52600F95A12 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD17D2FC1F52600F95A12 /* LoginView.swift */; };
 		08CFD1822FC1FAD700F95A12 /* SwiftUIExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1812FC1FAD700F95A12 /* SwiftUIExt.swift */; };
 		08CFD1842FC2E08900F95A12 /* GenrePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1832FC2E08900F95A12 /* GenrePickerView.swift */; };
@@ -34,6 +34,8 @@
 		08CFD1C32FC8A64200F95A12 /* movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 08CFD1C22FC8A64200F95A12 /* movies.json */; };
 		30385EE52FC6CF6A0088283C /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30385EE42FC6CF6A0088283C /* Movie.swift */; };
 		30385EE72FC705470088283C /* VariableBlurDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30385EE62FC705470088283C /* VariableBlurDirection.swift */; };
+		30385EE92FD3161B0088283C /* TabViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30385EE82FD3161B0088283C /* TabViewContainer.swift */; };
+		30385EEB2FD318F40088283C /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30385EEA2FD318F40088283C /* UserDefaultKeys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,13 +43,13 @@
 		0806861F2FC0A96B0054E5ED /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		080686202FC0A96B0054E5ED /* CornpassApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornpassApp.swift; sourceTree = "<group>"; };
 		0806862F2FC17EC80054E5ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		080686302FC17F6A0054E5ED /* AppFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
+		080686302FC17F6A0054E5ED /* AppAssets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAssets.swift; sourceTree = "<group>"; };
 		080686322FC1803D0054E5ED /* SFUIDisplay-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Bold.ttf"; sourceTree = "<group>"; };
 		080686332FC1803D0054E5ED /* SFUIDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Medium.otf"; sourceTree = "<group>"; };
 		080686342FC1803D0054E5ED /* SFUIDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Regular.otf"; sourceTree = "<group>"; };
 		080686352FC1803D0054E5ED /* SFUIDisplay-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Semibold.otf"; sourceTree = "<group>"; };
 		084F914F2FC0A116007D11F5 /* Cornpass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cornpass.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		08CFD17B2FC1BDAA00F95A12 /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
+		08CFD17B2FC1BDAA00F95A12 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		08CFD17D2FC1F52600F95A12 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		08CFD1812FC1FAD700F95A12 /* SwiftUIExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExt.swift; sourceTree = "<group>"; };
 		08CFD1832FC2E08900F95A12 /* GenrePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenrePickerView.swift; sourceTree = "<group>"; };
@@ -65,6 +67,8 @@
 		08CFD1C22FC8A64200F95A12 /* movies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movies.json; sourceTree = "<group>"; };
 		30385EE42FC6CF6A0088283C /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		30385EE62FC705470088283C /* VariableBlurDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariableBlurDirection.swift; sourceTree = "<group>"; };
+		30385EE82FD3161B0088283C /* TabViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewContainer.swift; sourceTree = "<group>"; };
+		30385EEA2FD318F40088283C /* UserDefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,7 +151,8 @@
 		08CFD19A2FC76DDA00F95A12 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
-				080686302FC17F6A0054E5ED /* AppFont.swift */,
+				080686302FC17F6A0054E5ED /* AppAssets.swift */,
+				30385EEA2FD318F40088283C /* UserDefaultKeys.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -164,8 +169,9 @@
 			isa = PBXGroup;
 			children = (
 				0806861F2FC0A96B0054E5ED /* ContentView.swift */,
+				30385EE82FD3161B0088283C /* TabViewContainer.swift */,
 				08CFD1952FC5AF3200F95A12 /* HomeView.swift */,
-				08CFD17B2FC1BDAA00F95A12 /* LandingView.swift */,
+				08CFD17B2FC1BDAA00F95A12 /* WelcomeView.swift */,
 				08CFD17D2FC1F52600F95A12 /* LoginView.swift */,
 				08CFD1832FC2E08900F95A12 /* GenrePickerView.swift */,
 				08CFD1892FC3402500F95A12 /* MyTicketsView.swift */,
@@ -271,7 +277,8 @@
 				08CFD1902FC4557E00F95A12 /* TicketView.swift in Sources */,
 				30385EE72FC705470088283C /* VariableBlurDirection.swift in Sources */,
 				08CFD1842FC2E08900F95A12 /* GenrePickerView.swift in Sources */,
-				08CFD17C2FC1BDAA00F95A12 /* LandingView.swift in Sources */,
+				08CFD17C2FC1BDAA00F95A12 /* WelcomeView.swift in Sources */,
+				30385EE92FD3161B0088283C /* TabViewContainer.swift in Sources */,
 				080686232FC0A96B0054E5ED /* ContentView.swift in Sources */,
 				08CFD1922FC4579400F95A12 /* TicketDetailView.swift in Sources */,
 				08CFD1822FC1FAD700F95A12 /* SwiftUIExt.swift in Sources */,
@@ -281,10 +288,11 @@
 				08CFD18A2FC3402500F95A12 /* MyTicketsView.swift in Sources */,
 				08CFD18E2FC4518F00F95A12 /* Ticket.swift in Sources */,
 				08CFD1862FC2FAF100F95A12 /* GravityView.swift in Sources */,
+				30385EEB2FD318F40088283C /* UserDefaultKeys.swift in Sources */,
 				08CFD17E2FC1F52600F95A12 /* LoginView.swift in Sources */,
 				08CFD1962FC5AF3200F95A12 /* HomeView.swift in Sources */,
 				08CFD1942FC466DE00F95A12 /* MainTicketShape.swift in Sources */,
-				080686312FC17F6A0054E5ED /* AppFont.swift in Sources */,
+				080686312FC17F6A0054E5ED /* AppAssets.swift in Sources */,
 				30385EE52FC6CF6A0088283C /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

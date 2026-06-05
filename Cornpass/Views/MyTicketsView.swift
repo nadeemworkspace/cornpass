@@ -47,5 +47,6 @@ struct MyTicketsView: View {
                 .ignoresSafeArea(edges: .bottom)
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }

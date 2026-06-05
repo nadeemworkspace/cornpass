@@ -1,5 +1,5 @@
 //
-//  LandingView.swift
+//  WelcomeView.swift
 //  Cornpass
 //
 //  Created by Muhammed Nadeem on 23/05/26.
@@ -7,7 +7,10 @@
 
 import SwiftUI
 
-struct LandingView: View {
+struct WelcomeView: View {
+
+    @State private var navigateToLogin: Bool = false
+
     var body: some View {
         ZStack {
             Color.black
@@ -43,14 +46,18 @@ struct LandingView: View {
                     .frame(height: 60)
                 
                 PrimaryButton(title: "Get Started") {
-                    print("Get Started")
+                    navigateToLogin = true
                 }
                 .padding()
             }
+        }
+        .navigationBarBackButtonHidden(true)
+        .navigationDestination(isPresented: $navigateToLogin) {
+            LoginView()
         }
     }
 }
 
 #Preview {
-    LandingView()
+    WelcomeView()
 }
