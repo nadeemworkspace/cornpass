@@ -37,6 +37,7 @@ struct Movie: Identifiable, Codable {
     let writers: [String]
     let stars: [String]
     let classification: String
+    let comingSoon: Bool
 }
 
 extension Movie {
@@ -59,7 +60,8 @@ extension Movie {
         director: ["Fede Álvarez"],
         writers: ["Fede Álvarez", "Rodo Sayagues"],
         stars: ["Cailee Spaeny", "David Jonsson", "Archie Renaux"],
-        classification: "R"
+        classification: "R",
+        comingSoon: false
     )
 }
 

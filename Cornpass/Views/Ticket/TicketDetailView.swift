@@ -88,6 +88,7 @@ extension TicketDetailView {
                 VStack(alignment: .leading) {
                     Text(ticket.movieTitle)
                         .font(AppFont.semiBold.font(size: 18))
+                        .foregroundStyle(.black)
                     Spacer()
                         .frame(height: 10)
                     HStack(alignment: .center) {
@@ -103,6 +104,7 @@ extension TicketDetailView {
                             .foregroundStyle(.gray)
                     }
                 }
+                .minimumScaleFactor(0.8)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, 10)
@@ -145,6 +147,7 @@ extension TicketDetailView {
                 .frame(width: 16, height: 16)
             Text(ticket.cinema)
                 .font(AppFont.semiBold.font(size: 12))
+                .foregroundStyle(.black)
             Spacer()
             Image(.logoBlackSmall)
                 .resizable()
@@ -163,6 +166,7 @@ extension TicketDetailView {
                 .foregroundStyle(.gray)
             Text(value)
                 .font(AppFont.regular.font(size: 16))
+                .foregroundStyle(.black)
         }
     }
     
@@ -204,6 +208,7 @@ struct MovieAgeRatingView: View {
                 RoundedRectangle(cornerRadius: 4)
                     .fill(backgroundColor)
             )
+            .fixedSize(horizontal: true, vertical: false)
     }
 }
 
@@ -220,6 +225,7 @@ struct MovieLanguageView: View {
                 RoundedRectangle(cornerRadius: 4)
                     .stroke(accentColor)
             )
+            .fixedSize(horizontal: true, vertical: false)
     }
 }
 

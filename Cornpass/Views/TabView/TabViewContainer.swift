@@ -39,7 +39,7 @@ struct TabViewContainer: View {
             }
             // Ticket
             Tab(value: .tickets) {
-                MyTicketsView()
+                MyTicketListView()
             } label: {
                 Image(selectedTab == .tickets ? TabImage.tab_ticket_fill.rawValue : TabImage.tab_ticket.rawValue)
             }

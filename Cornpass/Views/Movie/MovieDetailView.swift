@@ -42,9 +42,17 @@ struct MovieDetailView: View {
                             .foregroundStyle(.gray)
                         HStack(alignment: .center) {
                             VStack(alignment: .leading, spacing: 10) {
-                                Text(movie.title)
-                                    .font(AppFont.semiBold.font(size: 24))
-                                    .foregroundStyle(.white)
+                                HStack {
+                                    if movie.comingSoon {
+                                        Image(.soonBadge)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 22, height: 22)
+                                    }
+                                    Text(movie.title)
+                                        .font(AppFont.semiBold.font(size: 24))
+                                        .foregroundStyle(.white)
+                                }
                                 HStack {
                                     MovieAgeRatingView(rating: movie.ageBadge, forgroundColor: .black, backgroundColor: .white)
                                     ForEach(movie.languageTags, id: \.self) { tag in

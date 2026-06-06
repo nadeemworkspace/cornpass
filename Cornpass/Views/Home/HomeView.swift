@@ -7,10 +7,21 @@
 
 import SwiftUI
 
+@Observable
+class HomeViewModel {
+
+    var movies: MovieResponse?
+    var currentPosterIndex: Int = 0
+
+    init() {
+        movies = loadMovies()
+    }
+
+}
+
 struct HomeView: View {
 
-    @State private var currentPosterIndex: Int = 0
-    let movies = loadMovies()
+    @State private var viewModel = HomeViewModel()
 
     var body: some View {
         ZStack {
@@ -21,22 +32,22 @@ struct HomeView: View {
                 VStack(spacing: 0) {
                     // Poster
                     HeroBannerSection(
-                        movies: movies?.heroMovies ?? [],
-                        heroIndex: $currentPosterIndex
+                        movies: viewModel.movies?.heroMovies ?? [],
+                        heroIndex: $viewModel.currentPosterIndex
                     )
                     // Sections
                     VStack(spacing: 28) {
                         // Now Showing
                         HorizontalMovieSection(
                             title: "Now Showing",
-                            movies: movies?.nowShowingMovies ?? [],
+                            movies: viewModel.movies?.nowShowingMovies ?? [],
                             cardWidth: 160,
                             cardHeight: 220,
                             showBadge: false
                         )
                         // Coming soon
                         ComingSoonSection(
-                            movies: movies?.comingSoonMovies ?? []
+                            movies: viewModel.movies?.comingSoonMovies ?? []
                         )
                         // Genre
                         GenreSection(
@@ -47,7 +58,7 @@ struct HomeView: View {
                         // Animated Movies
                         HorizontalMovieSection(
                             title: "Animation",
-                            movies: movies?.animationMovies ?? [],
+                            movies: viewModel.movies?.animationMovies ?? [],
                             cardWidth: 140,
                             cardHeight: 200,
                             showBadge: false
@@ -123,15 +134,15 @@ struct HeroBannerSection: View {
                 // Movie badge + title
                 Group {
                     HStack(spacing: 6) {
-                        Image(.soonBadge)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 22, height: 22)
+                        if movies[heroIndex].comingSoon {
+                            Image(.soonBadge)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 22, height: 22)
+                        }
                         Text(movies[heroIndex].title)
                             .font(AppFont.semiBold.font(size: 24))
-
                     }
-
                     Text("\(movies[heroIndex].badge) • \(movies[heroIndex].genre) • \(movies[heroIndex].rating) • \(movies[heroIndex].duration)")
                         .font(AppFont.medium.font(size: 14))
                 }

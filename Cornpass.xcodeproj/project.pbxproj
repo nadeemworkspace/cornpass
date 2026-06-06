@@ -21,7 +21,7 @@
 		08CFD1842FC2E08900F95A12 /* GenrePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1832FC2E08900F95A12 /* GenrePickerView.swift */; };
 		08CFD1862FC2FAF100F95A12 /* GravityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1852FC2FAE000F95A12 /* GravityView.swift */; };
 		08CFD1882FC2FC7C00F95A12 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1872FC2FC7800F95A12 /* Genre.swift */; };
-		08CFD18A2FC3402500F95A12 /* MyTicketsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1892FC3402500F95A12 /* MyTicketsView.swift */; };
+		08CFD18A2FC3402500F95A12 /* MyTicketListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1892FC3402500F95A12 /* MyTicketListView.swift */; };
 		08CFD18C2FC356BE00F95A12 /* TicketShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD18B2FC356BE00F95A12 /* TicketShape.swift */; };
 		08CFD18E2FC4518F00F95A12 /* Ticket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD18D2FC4518F00F95A12 /* Ticket.swift */; };
 		08CFD1902FC4557E00F95A12 /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD18F2FC4557E00F95A12 /* TicketView.swift */; };
@@ -55,7 +55,7 @@
 		08CFD1832FC2E08900F95A12 /* GenrePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenrePickerView.swift; sourceTree = "<group>"; };
 		08CFD1852FC2FAE000F95A12 /* GravityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityView.swift; sourceTree = "<group>"; };
 		08CFD1872FC2FC7800F95A12 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
-		08CFD1892FC3402500F95A12 /* MyTicketsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTicketsView.swift; sourceTree = "<group>"; };
+		08CFD1892FC3402500F95A12 /* MyTicketListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTicketListView.swift; sourceTree = "<group>"; };
 		08CFD18B2FC356BE00F95A12 /* TicketShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketShape.swift; sourceTree = "<group>"; };
 		08CFD18D2FC4518F00F95A12 /* Ticket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticket.swift; sourceTree = "<group>"; };
 		08CFD18F2FC4557E00F95A12 /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
@@ -169,16 +169,11 @@
 			isa = PBXGroup;
 			children = (
 				0806861F2FC0A96B0054E5ED /* ContentView.swift */,
-				30385EE82FD3161B0088283C /* TabViewContainer.swift */,
-				08CFD1952FC5AF3200F95A12 /* HomeView.swift */,
-				08CFD17B2FC1BDAA00F95A12 /* WelcomeView.swift */,
-				08CFD17D2FC1F52600F95A12 /* LoginView.swift */,
-				08CFD1832FC2E08900F95A12 /* GenrePickerView.swift */,
-				08CFD1892FC3402500F95A12 /* MyTicketsView.swift */,
-				08CFD1912FC4579400F95A12 /* TicketDetailView.swift */,
-				08CFD18F2FC4557E00F95A12 /* TicketView.swift */,
-				08CFD1B62FC770B500F95A12 /* VideoPlayerView.swift */,
-				08CFD1BF2FC8933E00F95A12 /* MovieDetailView.swift */,
+				30385EF12FD455790088283C /* TabView */,
+				30385EED2FD44FA00088283C /* Onboarding */,
+				30385EEC2FD44F8E0088283C /* Home */,
+				30385EEF2FD44FC60088283C /* Movie */,
+				30385EEE2FD44FB30088283C /* Ticket */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -189,6 +184,59 @@
 				08CFD1C22FC8A64200F95A12 /* movies.json */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		30385EEC2FD44F8E0088283C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				08CFD1952FC5AF3200F95A12 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		30385EED2FD44FA00088283C /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				08CFD17B2FC1BDAA00F95A12 /* WelcomeView.swift */,
+				08CFD17D2FC1F52600F95A12 /* LoginView.swift */,
+				08CFD1832FC2E08900F95A12 /* GenrePickerView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		30385EEE2FD44FB30088283C /* Ticket */ = {
+			isa = PBXGroup;
+			children = (
+				08CFD1892FC3402500F95A12 /* MyTicketListView.swift */,
+				08CFD1912FC4579400F95A12 /* TicketDetailView.swift */,
+				30385EF02FD44FE10088283C /* Components */,
+			);
+			path = Ticket;
+			sourceTree = "<group>";
+		};
+		30385EEF2FD44FC60088283C /* Movie */ = {
+			isa = PBXGroup;
+			children = (
+				08CFD1BF2FC8933E00F95A12 /* MovieDetailView.swift */,
+				08CFD1B62FC770B500F95A12 /* VideoPlayerView.swift */,
+			);
+			path = Movie;
+			sourceTree = "<group>";
+		};
+		30385EF02FD44FE10088283C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				08CFD18F2FC4557E00F95A12 /* TicketView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		30385EF12FD455790088283C /* TabView */ = {
+			isa = PBXGroup;
+			children = (
+				30385EE82FD3161B0088283C /* TabViewContainer.swift */,
+			);
+			path = TabView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,7 +333,7 @@
 				080686242FC0A96B0054E5ED /* CornpassApp.swift in Sources */,
 				08CFD1C02FC8933E00F95A12 /* MovieDetailView.swift in Sources */,
 				08CFD18C2FC356BE00F95A12 /* TicketShape.swift in Sources */,
-				08CFD18A2FC3402500F95A12 /* MyTicketsView.swift in Sources */,
+				08CFD18A2FC3402500F95A12 /* MyTicketListView.swift in Sources */,
 				08CFD18E2FC4518F00F95A12 /* Ticket.swift in Sources */,
 				08CFD1862FC2FAF100F95A12 /* GravityView.swift in Sources */,
 				30385EEB2FD318F40088283C /* UserDefaultKeys.swift in Sources */,
