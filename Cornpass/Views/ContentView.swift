@@ -11,17 +11,28 @@ import Observation
 struct ContentView: View {
 
     @State private var entryManager = AppEntryManager()
+    @State private var showSplash = true
 
     var body: some View {
-        NavigationStack {
-            Group {
-                if entryManager.isUserLoggedIn {
-                    TabViewContainer()
-                } else {
-                    WelcomeView()
+        Group {
+            if showSplash {
+                SplashView()
+            } else {
+                NavigationStack {
+                    Group {
+                        if entryManager.isUserLoggedIn {
+                            TabViewContainer()
+                        } else {
+                            WelcomeView()
+                        }
+                    }
+                    .preferredColorScheme(.dark)
                 }
             }
-            .preferredColorScheme(.dark)
+        }
+        .task {
+            try? await Task.sleep(for: .seconds(3))
+            showSplash = false
         }
     }
 }

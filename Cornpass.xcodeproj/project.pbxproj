@@ -36,6 +36,7 @@
 		30385EE72FC705470088283C /* VariableBlurDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30385EE62FC705470088283C /* VariableBlurDirection.swift */; };
 		30385EE92FD3161B0088283C /* TabViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30385EE82FD3161B0088283C /* TabViewContainer.swift */; };
 		30385EEB2FD318F40088283C /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30385EEA2FD318F40088283C /* UserDefaultKeys.swift */; };
+		30385EF42FD457150088283C /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30385EF32FD457150088283C /* SplashView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		30385EE62FC705470088283C /* VariableBlurDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariableBlurDirection.swift; sourceTree = "<group>"; };
 		30385EE82FD3161B0088283C /* TabViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewContainer.swift; sourceTree = "<group>"; };
 		30385EEA2FD318F40088283C /* UserDefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
+		30385EF32FD457150088283C /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,8 +171,9 @@
 			isa = PBXGroup;
 			children = (
 				0806861F2FC0A96B0054E5ED /* ContentView.swift */,
-				30385EF12FD455790088283C /* TabView */,
+				30385EF22FD456FB0088283C /* Splash */,
 				30385EED2FD44FA00088283C /* Onboarding */,
+				30385EF12FD455790088283C /* TabView */,
 				30385EEC2FD44F8E0088283C /* Home */,
 				30385EEF2FD44FC60088283C /* Movie */,
 				30385EEE2FD44FB30088283C /* Ticket */,
@@ -237,6 +240,14 @@
 				30385EE82FD3161B0088283C /* TabViewContainer.swift */,
 			);
 			path = TabView;
+			sourceTree = "<group>";
+		};
+		30385EF22FD456FB0088283C /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				30385EF32FD457150088283C /* SplashView.swift */,
+			);
+			path = Splash;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -337,6 +348,7 @@
 				08CFD18E2FC4518F00F95A12 /* Ticket.swift in Sources */,
 				08CFD1862FC2FAF100F95A12 /* GravityView.swift in Sources */,
 				30385EEB2FD318F40088283C /* UserDefaultKeys.swift in Sources */,
+				30385EF42FD457150088283C /* SplashView.swift in Sources */,
 				08CFD17E2FC1F52600F95A12 /* LoginView.swift in Sources */,
 				08CFD1962FC5AF3200F95A12 /* HomeView.swift in Sources */,
 				08CFD1942FC466DE00F95A12 /* MainTicketShape.swift in Sources */,
