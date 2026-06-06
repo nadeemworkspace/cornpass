@@ -31,7 +31,7 @@ struct ContentView: View {
             }
         }
         .task {
-            try? await Task.sleep(for: .seconds(3))
+            try? await Task.sleep(for: .seconds(1))
             showSplash = false
         }
     }
