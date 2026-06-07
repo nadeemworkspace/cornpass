@@ -18,7 +18,7 @@ struct TicketView: View {
             HStack {
                 Image(ticket.imageName)
                     .resizable()
-                    .scaledToFit()
+                    .scaledToFill()
                     .frame(width: 86, height: 122)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
                     .padding(4)

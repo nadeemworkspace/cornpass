@@ -37,6 +37,7 @@ struct Movie: Identifiable, Codable {
     let writers: [String]
     let stars: [String]
     let classification: String
+    let comingSoon: Bool
 }
 
 extension Movie {
@@ -59,8 +60,48 @@ extension Movie {
         director: ["Fede Álvarez"],
         writers: ["Fede Álvarez", "Rodo Sayagues"],
         stars: ["Cailee Spaeny", "David Jonsson", "Archie Renaux"],
-        classification: "R"
+        classification: "R",
+        comingSoon: false
     )
+}
+
+struct FeaturedMovie {
+    let title: String
+    let duration: String
+    let tag: String
+    let type: String
+    let imdbRating: String
+    let rating: String
+    let languageTag: String
+    let artName: String
+}
+
+extension FeaturedMovie {
+
+    static let featured = featuredMovies.randomElement() ?? featuredMovies[0]
+
+    private static let featuredMovies: [FeaturedMovie] = [
+        .init(
+            title: "Luca",
+            duration: "1h 35m",
+            tag: "Pixar",
+            type: "Animation, Fantasy",
+            imdbRating: "7.4/10",
+            rating: "PG",
+            languageTag: "EN",
+            artName: "featured_luca"
+        ),
+        .init(
+            title: "Tron: Ares",
+            duration: "2h 8m",
+            tag: "Neon Sci-Fi",
+            type: "Sci-Fi, Action",
+            imdbRating: "7.3/10",
+            rating: "UA",
+            languageTag: "EN",
+            artName: "featured_tron"
+        )
+    ]
 }
 
 func loadMovies() -> MovieResponse? {

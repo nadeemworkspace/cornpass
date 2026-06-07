@@ -19,7 +19,8 @@
             "director": ["Fede Álvarez"],
             "writers": ["Fede Álvarez", "Rodo Sayagues"],
             "stars": ["Cailee Spaeny", "David Jonsson", "Archie Renaux"],
-            "classification": "R"
+            "classification": "R",
+            "comingSoon": true
         },
         {
             "id": "2",
@@ -40,7 +41,8 @@
             "director": ["Denis Villeneuve"],
             "writers": ["Eric Heisserer", "Ted Chiang"],
             "stars": ["Amy Adams", "Jeremy Renner", "Forest Whitaker"],
-            "classification": "PG-13"
+            "classification": "PG-13",
+            "comingSoon": false
         },
         {
             "id": "21",
@@ -61,7 +63,8 @@
             "director": ["Joseph Kosinski"],
             "writers": ["Ehren Kruger", "Eric Warren Singer"],
             "stars": ["Tom Cruise", "Miles Teller", "Jennifer Connelly"],
-            "classification": "PG-13"
+            "classification": "PG-13",
+            "comingSoon": true
         },
         {
             "id": "3",
@@ -82,7 +85,8 @@
             "director": ["Denis Villeneuve"],
             "writers": ["Denis Villeneuve", "Jon Spaihts"],
             "stars": ["Timothée Chalamet", "Zendaya", "Rebecca Ferguson"],
-            "classification": "PG-13"
+            "classification": "PG-13",
+            "comingSoon": false
         },
         {
             "id": "4",
@@ -103,7 +107,8 @@
             "director": ["Christopher Nolan"],
             "writers": ["Christopher Nolan", "Kai Bird", "Martin Sherwin"],
             "stars": ["Cillian Murphy", "Emily Blunt", "Robert Downey Jr.", "Matt Damon"],
-            "classification": "PG-13"
+            "classification": "PG-13",
+            "comingSoon": false
         }
     ],
     "nowShowingMovies": [
@@ -126,7 +131,8 @@
             "director": ["Denis Villeneuve"],
             "writers": ["Hampton Fancher", "Michael Green"],
             "stars": ["Ryan Gosling", "Harrison Ford", "Ana de Armas"],
-            "classification": "R"
+            "classification": "R",
+            "comingSoon": false
         },
         {
             "id": "5",
@@ -147,7 +153,8 @@
             "director": ["Otto Bathurst"],
             "writers": ["Steven Knight"],
             "stars": ["Cillian Murphy", "Paul Anderson", "Helen McCrory"],
-            "classification": "TV-MA"
+            "classification": "TV-MA",
+            "comingSoon": false
         },
         {
             "id": "6",
@@ -168,7 +175,8 @@
             "director": ["James Cameron"],
             "writers": ["James Cameron", "Rick Jaffa", "Amanda Silver"],
             "stars": ["Sam Worthington", "Zoe Saldana", "Sigourney Weaver"],
-            "classification": "PG-13"
+            "classification": "PG-13",
+            "comingSoon": false
         },
         {
             "id": "7",
@@ -189,7 +197,8 @@
             "director": ["Christopher Nolan"],
             "writers": ["Jonathan Nolan", "Christopher Nolan"],
             "stars": ["Matthew McConaughey", "Anne Hathaway", "Jessica Chastain"],
-            "classification": "PG-13"
+            "classification": "PG-13",
+            "comingSoon": false
         },
         {
             "id": "16",
@@ -210,7 +219,8 @@
             "director": ["Christopher Nolan"],
             "writers": ["Christopher Nolan"],
             "stars": ["Leonardo DiCaprio", "Marion Cotillard", "Ellen Page"],
-            "classification": "PG-13"
+            "classification": "PG-13",
+            "comingSoon": false
         },
         {
             "id": "17",
@@ -231,7 +241,8 @@
             "director": ["Christopher Nolan"],
             "writers": ["Jonathan Nolan", "Christopher Nolan"],
             "stars": ["Christian Bale", "Heath Ledger", "Aaron Eckhart"],
-            "classification": "PG-13"
+            "classification": "PG-13",
+            "comingSoon": false
         }
     ],
     "comingSoonMovies": [
@@ -254,7 +265,8 @@
             "director": ["Joseph Kosinski"],
             "writers": ["Ehren Kruger", "Justin Marks"],
             "stars": ["Brad Pitt", "Damson Idris", "Javier Bardem"],
-            "classification": "PG-13"
+            "classification": "PG-13",
+            "comingSoon": true
         },
         {
             "id": "8",
@@ -275,7 +287,8 @@
             "director": ["Kyle Balda"],
             "writers": ["Brian Lynch", "Matthew Fogel"],
             "stars": ["Steve Carell", "Pierre Coffin", "Taraji P. Henson"],
-            "classification": "PG"
+            "classification": "PG",
+            "comingSoon": true
         },
         {
             "id": "9",
@@ -296,7 +309,8 @@
             "director": ["Ridley Scott"],
             "writers": ["David Scarpa"],
             "stars": ["Joaquin Phoenix", "Vanessa Kirby", "Tahar Rahim"],
-            "classification": "R"
+            "classification": "R",
+            "comingSoon": true
         },
         {
             "id": "10",
@@ -317,7 +331,8 @@
             "director": ["Ridley Scott"],
             "writers": ["David Scarpa", "Peter Craig"],
             "stars": ["Paul Mescal", "Pedro Pascal", "Denzel Washington"],
-            "classification": "R"
+            "classification": "R",
+            "comingSoon": true
         },
         {
             "id": "11",
@@ -338,7 +353,8 @@
             "director": ["Anthony Russo", "Joe Russo"],
             "writers": ["Christopher Markus", "Stephen McFeely"],
             "stars": ["Robert Downey Jr.", "Chris Evans", "Mark Ruffalo", "Scarlett Johansson"],
-            "classification": "PG-13"
+            "classification": "PG-13",
+            "comingSoon": true
         },
         {
             "id": "22",
@@ -359,7 +375,8 @@
             "director": ["Kelsey Mann"],
             "writers": ["Meg LeFauve", "Dave Holstein"],
             "stars": ["Amy Poehler", "Maya Hawke", "Liza Lapira"],
-            "classification": "PG"
+            "classification": "PG",
+            "comingSoon": true
         },
         {
             "id": "23",
@@ -380,7 +397,8 @@
             "director": ["Shawn Levy"],
             "writers": ["Rhett Reese", "Paul Wernick", "Ryan Reynolds"],
             "stars": ["Ryan Reynolds", "Hugh Jackman", "Emma Corrin"],
-            "classification": "R"
+            "classification": "R",
+            "comingSoon": true
         }
     ],
     "animationMovies": [
@@ -403,7 +421,8 @@
             "director": ["Eric Darnell", "Simon J. Smith"],
             "writers": ["Michael Colton", "John Aboud", "Brandon Sawyer"],
             "stars": ["Tom McGrath", "Chris Miller", "Christopher Knights"],
-            "classification": "PG"
+            "classification": "PG",
+            "comingSoon": false
         },
         {
             "id": "13",
@@ -424,7 +443,8 @@
             "director": ["Roger Allers", "Rob Minkoff"],
             "writers": ["Irene Mecchi", "Jonathan Roberts", "Linda Woolverton"],
             "stars": ["Matthew Broderick", "Jeremy Irons", "James Earl Jones"],
-            "classification": "G"
+            "classification": "G",
+            "comingSoon": false
         },
         {
             "id": "14",
@@ -445,7 +465,8 @@
             "director": ["Mark Andrews", "Brenda Chapman"],
             "writers": ["Mark Andrews", "Steve Purcell", "Brenda Chapman", "Irene Mecchi"],
             "stars": ["Kelly Macdonald", "Billy Connolly", "Emma Thompson"],
-            "classification": "PG"
+            "classification": "PG",
+            "comingSoon": false
         },
         {
             "id": "15",
@@ -466,7 +487,8 @@
             "director": ["Pete Docter", "Bob Peterson"],
             "writers": ["Pete Docter", "Bob Peterson", "Tom McCarthy"],
             "stars": ["Edward Asner", "Jordan Nagai", "John Ratzenberger"],
-            "classification": "PG"
+            "classification": "PG",
+            "comingSoon": false
         },
         {
             "id": "25",
@@ -487,7 +509,8 @@
             "director": ["John Lasseter"],
             "writers": ["Joss Whedon", "Andrew Stanton"],
             "stars": ["Tom Hanks", "Tim Allen", "John Ratzenberger"],
-            "classification": "G"
+            "classification": "G",
+            "comingSoon": false
         },
         {
             "id": "26",
@@ -508,7 +531,8 @@
             "director": ["Andrew Stanton", "Lee Unkrich"],
             "writers": ["Andrew Stanton", "Bob Peterson"],
             "stars": ["Albert Brooks", "Ellen DeGeneres", "Alexander Gould"],
-            "classification": "G"
+            "classification": "G",
+            "comingSoon": false
         }
     ]
 }

@@ -10,11 +10,10 @@ import SpriteKit
 
 struct GenrePickerView: View {
 
-    @State private var genres = Genre.all
-    var selectedCount: Int { genres.filter(\.isSelected).count }
+    @State private var viewModel = GenrePickerViewModel()
 
     private func canvasHeight(for width: CGFloat) -> CGFloat {
-        let rows  = buildRows(genres: genres, canvasWidth: width)
+        let rows  = buildRows(genres: viewModel.genres, canvasWidth: width)
         let pile  = pileHeight(rows: rows)
         let extra: CGFloat = pile * 0.6
         return pile + extra
@@ -28,7 +27,7 @@ struct GenrePickerView: View {
                 HStack {
                     Spacer()
                     Button("Skip") {
-                        print("TODO: Skip action")
+                        viewModel.navigateToHome(.skip)
                     }
                     .font(AppFont.medium.font(size: 16))
                     .foregroundStyle(.gray)
@@ -49,20 +48,42 @@ struct GenrePickerView: View {
                 
                 GeometryReader { geo in
                     let h = canvasHeight(for: geo.size.width)
-                    GravityBoard(genres: genres, canvasHeight: h) {
-                        genres = $0
+                    GravityBoard(genres: viewModel.genres, canvasHeight: h) {
+                        viewModel.genres = $0
                     }
                     .frame(width: geo.size.width, height: h)
                 }
                 .frame(maxWidth: .infinity)
                 // Primary Button
-                PrimaryButton(title: selectedCount > 0 ? "Continue  ·  \(selectedCount) selected" : "Select favorit genres") {
-                    print("TODO: Genre selection")
+                PrimaryButton(title: viewModel.selectedCount > 0 ? "Continue  ·  \(viewModel.selectedCount) selected" : "Select favorit genres") {
+                    viewModel.navigateToHome(.save)
                 }
                 .padding(.horizontal)
             }
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationDestination(isPresented: $viewModel.navigateToHome) {
+            TabViewContainer()
+        }
     }
+}
+
+@Observable
+class GenrePickerViewModel {
+
+    enum GPAction {
+        case skip, save
+    }
+
+    var genres = Genre.all
+    var selectedCount: Int { genres.filter(\.isSelected).count }
+    var navigateToHome: Bool = false
+
+    func navigateToHome(_ action: GPAction) {
+        // Save selected if action is .save
+        navigateToHome = true
+    }
+
 }
 
 #Preview {
