@@ -1,5 +1,5 @@
 //
-//  AppFont.swift
+//  AppAssets.swift
 //  Cornpass
 //
 //  Created by Muhammed Nadeem on 23/05/26.
@@ -16,4 +16,15 @@ enum AppFont: String {
     func font(size: CGFloat) -> Font {
         .custom(rawValue, size: size)
     }
+}
+
+enum TabImage: String {
+    case tab_home_fill
+    case tab_home
+    case tab_feed_fill
+    case tab_feed
+    case tab_profile_fill
+    case tab_profile
+    case tab_ticket_fill
+    case tab_ticket
 }

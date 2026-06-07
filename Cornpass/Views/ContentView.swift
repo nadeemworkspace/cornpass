@@ -6,13 +6,44 @@
 //
 
 import SwiftUI
+import Observation
 
 struct ContentView: View {
+
+    @State private var entryManager = AppEntryManager()
+    @State private var showSplash = true
+
     var body: some View {
-        NavigationStack {
-            HomeView()
+        Group {
+            if showSplash {
+                SplashView()
+            } else {
+                NavigationStack {
+                    Group {
+                        if entryManager.isUserLoggedIn {
+                            TabViewContainer()
+                        } else {
+                            WelcomeView()
+                        }
+                    }
+                    .preferredColorScheme(.dark)
+                }
+            }
+        }
+        .task {
+            try? await Task.sleep(for: .seconds(1))
+            showSplash = false
         }
     }
+}
+
+@Observable
+class AppEntryManager {
+
+    var isUserLoggedIn: Bool {
+        UserDefaults.standard.bool(forKey: UserDefaultKeys.userLoggedIn.rawValue)
+    }
+
 }
 
 #Preview {
