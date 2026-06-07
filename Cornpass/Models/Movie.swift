@@ -94,12 +94,22 @@ extension FeaturedMovie {
         .init(
             title: "Tron: Ares",
             duration: "2h 8m",
-            tag: "Neon Sci-Fi",
+            tag: "Neon",
             type: "Sci-Fi, Action",
             imdbRating: "7.3/10",
             rating: "UA",
             languageTag: "EN",
             artName: "featured_tron"
+        ),
+        .init(
+            title: "Kong",
+            duration: "1h 58m",
+            tag: "Monsterverse",
+            type: "Adventure",
+            imdbRating: "6.7/10",
+            rating: "UA",
+            languageTag: "EN",
+            artName: "featured_kong"
         )
     ]
 }
