@@ -12,6 +12,18 @@ struct MovieDetailView: View {
     let movie: Movie
     @Environment(\.dismiss) private var dismiss
     private let grid = GridItem(.flexible(), alignment: .topLeading)
+    private let posterHeight: CGFloat = 420
+
+    // Seeded with whatever summary-level data got us here (list cards only
+    // carry title/poster/genre), then upgraded once the full TMDB detail
+    // (cast, gallery, trailer, certification) loads.
+    @State private var detail: Movie
+    @State private var recommendations: [Movie] = []
+
+    init(movie: Movie) {
+        self.movie = movie
+        _detail = State(initialValue: movie)
+    }
 
     var body: some View {
         ZStack {
@@ -19,43 +31,50 @@ struct MovieDetailView: View {
                 .ignoresSafeArea()
             ScrollView {
                 VStack(alignment: .leading) {
-                    // Poster
-                    ZStack(alignment: .bottom) {
-                        PosterCard(movie: movie)
-                            .frame(height: 420, alignment: .top)
-                        LinearGradient(
-                            stops: [
-                                .init(color: .clear, location: 0.0),
-                                .init(color: .black.opacity(0.9), location: 0.9),
-                                .init(color: .black, location: 1.0),
-                            ],
-                            startPoint: .top,
-                            endPoint: .bottom
-                        )
-                        .frame(height: 180)
+                    // Poster — stretches upward to cover pull-down overscroll instead of
+                    // revealing the black background behind it, matching HomeView's hero.
+                    GeometryReader { proxy in
+                        let stretch = max(0, proxy.frame(in: .named("movieDetailScroll")).minY)
+
+                        ZStack(alignment: .bottom) {
+                            PosterCard(movie: detail)
+                                .frame(width: proxy.size.width, height: posterHeight + stretch)
+                                .clipped()
+                                .frame(height: posterHeight, alignment: .bottom)
+                            LinearGradient(
+                                stops: [
+                                    .init(color: .clear, location: 0.0),
+                                    .init(color: .black.opacity(0.9), location: 0.9),
+                                    .init(color: .black, location: 1.0),
+                                ],
+                                startPoint: .top,
+                                endPoint: .bottom
+                            )
+                            .frame(height: 180)
+                        }
                     }
-                    .clipped()
+                    .frame(height: posterHeight)
                     // Details
                     VStack(alignment: .leading, spacing: 10) {
-                        Text("\(movie.genre) • \(movie.rating) • \(movie.duration)")
+                        Text("\(detail.genre) • \(detail.rating) • \(detail.duration)")
                             .font(AppFont.medium.font(size: 14))
                             .foregroundStyle(.gray)
                         HStack(alignment: .center) {
                             VStack(alignment: .leading, spacing: 10) {
                                 HStack {
-                                    if movie.comingSoon {
+                                    if detail.comingSoon {
                                         Image(.soonBadge)
                                             .resizable()
                                             .scaledToFit()
                                             .frame(width: 22, height: 22)
                                     }
-                                    Text(movie.title)
+                                    Text(detail.title)
                                         .font(AppFont.semiBold.font(size: 24))
                                         .foregroundStyle(.white)
                                 }
                                 HStack {
-                                    MovieAgeRatingView(rating: movie.ageBadge, forgroundColor: .black, backgroundColor: .white)
-                                    ForEach(movie.languageTags, id: \.self) { tag in
+                                    MovieAgeRatingView(rating: detail.ageBadge, forgroundColor: .black, backgroundColor: .white)
+                                    ForEach(detail.languageTags, id: \.self) { tag in
                                         MovieLanguageView(language: tag, accentColor: .white)
                                     }
                                 }
@@ -63,7 +82,7 @@ struct MovieDetailView: View {
                             Spacer()
                             // Play Button
                             NavigationLink {
-                                VideoPlayerView(movie: movie)
+                                VideoPlayerView(movie: detail)
                             } label: {
                                 Image(systemName: "play.fill")
                                     .foregroundStyle(.white)
@@ -76,37 +95,45 @@ struct MovieDetailView: View {
                     .padding(.horizontal)
                     // Rating Section
                     HStack(alignment: .center) {
-                        ratingView(provider: "IMBD", imageName: "imdb_rating", rating: movie.imdbRating)
+                        ratingView(provider: "IMBD", imageName: "imdb_rating", rating: detail.imdbRating)
                         Spacer()
                         Rectangle()
                             .fill(.gray)
                             .frame(width: 1)
                             .padding(.vertical, 10)
                         Spacer()
-                        ratingView(provider: "Rotten Tomatoes", imageName: "rottenTomatoes_rating", rating: movie.rottenTomatoesRating)
+                        ratingView(provider: "Rotten Tomatoes", imageName: "rottenTomatoes_rating", rating: detail.rottenTomatoesRating)
                         Spacer()
                         Rectangle()
                             .fill(.gray)
                             .frame(width: 1)
                             .padding(.vertical, 10)
                         Spacer()
-                        ratingView(provider: "CornPass", imageName: "cornpass_rating", rating: movie.cornPassRating)
+                        ratingView(provider: "CornPass", imageName: "cornpass_rating", rating: detail.cornPassRating)
                     }
                     .padding(.horizontal)
                     .padding(.vertical, 20)
-                    
+
                     // Movie Description
-                    Text(movie.description)
+                    Text(detail.description)
                         .foregroundStyle(.gray)
                         .font(AppFont.regular.font(size: 16))
                         .padding(.horizontal)
                     // Screenshots
                     ScrollView(.horizontal) {
                         HStack {
-                            ForEach(0...3, id: \.self) { _ in
-                                RoundedRectangle(cornerRadius: 14)
-                                    .fill(.gray.opacity(0.3))
-                                    .frame(width: 160, height: 100)
+                            if detail.gallery.isEmpty {
+                                ForEach(0...3, id: \.self) { _ in
+                                    RoundedRectangle(cornerRadius: 14)
+                                        .fill(.gray.opacity(0.3))
+                                        .frame(width: 160, height: 100)
+                                }
+                            } else {
+                                ForEach(detail.gallery, id: \.self) { url in
+                                    RemoteImage(url: url)
+                                        .frame(width: 160, height: 100)
+                                        .clipShape(RoundedRectangle(cornerRadius: 14))
+                                }
                             }
                         }
                         .padding(.horizontal)
@@ -120,7 +147,7 @@ struct MovieDetailView: View {
                             Text("Director")
                                 .font(AppFont.medium.font(size: 10))
                                 .foregroundStyle(.gray)
-                            ForEach(movie.director, id: \.self) { director in
+                            ForEach(detail.director, id: \.self) { director in
                                 Text(director)
                                     .foregroundStyle(.white)
                                     .font(AppFont.regular.font(size: 14))
@@ -131,7 +158,7 @@ struct MovieDetailView: View {
                             Text("Writers")
                                 .font(AppFont.medium.font(size: 10))
                                 .foregroundStyle(.gray)
-                            ForEach(movie.writers, id: \.self) { writer in
+                            ForEach(detail.writers, id: \.self) { writer in
                                 Text(writer)
                                     .foregroundStyle(.white)
                                     .font(AppFont.regular.font(size: 14))
@@ -142,8 +169,8 @@ struct MovieDetailView: View {
                             Text("Stars")
                                 .font(AppFont.medium.font(size: 10))
                                 .foregroundStyle(.gray)
-                            
-                            ForEach(movie.stars, id: \.self) { star in
+
+                            ForEach(detail.stars, id: \.self) { star in
                                 Text(star)
                                     .foregroundStyle(.white)
                                     .font(AppFont.regular.font(size: 14))
@@ -156,11 +183,11 @@ struct MovieDetailView: View {
                                 .foregroundStyle(.gray)
                             HStack(spacing: 8) {
                                 MovieAgeRatingView(
-                                    rating: movie.rating,
+                                    rating: detail.rating,
                                     forgroundColor: .black,
                                     backgroundColor: .white
                                 )
-                                ForEach(movie.languageTags, id: \.self) { tag in
+                                ForEach(detail.languageTags, id: \.self) { tag in
                                     MovieLanguageView(
                                         language: tag,
                                         accentColor: .white
@@ -173,7 +200,7 @@ struct MovieDetailView: View {
                     // Recommendation
                     HorizontalMovieSection(
                         title: "You may also like",
-                        movies: loadMovies()?.nowShowingMovies.filter { $0.id != movie.id } ?? [],
+                        movies: recommendations,
                         cardWidth: 110,
                         cardHeight: 156,
                         showBadge: false
@@ -182,12 +209,21 @@ struct MovieDetailView: View {
                 }
             }
             .scrollIndicators(.hidden)
+            .coordinateSpace(name: "movieDetailScroll")
             .ignoresSafeArea(edges: .top)
         }
         .overlay(alignment: .top) {
             headerView
         }
         .navigationBarBackButtonHidden(true)
+        .task(id: movie.id) {
+            async let fullDetail = MovieRepository.shared.detail(for: movie.id)
+            async let similar = MovieRepository.shared.similarMovies(to: movie.id)
+            if let fullDetail = try? await fullDetail {
+                detail = fullDetail
+            }
+            recommendations = (try? await similar) ?? []
+        }
     }
     
     @ViewBuilder

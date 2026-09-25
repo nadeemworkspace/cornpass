@@ -12,13 +12,6 @@ struct GenrePickerView: View {
 
     @State private var viewModel = GenrePickerViewModel()
 
-    private func canvasHeight(for width: CGFloat) -> CGFloat {
-        let rows  = buildRows(genres: viewModel.genres, canvasWidth: width)
-        let pile  = pileHeight(rows: rows)
-        let extra: CGFloat = pile * 0.6
-        return pile + extra
-    }
-
     var body: some View {
         ZStack {
             Color.black
@@ -43,17 +36,15 @@ struct GenrePickerView: View {
                 }
                 .padding(.vertical, 18)
                 .foregroundColor(.white)
-                
-                Spacer()
-                
+
+                // Fills all remaining space between the title and the button;
+                // GravityScene keeps chips 16pt clear of both edges.
                 GeometryReader { geo in
-                    let h = canvasHeight(for: geo.size.width)
-                    GravityBoard(genres: viewModel.genres, canvasHeight: h) {
+                    GravityBoard(genres: viewModel.genres) {
                         viewModel.genres = $0
                     }
-                    .frame(width: geo.size.width, height: h)
+                    .frame(width: geo.size.width, height: geo.size.height)
                 }
-                .frame(maxWidth: .infinity)
                 // Primary Button
                 PrimaryButton(title: viewModel.selectedCount > 0 ? "Continue  ·  \(viewModel.selectedCount) selected" : "Select favorit genres") {
                     viewModel.navigateToHome(.save)
@@ -65,6 +56,9 @@ struct GenrePickerView: View {
         .navigationDestination(isPresented: $viewModel.navigateToHome) {
             TabViewContainer()
         }
+        .task {
+            await viewModel.loadGenres()
+        }
     }
 }
 
@@ -75,9 +69,15 @@ class GenrePickerViewModel {
         case skip, save
     }
 
-    var genres = Genre.all
+    var genres: [Genre] = Genre.fallback
     var selectedCount: Int { genres.filter(\.isSelected).count }
     var navigateToHome: Bool = false
+
+    func loadGenres() async {
+        if let fetched = try? await MovieRepository.shared.genres(), !fetched.isEmpty {
+            genres = fetched
+        }
+    }
 
     func navigateToHome(_ action: GPAction) {
         // Save selected if action is .save

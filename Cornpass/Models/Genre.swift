@@ -15,19 +15,19 @@ struct Genre: Identifiable, Hashable {
 }
 
 extension Genre {
-    static let all: [Genre] = [
-        Genre(name: "Romance",    emoji: "💕"),
-        Genre(name: "Action",     emoji: "💣"),
-        Genre(name: "Comedy",     emoji: "🤣"),
-        Genre(name: "Adventure",  emoji: "🗺️"),
-        Genre(name: "Fantasy",    emoji: "🦄"),
-        Genre(name: "Horror",     emoji: "🎃"),
-        Genre(name: "Cartoon",    emoji: "🧸"),
-        Genre(name: "Drama",      emoji: "😢"),
-        Genre(name: "Mystery",    emoji: "🔍"),
-        Genre(name: "Biography",  emoji: "👨‍🚀"),
-        Genre(name: "History",    emoji: "📙"),
-        Genre(name: "Sport",      emoji: "🏈"),
-        Genre(name: "Sci-fi",     emoji: "🌏"),
+    // Used only if the TMDB genre list request fails, so the picker never
+    // renders empty.
+    static let fallback: [Genre] = [
+        Genre(name: "Romance",   emoji: "💕"),
+        Genre(name: "Action",    emoji: "💣"),
+        Genre(name: "Comedy",    emoji: "🤣"),
+        Genre(name: "Adventure", emoji: "🗺️"),
+        Genre(name: "Fantasy",   emoji: "🦄"),
+        Genre(name: "Horror",    emoji: "🎃"),
+        Genre(name: "Animation", emoji: "🧸"),
+        Genre(name: "Drama",     emoji: "😢"),
+        Genre(name: "Mystery",   emoji: "🔍"),
+        Genre(name: "History",   emoji: "📙"),
+        Genre(name: "Science Fiction", emoji: "🌏"),
     ]
 }

@@ -7,71 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		080686222FC0A96B0054E5ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0806861E2FC0A96B0054E5ED /* Assets.xcassets */; };
-		080686232FC0A96B0054E5ED /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0806861F2FC0A96B0054E5ED /* ContentView.swift */; };
-		080686242FC0A96B0054E5ED /* CornpassApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080686202FC0A96B0054E5ED /* CornpassApp.swift */; };
-		080686312FC17F6A0054E5ED /* AppAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080686302FC17F6A0054E5ED /* AppAssets.swift */; };
-		080686362FC1803D0054E5ED /* SFUIDisplay-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 080686322FC1803D0054E5ED /* SFUIDisplay-Bold.ttf */; };
-		080686372FC1803D0054E5ED /* SFUIDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 080686332FC1803D0054E5ED /* SFUIDisplay-Medium.otf */; };
-		080686382FC1803D0054E5ED /* SFUIDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 080686342FC1803D0054E5ED /* SFUIDisplay-Regular.otf */; };
-		080686392FC1803D0054E5ED /* SFUIDisplay-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 080686352FC1803D0054E5ED /* SFUIDisplay-Semibold.otf */; };
-		08CFD17C2FC1BDAA00F95A12 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD17B2FC1BDAA00F95A12 /* WelcomeView.swift */; };
-		08CFD17E2FC1F52600F95A12 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD17D2FC1F52600F95A12 /* LoginView.swift */; };
-		08CFD1822FC1FAD700F95A12 /* SwiftUIExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1812FC1FAD700F95A12 /* SwiftUIExt.swift */; };
-		08CFD1842FC2E08900F95A12 /* GenrePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1832FC2E08900F95A12 /* GenrePickerView.swift */; };
-		08CFD1862FC2FAF100F95A12 /* GravityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1852FC2FAE000F95A12 /* GravityView.swift */; };
-		08CFD1882FC2FC7C00F95A12 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1872FC2FC7800F95A12 /* Genre.swift */; };
-		08CFD18A2FC3402500F95A12 /* MyTicketListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1892FC3402500F95A12 /* MyTicketListView.swift */; };
-		08CFD18C2FC356BE00F95A12 /* TicketShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD18B2FC356BE00F95A12 /* TicketShape.swift */; };
-		08CFD18E2FC4518F00F95A12 /* Ticket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD18D2FC4518F00F95A12 /* Ticket.swift */; };
-		08CFD1902FC4557E00F95A12 /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD18F2FC4557E00F95A12 /* TicketView.swift */; };
-		08CFD1922FC4579400F95A12 /* TicketDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1912FC4579400F95A12 /* TicketDetailView.swift */; };
-		08CFD1942FC466DE00F95A12 /* MainTicketShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1932FC466DE00F95A12 /* MainTicketShape.swift */; };
-		08CFD1962FC5AF3200F95A12 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1952FC5AF3200F95A12 /* HomeView.swift */; };
-		08CFD1B72FC770B500F95A12 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1B62FC770B500F95A12 /* VideoPlayerView.swift */; };
 		08CFD1BA2FC770CB00F95A12 /* YouTubePlayerKit in Frameworks */ = {isa = PBXBuildFile; productRef = 08CFD1B92FC770CB00F95A12 /* YouTubePlayerKit */; };
-		08CFD1C02FC8933E00F95A12 /* MovieDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CFD1BF2FC8933E00F95A12 /* MovieDetailView.swift */; };
-		08CFD1C32FC8A64200F95A12 /* movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 08CFD1C22FC8A64200F95A12 /* movies.json */; };
-		30385EE52FC6CF6A0088283C /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30385EE42FC6CF6A0088283C /* Movie.swift */; };
-		30385EE72FC705470088283C /* VariableBlurDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30385EE62FC705470088283C /* VariableBlurDirection.swift */; };
-		30385EE92FD3161B0088283C /* TabViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30385EE82FD3161B0088283C /* TabViewContainer.swift */; };
-		30385EEB2FD318F40088283C /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30385EEA2FD318F40088283C /* UserDefaultKeys.swift */; };
-		30385EF42FD457150088283C /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30385EF32FD457150088283C /* SplashView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0806861E2FC0A96B0054E5ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		0806861F2FC0A96B0054E5ED /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		080686202FC0A96B0054E5ED /* CornpassApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornpassApp.swift; sourceTree = "<group>"; };
-		0806862F2FC17EC80054E5ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		080686302FC17F6A0054E5ED /* AppAssets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAssets.swift; sourceTree = "<group>"; };
-		080686322FC1803D0054E5ED /* SFUIDisplay-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Bold.ttf"; sourceTree = "<group>"; };
-		080686332FC1803D0054E5ED /* SFUIDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Medium.otf"; sourceTree = "<group>"; };
-		080686342FC1803D0054E5ED /* SFUIDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Regular.otf"; sourceTree = "<group>"; };
-		080686352FC1803D0054E5ED /* SFUIDisplay-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Semibold.otf"; sourceTree = "<group>"; };
 		084F914F2FC0A116007D11F5 /* Cornpass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cornpass.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		08CFD17B2FC1BDAA00F95A12 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
-		08CFD17D2FC1F52600F95A12 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		08CFD1812FC1FAD700F95A12 /* SwiftUIExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExt.swift; sourceTree = "<group>"; };
-		08CFD1832FC2E08900F95A12 /* GenrePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenrePickerView.swift; sourceTree = "<group>"; };
-		08CFD1852FC2FAE000F95A12 /* GravityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityView.swift; sourceTree = "<group>"; };
-		08CFD1872FC2FC7800F95A12 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
-		08CFD1892FC3402500F95A12 /* MyTicketListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTicketListView.swift; sourceTree = "<group>"; };
-		08CFD18B2FC356BE00F95A12 /* TicketShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketShape.swift; sourceTree = "<group>"; };
-		08CFD18D2FC4518F00F95A12 /* Ticket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticket.swift; sourceTree = "<group>"; };
-		08CFD18F2FC4557E00F95A12 /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
-		08CFD1912FC4579400F95A12 /* TicketDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDetailView.swift; sourceTree = "<group>"; };
-		08CFD1932FC466DE00F95A12 /* MainTicketShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTicketShape.swift; sourceTree = "<group>"; };
-		08CFD1952FC5AF3200F95A12 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		08CFD1B62FC770B500F95A12 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
-		08CFD1BF2FC8933E00F95A12 /* MovieDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailView.swift; sourceTree = "<group>"; };
-		08CFD1C22FC8A64200F95A12 /* movies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movies.json; sourceTree = "<group>"; };
-		30385EE42FC6CF6A0088283C /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
-		30385EE62FC705470088283C /* VariableBlurDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariableBlurDirection.swift; sourceTree = "<group>"; };
-		30385EE82FD3161B0088283C /* TabViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewContainer.swift; sourceTree = "<group>"; };
-		30385EEA2FD318F40088283C /* UserDefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
-		30385EF32FD457150088283C /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		30CFD8FB3066C19B00C4EF1E /* Exceptions for "Cornpass" folder in "Cornpass" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 084F914E2FC0A116007D11F5 /* Cornpass */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		30CFD8DC3066C19A00C4EF1E /* Cornpass */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				30CFD8FB3066C19B00C4EF1E /* Exceptions for "Cornpass" folder in "Cornpass" target */,
+			);
+			path = Cornpass;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		084F914C2FC0A116007D11F5 /* Frameworks */ = {
@@ -85,37 +47,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		080686212FC0A96B0054E5ED /* Cornpass */ = {
-			isa = PBXGroup;
-			children = (
-				08CFD19B2FC76DEB00F95A12 /* App */,
-				08CFD1BB2FC82B6B00F95A12 /* Views */,
-				08CFD19A2FC76DDA00F95A12 /* Enum */,
-				08CFD1992FC76D9100F95A12 /* Custom */,
-				08CFD1982FC76D6100F95A12 /* Models */,
-				080686282FC17DE10054E5ED /* Fonts */,
-				08CFD1C12FC8A63800F95A12 /* Data */,
-				0806862F2FC17EC80054E5ED /* Info.plist */,
-				0806861E2FC0A96B0054E5ED /* Assets.xcassets */,
-			);
-			path = Cornpass;
-			sourceTree = "<group>";
-		};
-		080686282FC17DE10054E5ED /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				080686322FC1803D0054E5ED /* SFUIDisplay-Bold.ttf */,
-				080686332FC1803D0054E5ED /* SFUIDisplay-Medium.otf */,
-				080686342FC1803D0054E5ED /* SFUIDisplay-Regular.otf */,
-				080686352FC1803D0054E5ED /* SFUIDisplay-Semibold.otf */,
-			);
-			path = Fonts;
-			sourceTree = "<group>";
-		};
 		084F91462FC0A116007D11F5 = {
 			isa = PBXGroup;
 			children = (
-				080686212FC0A96B0054E5ED /* Cornpass */,
+				30CFD8DC3066C19A00C4EF1E /* Cornpass */,
 				084F91502FC0A116007D11F5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -126,128 +61,6 @@
 				084F914F2FC0A116007D11F5 /* Cornpass.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		08CFD1982FC76D6100F95A12 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				08CFD1872FC2FC7800F95A12 /* Genre.swift */,
-				08CFD18D2FC4518F00F95A12 /* Ticket.swift */,
-				30385EE42FC6CF6A0088283C /* Movie.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		08CFD1992FC76D9100F95A12 /* Custom */ = {
-			isa = PBXGroup;
-			children = (
-				08CFD1812FC1FAD700F95A12 /* SwiftUIExt.swift */,
-				08CFD18B2FC356BE00F95A12 /* TicketShape.swift */,
-				08CFD1852FC2FAE000F95A12 /* GravityView.swift */,
-				08CFD1932FC466DE00F95A12 /* MainTicketShape.swift */,
-				30385EE62FC705470088283C /* VariableBlurDirection.swift */,
-			);
-			path = Custom;
-			sourceTree = "<group>";
-		};
-		08CFD19A2FC76DDA00F95A12 /* Enum */ = {
-			isa = PBXGroup;
-			children = (
-				080686302FC17F6A0054E5ED /* AppAssets.swift */,
-				30385EEA2FD318F40088283C /* UserDefaultKeys.swift */,
-			);
-			path = Enum;
-			sourceTree = "<group>";
-		};
-		08CFD19B2FC76DEB00F95A12 /* App */ = {
-			isa = PBXGroup;
-			children = (
-				080686202FC0A96B0054E5ED /* CornpassApp.swift */,
-			);
-			path = App;
-			sourceTree = "<group>";
-		};
-		08CFD1BB2FC82B6B00F95A12 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				0806861F2FC0A96B0054E5ED /* ContentView.swift */,
-				30385EF22FD456FB0088283C /* Splash */,
-				30385EED2FD44FA00088283C /* Onboarding */,
-				30385EF12FD455790088283C /* TabView */,
-				30385EEC2FD44F8E0088283C /* Home */,
-				30385EEF2FD44FC60088283C /* Movie */,
-				30385EEE2FD44FB30088283C /* Ticket */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		08CFD1C12FC8A63800F95A12 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				08CFD1C22FC8A64200F95A12 /* movies.json */,
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
-		30385EEC2FD44F8E0088283C /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				08CFD1952FC5AF3200F95A12 /* HomeView.swift */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
-		30385EED2FD44FA00088283C /* Onboarding */ = {
-			isa = PBXGroup;
-			children = (
-				08CFD17B2FC1BDAA00F95A12 /* WelcomeView.swift */,
-				08CFD17D2FC1F52600F95A12 /* LoginView.swift */,
-				08CFD1832FC2E08900F95A12 /* GenrePickerView.swift */,
-			);
-			path = Onboarding;
-			sourceTree = "<group>";
-		};
-		30385EEE2FD44FB30088283C /* Ticket */ = {
-			isa = PBXGroup;
-			children = (
-				08CFD1892FC3402500F95A12 /* MyTicketListView.swift */,
-				08CFD1912FC4579400F95A12 /* TicketDetailView.swift */,
-				30385EF02FD44FE10088283C /* Components */,
-			);
-			path = Ticket;
-			sourceTree = "<group>";
-		};
-		30385EEF2FD44FC60088283C /* Movie */ = {
-			isa = PBXGroup;
-			children = (
-				08CFD1BF2FC8933E00F95A12 /* MovieDetailView.swift */,
-				08CFD1B62FC770B500F95A12 /* VideoPlayerView.swift */,
-			);
-			path = Movie;
-			sourceTree = "<group>";
-		};
-		30385EF02FD44FE10088283C /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				08CFD18F2FC4557E00F95A12 /* TicketView.swift */,
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
-		30385EF12FD455790088283C /* TabView */ = {
-			isa = PBXGroup;
-			children = (
-				30385EE82FD3161B0088283C /* TabViewContainer.swift */,
-			);
-			path = TabView;
-			sourceTree = "<group>";
-		};
-		30385EF22FD456FB0088283C /* Splash */ = {
-			isa = PBXGroup;
-			children = (
-				30385EF32FD457150088283C /* SplashView.swift */,
-			);
-			path = Splash;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,6 +77,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				30CFD8DC3066C19A00C4EF1E /* Cornpass */,
 			);
 			name = Cornpass;
 			packageProductDependencies = (
@@ -315,12 +131,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				080686222FC0A96B0054E5ED /* Assets.xcassets in Resources */,
-				080686362FC1803D0054E5ED /* SFUIDisplay-Bold.ttf in Resources */,
-				08CFD1C32FC8A64200F95A12 /* movies.json in Resources */,
-				080686372FC1803D0054E5ED /* SFUIDisplay-Medium.otf in Resources */,
-				080686382FC1803D0054E5ED /* SFUIDisplay-Regular.otf in Resources */,
-				080686392FC1803D0054E5ED /* SFUIDisplay-Semibold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,29 +141,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08CFD1882FC2FC7C00F95A12 /* Genre.swift in Sources */,
-				08CFD1B72FC770B500F95A12 /* VideoPlayerView.swift in Sources */,
-				08CFD1902FC4557E00F95A12 /* TicketView.swift in Sources */,
-				30385EE72FC705470088283C /* VariableBlurDirection.swift in Sources */,
-				08CFD1842FC2E08900F95A12 /* GenrePickerView.swift in Sources */,
-				08CFD17C2FC1BDAA00F95A12 /* WelcomeView.swift in Sources */,
-				30385EE92FD3161B0088283C /* TabViewContainer.swift in Sources */,
-				080686232FC0A96B0054E5ED /* ContentView.swift in Sources */,
-				08CFD1922FC4579400F95A12 /* TicketDetailView.swift in Sources */,
-				08CFD1822FC1FAD700F95A12 /* SwiftUIExt.swift in Sources */,
-				080686242FC0A96B0054E5ED /* CornpassApp.swift in Sources */,
-				08CFD1C02FC8933E00F95A12 /* MovieDetailView.swift in Sources */,
-				08CFD18C2FC356BE00F95A12 /* TicketShape.swift in Sources */,
-				08CFD18A2FC3402500F95A12 /* MyTicketListView.swift in Sources */,
-				08CFD18E2FC4518F00F95A12 /* Ticket.swift in Sources */,
-				08CFD1862FC2FAF100F95A12 /* GravityView.swift in Sources */,
-				30385EEB2FD318F40088283C /* UserDefaultKeys.swift in Sources */,
-				30385EF42FD457150088283C /* SplashView.swift in Sources */,
-				08CFD17E2FC1F52600F95A12 /* LoginView.swift in Sources */,
-				08CFD1962FC5AF3200F95A12 /* HomeView.swift in Sources */,
-				08CFD1942FC466DE00F95A12 /* MainTicketShape.swift in Sources */,
-				080686312FC17F6A0054E5ED /* AppAssets.swift in Sources */,
-				30385EE52FC6CF6A0088283C /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,9 +273,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = C8A4L86UR7;
+				DEVELOPMENT_TEAM = GM7HG5763W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cornpass/Info.plist;
@@ -502,14 +290,15 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.genysis.inc.Cornpass;
+				PRODUCT_BUNDLE_IDENTIFIER = com.genysis.inc.cornpass;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -519,9 +308,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = C8A4L86UR7;
+				DEVELOPMENT_TEAM = GM7HG5763W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cornpass/Info.plist;
@@ -535,14 +325,15 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.genysis.inc.Cornpass;
+				PRODUCT_BUNDLE_IDENTIFIER = com.genysis.inc.cornpass;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

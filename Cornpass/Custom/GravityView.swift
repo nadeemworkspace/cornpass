@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SpriteKit
+import CoreMotion
 
 private enum ChipLayout {
     static let hPad:   CGFloat = 16
@@ -34,11 +35,6 @@ func buildRows(genres: [Genre], canvasWidth: CGFloat) -> [[Genre]] {
         }
     }
     return rows
-}
-
-func pileHeight(rows: [[Genre]]) -> CGFloat {
-    let n = CGFloat(rows.count)
-    return n * ChipLayout.chipH + (n - 1) * ChipLayout.rowGap
 }
 
 final class ChipNode: SKNode {
@@ -106,23 +102,32 @@ final class GravityScene: SKScene {
     var onSelectionChanged: (([Genre]) -> Void)?
     private var selectionMap: [String: Bool] = [:]
 
+    // Chips stay this far clear of the canvas edges — below the title, above
+    // the button — on every side, so a floor when upright becomes a ceiling
+    // when the device is flipped upside down, and the pile never overlaps
+    // either neighbor.
+    private let edgePadding: CGFloat = 16
+
     override func didMove(to view: SKView) {
         backgroundColor = .clear
         physicsWorld.gravity = CGVector(dx: 0, dy: -14)
 
-        let rows  = buildRows(genres: genres, canvasWidth: size.width)
-        let pile  = pileHeight(rows: rows)
-        let floorY = (size.height - pile) / 2
+        let floorY = edgePadding
+        let ceilingY = size.height - edgePadding
 
-        addEdge(from: CGPoint(x: 0,           y: floorY),
-                to:   CGPoint(x: size.width,  y: floorY),
+        addEdge(from: CGPoint(x: 0, y: floorY),
+                to:   CGPoint(x: size.width, y: floorY),
+                friction: 1.0, restitution: 0.05)
+
+        addEdge(from: CGPoint(x: 0, y: ceilingY),
+                to:   CGPoint(x: size.width, y: ceilingY),
                 friction: 1.0, restitution: 0.05)
 
         addEdge(from: CGPoint(x: ChipLayout.hPad / 2, y: floorY),
-                to:   CGPoint(x: ChipLayout.hPad / 2, y: size.height * 3))
+                to:   CGPoint(x: ChipLayout.hPad / 2, y: ceilingY))
 
         addEdge(from: CGPoint(x: size.width - ChipLayout.hPad / 2, y: floorY),
-                to:   CGPoint(x: size.width - ChipLayout.hPad / 2, y: size.height * 3))
+                to:   CGPoint(x: size.width - ChipLayout.hPad / 2, y: ceilingY))
 
         dropChips()
     }
@@ -139,6 +144,7 @@ final class GravityScene: SKScene {
     private func dropChips() {
         let rows    = buildRows(genres: genres, canvasWidth: size.width)
         let usableW = size.width - ChipLayout.hPad * 2
+        let ceilingY = size.height - edgePadding
         var index   = 0
 
         for row in rows {
@@ -152,7 +158,10 @@ final class GravityScene: SKScene {
 
                 let delay  = Double(index) * 0.09
                 let spawnX = targetX + CGFloat.random(in: -12...12)
-                let spawnY = size.height + 30 + CGFloat.random(in: 0...60)
+                // Just under the ceiling edge, not above it — the ceiling is a
+                // solid collider now, so spawning past it would strand chips
+                // there instead of letting them fall to the floor.
+                let spawnY = ceilingY - CGFloat.random(in: 0...60)
                 // Give each chip a small random angular impulse so they
                 // arrive at different resting angles — not all the same tilt.
                 let angularImpulse = CGFloat.random(in: -0.3...0.3)
@@ -193,6 +202,8 @@ final class GravityView: SKView {
     var genres: [Genre] = []
     var onSelectionChanged: (([Genre]) -> Void)?
     private var sceneCreated = false
+    private weak var gravityScene: GravityScene?
+    private let motionManager = CMMotionManager()
 
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -207,12 +218,30 @@ final class GravityView: SKView {
         scene.genres             = genres
         scene.onSelectionChanged = onSelectionChanged
         presentScene(scene)
+        gravityScene = scene
+
+        startFollowingDeviceTilt()
+    }
+
+    // Points gravity toward whichever edge is physically "down" — upright falls
+    // down, rotated right falls right — so the pile stays believable through
+    // any device rotation without depending on the interface orientation.
+    private func startFollowingDeviceTilt() {
+        guard motionManager.isAccelerometerAvailable else { return }
+        motionManager.accelerometerUpdateInterval = 1.0 / 60.0
+        motionManager.startAccelerometerUpdates(to: .main) { [weak self] data, _ in
+            guard let self, let acceleration = data?.acceleration else { return }
+            let magnitude: CGFloat = 14
+            self.gravityScene?.physicsWorld.gravity = CGVector(
+                dx: CGFloat(acceleration.x) * magnitude,
+                dy: CGFloat(acceleration.y) * magnitude
+            )
+        }
     }
 }
 
 struct GravityBoard: UIViewRepresentable {
     let genres: [Genre]
-    let canvasHeight: CGFloat
     var onSelectionChanged: ([Genre]) -> Void
 
     func makeUIView(context: Context) -> GravityView {
