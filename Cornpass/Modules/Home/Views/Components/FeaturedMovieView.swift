@@ -12,6 +12,15 @@ struct FeaturedMovieView: View {
     let movie: Movie
 
     var body: some View {
+        NavigationLink {
+            MovieDetailView(movie: movie)
+        } label: {
+            cardBody
+        }
+        .buttonStyle(.plain)
+    }
+
+    private var cardBody: some View {
         ZStack(alignment: .bottom) {
             GeometryReader { proxy in
                 RemoteImage(url: movie.backdropURL, contentMode: .fill)

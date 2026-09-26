@@ -31,6 +31,7 @@ struct VideoPlayerView: View {
         .navigationTitle(movie.title)
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
+        .toolbar(.hidden, for: .tabBar)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 ToolbarIconButton(systemImage: "chevron.backward") {

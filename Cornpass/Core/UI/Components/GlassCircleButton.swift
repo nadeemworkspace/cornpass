@@ -10,7 +10,7 @@ import SwiftUI
 
 struct GlassCircleButton: View {
     let systemImage: String
-    var size: CGFloat = 44
+    var size: CGFloat = 40
     let action: () -> Void
 
     var body: some View {
@@ -18,12 +18,10 @@ struct GlassCircleButton: View {
             Image(systemName: systemImage)
                 .font(.system(size: 14, weight: .semibold))
                 .foregroundStyle(.white)
+                .frame(width: size, height: size)
         }
         .buttonStyle(.glass)
         .buttonSizing(.fitted)
-        // Circle() fits whatever bounding box it's given, so an unequal
-        // width/height renders an ellipse, not a circle — force a square.
-        .frame(width: size, height: size)
         .clipShape(Circle())
     }
 }

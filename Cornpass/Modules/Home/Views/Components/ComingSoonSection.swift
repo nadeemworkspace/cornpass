@@ -12,9 +12,7 @@ struct ComingSoonSection: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            SectionHeader(title: "Coming Soon", actionLabel: "More") {
-                print("TODO: More action")
-            }
+            SectionHeader(title: "Coming Soon")
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 10) {
                     ForEach(movies) { movie in

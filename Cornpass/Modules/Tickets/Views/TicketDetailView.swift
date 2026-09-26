@@ -32,6 +32,7 @@ struct TicketDetailView: View {
         .navigationTitle("Ticket Details")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
+        .toolbar(.hidden, for: .tabBar)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 ToolbarIconButton(systemImage: "chevron.backward") {
@@ -39,7 +40,7 @@ struct TicketDetailView: View {
                 }
             }
             ToolbarItem(placement: .topBarTrailing) {
-                ToolbarIconButton(systemImage: "square.and.arrow.down") {
+                ToolbarIconButton(systemImage: "arrow.down") {
                     print("TODO: download action")
                 }
             }

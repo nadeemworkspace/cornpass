@@ -42,6 +42,41 @@ struct Movie: Identifiable, Hashable {
     let comingSoon: Bool
 }
 
+extension Movie {
+    // The detail endpoint recomputes `comingSoon`/`badge` from the release
+    // date alone, which can disagree with TMDB's own "upcoming" listing
+    // (see `MovieRepository.mapSummary(forceComingSoon:)`) — e.g. a movie
+    // TMDB still lists as upcoming but whose release date has technically
+    // passed. Once a screen seeds itself from a coming-soon summary, keep
+    // that flag after the fuller detail response overwrites everything else.
+    func preservingComingSoon(from seed: Movie) -> Movie {
+        guard seed.comingSoon, !comingSoon else { return self }
+        return Movie(
+            id: id,
+            title: title,
+            badge: seed.badge,
+            genre: genre,
+            rating: rating,
+            duration: duration,
+            posterURL: posterURL,
+            backdropURL: backdropURL,
+            videoURL: videoURL,
+            description: description,
+            ageBadge: ageBadge,
+            languageTags: languageTags,
+            imdbRating: imdbRating,
+            rottenTomatoesRating: rottenTomatoesRating,
+            cornPassRating: cornPassRating,
+            gallery: gallery,
+            director: director,
+            writers: writers,
+            stars: stars,
+            classification: classification,
+            comingSoon: true
+        )
+    }
+}
+
 // A search hit: the summary-level `Movie` (enough to open MovieDetailView)
 // plus the extra fields the search row shows that `Movie` flattens away.
 struct MovieSearchResult: Identifiable, Hashable {

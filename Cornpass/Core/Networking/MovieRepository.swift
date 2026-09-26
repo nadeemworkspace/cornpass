@@ -57,12 +57,28 @@ actor MovieRepository {
         )
     }
 
-    func featuredMovie() async throws -> Movie {
-        let popular: TMDBPagedResponse<TMDBMovieSummary> = try await client.get("movie/popular")
-        guard let pick = popular.results.first else {
+    // Pulled from TMDB's top-rated list rather than the endpoints already
+    // used elsewhere on Home (trending, now_playing, upcoming, discover), so
+    // the "Our Pick" card shows a genuinely different, critically-acclaimed
+    // set of movies instead of overlapping with them.
+    //
+    // Fetches full detail (not just summary) for the first `count` movies,
+    // so the featured card can show real duration/certification — same
+    // reason `homeFeed()` does this for the hero banner.
+    func featuredMovies(count: Int = 5) async throws -> [Movie] {
+        let topRated: TMDBPagedResponse<TMDBMovieSummary> = try await client.get("movie/top_rated")
+        let picks = Array(topRated.results.prefix(count))
+        guard !picks.isEmpty else {
             throw TMDBError.requestFailed(-1)
         }
-        return try await detail(for: pick.id)
+        return try await withThrowingTaskGroup(of: (Int, Movie).self) { group in
+            for (index, summary) in picks.enumerated() {
+                group.addTask { (index, try await self.detail(for: summary.id)) }
+            }
+            var slots = [Movie?](repeating: nil, count: picks.count)
+            for try await (index, movie) in group { slots[index] = movie }
+            return slots.compactMap { $0 }
+        }
     }
 
     func detail(for id: Int) async throws -> Movie {

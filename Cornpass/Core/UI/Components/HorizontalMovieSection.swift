@@ -16,9 +16,7 @@ struct HorizontalMovieSection: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            SectionHeader(title: title, actionLabel: "More") {
-                print("TODO: More action")
-            }
+            SectionHeader(title: title)
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 10) {
                     ForEach(movies) { movie in

@@ -81,13 +81,24 @@ struct MovieDetailView: View {
                             }
                             Spacer()
                             // Play Button
+                            if detail.comingSoon {
+                                Button {
+                                  print("TODO: Notify")
+                                } label: {
+                                    Image(systemName: "bell")
+                                        .foregroundStyle(.white)
+                                        .padding()
+                                        .glassEffect(.clear)
+                                        .clipShape(Circle())
+                                }
+                            }
                             NavigationLink {
                                 VideoPlayerView(movie: detail)
                             } label: {
                                 Image(systemName: "play.fill")
                                     .foregroundStyle(.white)
                                     .padding()
-                                    .background(.gray.opacity(0.5))
+                                    .glassEffect(.clear)
                                     .clipShape(Circle())
                             }
                         }
@@ -213,6 +224,7 @@ struct MovieDetailView: View {
             .ignoresSafeArea(edges: .top)
         }
         .navigationBarBackButtonHidden(true)
+        .toolbar(.hidden, for: .tabBar)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 ToolbarIconButton(systemImage: "chevron.backward") {
@@ -224,7 +236,7 @@ struct MovieDetailView: View {
             async let fullDetail = MovieRepository.shared.detail(for: movie.id)
             async let similar = MovieRepository.shared.similarMovies(to: movie.id)
             if let fullDetail = try? await fullDetail {
-                detail = fullDetail
+                detail = fullDetail.preservingComingSoon(from: movie)
             }
             recommendations = (try? await similar) ?? []
         }

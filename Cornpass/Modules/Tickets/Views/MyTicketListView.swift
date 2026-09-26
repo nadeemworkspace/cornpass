@@ -23,7 +23,6 @@ struct MyTicketListView: View {
                 if showSearchBar {
                     HStack(spacing: 8) {
                         GlassSearchField(placeholder: "Search by title", text: $searchText)
-                        Spacer()
                         GlassCircleButton(systemImage: "xmark") {
                             withAnimation(.spring(response: 0.4, dampingFraction: 0.75)) {
                                 showSearchBar = false
@@ -46,8 +45,8 @@ struct MyTicketListView: View {
                                 .padding(.horizontal)
                         }
                     }
-                    .padding(.top)
                 }
+                .padding(.top)
             }
         }
         .navigationTitle("My Tickets")

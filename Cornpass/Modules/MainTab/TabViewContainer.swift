@@ -43,8 +43,7 @@ struct TabViewContainer: View {
             } label: {
                 Image(selectedTab == .tickets ? TabImage.tab_ticket_fill.rawValue : TabImage.tab_ticket.rawValue)
             }
-            // Profile — separate role splits it from the first 3 tabs with
-            // its own trailing section in the Liquid Glass tab bar.
+            // Profile
             Tab(value: .profile, role: .search) {
                 NavigationStack {
                     ProfileView()
