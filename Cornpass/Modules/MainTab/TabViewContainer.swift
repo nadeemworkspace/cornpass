@@ -22,7 +22,7 @@ struct TabViewContainer: View {
                     HomeView()
                 }
             } label: {
-                Image(systemName: "house")
+                Image(.home)
             }
             // Search
             Tab(value: .search) {
@@ -30,7 +30,7 @@ struct TabViewContainer: View {
                     SearchView()
                 }
             } label: {
-                Image(systemName: "magnifyingglass")
+                Image(.search)
             }
             // Ticket
             Tab(value: .tickets) {
@@ -38,7 +38,7 @@ struct TabViewContainer: View {
                     MyTicketListView()
                 }
             } label: {
-                Image(systemName: "ticket")
+                Image(.ticket)
             }
             // Profile
             Tab(value: .profile, role: .search) {
@@ -46,7 +46,7 @@ struct TabViewContainer: View {
                     ProfileView()
                 }
             } label: {
-                Image(systemName: "person")
+                Image(.profile)
             }
         }
         .tint(.white)

@@ -102,7 +102,7 @@ struct MovieDetailView: View {
                                         .foregroundStyle(.white)
                                         .padding()
                                         .frame(width: 50, height: 50)
-                                        .glassEffect(.clear)
+                                        .glassEffect(.clear.tint(.red))
                                         .clipShape(Circle())
                                 }
                             }
