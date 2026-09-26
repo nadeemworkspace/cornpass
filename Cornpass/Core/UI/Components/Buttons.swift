@@ -51,21 +51,3 @@ struct LoginActionButton: View {
         }
     }
 }
-
-// MARK: TOOL BAR BUTTONS
-struct ToolbarActionButton: View {
-    let image: String
-    let action: () -> Void
-    var body: some View {
-        Button(action: action){
-            Image(image)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 16, height: 16)
-                .padding(16)
-        }
-        .buttonStyle(.glass)
-        .buttonSizing(.fitted)
-        .clipShape(Circle())
-    }
-}
