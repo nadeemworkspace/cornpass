@@ -25,6 +25,8 @@ struct SearchView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }
+        .navigationTitle("Search movies")
+        .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .task(id: viewModel.trimmedQuery) {
             await viewModel.search(viewModel.trimmedQuery)
@@ -58,8 +60,7 @@ struct SearchView: View {
         }
         .frame(height: 49)
         .frame(maxWidth: .infinity)
-        .background(Color(hex: "#14181B"))
-        .clipShape(Capsule())
+        .glassEffect(.regular, in: .capsule)
     }
 
     // MARK: - Content

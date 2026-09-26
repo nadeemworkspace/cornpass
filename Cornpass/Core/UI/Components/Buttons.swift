@@ -63,8 +63,9 @@ struct ToolbarActionButton: View {
                 .scaledToFit()
                 .frame(width: 16, height: 16)
                 .padding(16)
-                .background(Color(hex: "#14181B"))
-                .clipShape(Circle())
         }
+        .buttonStyle(.glass)
+        .buttonSizing(.fitted)
+        .clipShape(Circle())
     }
 }

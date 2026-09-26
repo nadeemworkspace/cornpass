@@ -24,40 +24,21 @@ struct VideoPlayerView: View {
             Color.black
                 .ignoresSafeArea()
             VStack {
-                // Header
-                headerView
                 // YT Player
                 YouTubePlayerView(player)
             }
         }
+        .navigationTitle(movie.title)
+        .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
-    }
-}
-
-extension VideoPlayerView {
-    
-    @ViewBuilder
-    private var headerView: some View {
-        HStack {
-            // Back Button
-            ToolbarActionButton(image: "arrow_left") {
-                dismiss()
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                ToolbarIconButton(systemImage: "chevron.backward") {
+                    dismiss()
+                }
             }
-            Spacer()
-            Text(movie.title)
-                .font(AppFont.semiBold.font(size: 18))
-                .foregroundStyle(.white)
-            Spacer()
-            // Print Button
-            ToolbarActionButton(image: "download") {
-                print("TODO: download action")
-            }
-            .opacity(0)
-            .disabled(true)
         }
-        .padding(.horizontal)
     }
-    
 }
 
 #Preview {

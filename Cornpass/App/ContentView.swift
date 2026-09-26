@@ -17,16 +17,18 @@ struct ContentView: View {
             if showSplash {
                 SplashView()
             } else {
-                NavigationStack {
-                    Group {
-                        if entryManager.isUserLoggedIn {
-                            TabViewContainer()
-                        } else {
+                Group {
+                    if entryManager.isUserLoggedIn {
+                        // Each tab owns its own NavigationStack (see
+                        // TabViewContainer), so no wrapping stack here.
+                        TabViewContainer()
+                    } else {
+                        NavigationStack {
                             WelcomeView()
                         }
                     }
-                    .preferredColorScheme(.dark)
                 }
+                .preferredColorScheme(.dark)
             }
         }
         .task {

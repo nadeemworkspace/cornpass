@@ -212,10 +212,14 @@ struct MovieDetailView: View {
             .coordinateSpace(name: "movieDetailScroll")
             .ignoresSafeArea(edges: .top)
         }
-        .overlay(alignment: .top) {
-            headerView
-        }
         .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                ToolbarIconButton(systemImage: "chevron.backward") {
+                    dismiss()
+                }
+            }
+        }
         .task(id: movie.id) {
             async let fullDetail = MovieRepository.shared.detail(for: movie.id)
             async let similar = MovieRepository.shared.similarMovies(to: movie.id)
@@ -224,18 +228,6 @@ struct MovieDetailView: View {
             }
             recommendations = (try? await similar) ?? []
         }
-    }
-    
-    @ViewBuilder
-    private var headerView: some View {
-        HStack {
-            // Back Button
-            ToolbarActionButton(image: "arrow_left") {
-                dismiss()
-            }
-            Spacer()
-        }
-        .padding(.horizontal)
     }
     
     @ViewBuilder
