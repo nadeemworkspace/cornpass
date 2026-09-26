@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum TabItem: Hashable {
-    case home, feed, tickets, profile
+    case home, search, tickets, profile
 }
 
 struct TabViewContainer: View {
@@ -17,23 +17,20 @@ struct TabViewContainer: View {
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            // Home — each tab gets its own NavigationStack: a title/toolbar
-            // set on a tab's root view only bubbles up to that tab's own
-            // stack, never to an ancestor NavigationStack wrapping the TabView.
             Tab(value: .home) {
                 NavigationStack {
                     HomeView()
                 }
             } label: {
-                Image(selectedTab == .home ? TabImage.tab_home_fill.rawValue : TabImage.tab_home.rawValue)
+                Image(systemName: "house")
             }
             // Search
-            Tab(value: .feed) {
+            Tab(value: .search) {
                 NavigationStack {
                     SearchView()
                 }
             } label: {
-                Image(selectedTab == .feed ? TabImage.tab_feed_fill.rawValue : TabImage.tab_feed.rawValue)
+                Image(systemName: "magnifyingglass")
             }
             // Ticket
             Tab(value: .tickets) {
@@ -41,7 +38,7 @@ struct TabViewContainer: View {
                     MyTicketListView()
                 }
             } label: {
-                Image(selectedTab == .tickets ? TabImage.tab_ticket_fill.rawValue : TabImage.tab_ticket.rawValue)
+                Image(systemName: "ticket")
             }
             // Profile
             Tab(value: .profile, role: .search) {
@@ -49,9 +46,10 @@ struct TabViewContainer: View {
                     ProfileView()
                 }
             } label: {
-                Image(selectedTab == .profile ? TabImage.tab_profile_fill.rawValue : TabImage.tab_profile.rawValue)
+                Image(systemName: "person")
             }
         }
+        .tint(.white)
     }
 }
 

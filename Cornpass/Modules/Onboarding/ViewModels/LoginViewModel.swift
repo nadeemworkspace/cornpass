@@ -19,7 +19,9 @@ class LoginViewModel {
         // Need regex check and show validation errors to the user.
         UserDefaults.standard.setValue(email, forKey: UserDefaultKeys.email.rawValue)
         UserDefaults.standard.setValue(password, forKey: UserDefaultKeys.password.rawValue)
-        UserDefaults.standard.setValue(true, forKey: UserDefaultKeys.userLoggedIn.rawValue)
+        // Login itself doesn't grant entry — GenrePickerViewModel does that
+        // once onboarding finishes, so the app root only ever swaps to
+        // TabViewContainer after that step (see AppEntryManager).
         navigateToGenrePicker = true
     }
 

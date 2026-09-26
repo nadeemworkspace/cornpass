@@ -80,26 +80,31 @@ struct MovieDetailView: View {
                                 }
                             }
                             Spacer()
-                            // Play Button
-                            if detail.comingSoon {
-                                Button {
-                                  print("TODO: Notify")
+                            HStack(spacing: 10) {
+                                // Notify Button
+                                if detail.comingSoon {
+                                    Button {
+                                      print("TODO: Notify")
+                                    } label: {
+                                        Image(systemName: "bell")
+                                            .foregroundStyle(.white)
+                                            .padding()
+                                            .frame(width: 50, height: 50)
+                                            .glassEffect(.clear)
+                                            .clipShape(Circle())
+                                    }
+                                }
+                                // Play Button
+                                NavigationLink {
+                                    VideoPlayerView(movie: detail)
                                 } label: {
-                                    Image(systemName: "bell")
+                                    Image(systemName: "play.fill")
                                         .foregroundStyle(.white)
                                         .padding()
+                                        .frame(width: 50, height: 50)
                                         .glassEffect(.clear)
                                         .clipShape(Circle())
                                 }
-                            }
-                            NavigationLink {
-                                VideoPlayerView(movie: detail)
-                            } label: {
-                                Image(systemName: "play.fill")
-                                    .foregroundStyle(.white)
-                                    .padding()
-                                    .glassEffect(.clear)
-                                    .clipShape(Circle())
                             }
                         }
                     }

@@ -52,6 +52,7 @@ struct WelcomeView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
+        .toolbar(.hidden, for: .navigationBar)
         .navigationDestination(isPresented: $navigateToLogin) {
             LoginView()
         }

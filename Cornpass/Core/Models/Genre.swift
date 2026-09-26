@@ -16,7 +16,9 @@ struct Genre: Identifiable, Hashable {
 
 extension Genre {
     // Used only if the TMDB genre list request fails, so the picker never
-    // renders empty.
+    // renders empty. Mirrors TMDB's full genre list (see
+    // `MovieRepository.emoji(for:)`) rather than a partial subset, so the
+    // fallback fills the picker board the same way the real API response does.
     static let fallback: [Genre] = [
         Genre(name: "Romance",   emoji: "💕"),
         Genre(name: "Action",    emoji: "💣"),
@@ -29,5 +31,13 @@ extension Genre {
         Genre(name: "Mystery",   emoji: "🔍"),
         Genre(name: "History",   emoji: "📙"),
         Genre(name: "Science Fiction", emoji: "🌏"),
+        Genre(name: "Crime",       emoji: "🕵️"),
+        Genre(name: "Documentary", emoji: "🎥"),
+        Genre(name: "Family",      emoji: "👨‍👩‍👧"),
+        Genre(name: "Music",       emoji: "🎵"),
+        Genre(name: "TV Movie",    emoji: "📺"),
+        Genre(name: "Thriller",    emoji: "🔪"),
+        Genre(name: "War",         emoji: "⚔️"),
+        Genre(name: "Western",     emoji: "🤠"),
     ]
 }
