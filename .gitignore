@@ -62,4 +62,4 @@ fastlane/screenshots/**/*.png
 fastlane/test_output
 
 # API secrets — never commit real credentials
-Cornpass/Config/Secrets.swift
+Cornpass/Core/Config/Secrets.swift
