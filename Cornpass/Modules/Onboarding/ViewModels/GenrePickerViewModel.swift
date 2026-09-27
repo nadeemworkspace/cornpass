@@ -18,7 +18,6 @@ class GenrePickerViewModel {
 
     var genres: [Genre] = Genre.fallback
     var selectedCount: Int { genres.filter(\.isSelected).count }
-    var navigateToHome: Bool = false
 
     func loadGenres() async {
         if let fetched = try? await MovieRepository.shared.genres(), !fetched.isEmpty {
@@ -26,9 +25,12 @@ class GenrePickerViewModel {
         }
     }
 
-    func navigateToHome(_ action: GPAction) {
+    func finishOnboarding(_ action: GPAction) {
         // Save selected if action is .save
-        navigateToHome = true
+        // Flipping this (rather than pushing TabViewContainer onto this
+        // onboarding NavigationStack) lets ContentView swap its whole root,
+        // so the tab bar's screens never end up nested inside this stack.
+        AppEntryManager.shared.isUserLoggedIn = true
     }
 
 }

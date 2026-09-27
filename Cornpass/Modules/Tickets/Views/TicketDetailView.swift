@@ -18,8 +18,6 @@ struct TicketDetailView: View {
             Color.black
                 .ignoresSafeArea()
             VStack {
-                // Header
-                headerView
                 Spacer()
                     .frame(height: 80)
                 // Ticket
@@ -31,33 +29,28 @@ struct TicketDetailView: View {
                 .padding(.horizontal)
             }
         }
+        .navigationTitle("Ticket Details")
+        .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
+        .toolbar(.hidden, for: .tabBar)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                ToolbarIconButton(systemImage: "chevron.backward") {
+                    dismiss()
+                }
+            }
+            ToolbarItem(placement: .topBarTrailing) {
+                ToolbarIconButton(systemImage: "arrow.down") {
+                    print("TODO: download action")
+                }
+            }
+        }
     }
 }
 
 // SUBVIEWS
 extension TicketDetailView {
-    
-    @ViewBuilder
-    private var headerView: some View {
-        HStack {
-            // Back Button
-            ToolbarActionButton(image: "arrow_left") {
-                dismiss()
-            }
-            Spacer()
-            Text("Ticket Details")
-                .font(AppFont.semiBold.font(size: 18))
-                .foregroundStyle(.white)
-            Spacer()
-            // Print Button
-            ToolbarActionButton(image: "download") {
-                print("TODO: download action")
-            }
-        }
-        .padding(.horizontal)
-    }
-    
+
     @ViewBuilder
     private var ticketView: some View {
         ZStack {

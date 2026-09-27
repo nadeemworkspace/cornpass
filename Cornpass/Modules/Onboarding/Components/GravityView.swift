@@ -22,21 +22,6 @@ func chipWidth(for genre: Genre) -> CGFloat {
     return textW + 28 + 36
 }
 
-func buildRows(genres: [Genre], canvasWidth: CGFloat) -> [[Genre]] {
-    let usableW = canvasWidth - ChipLayout.hPad * 2
-    var rows: [[Genre]] = [[]]
-    for genre in genres {
-        let w        = chipWidth(for: genre)
-        let rowWidth = rows.last!.reduce(CGFloat(0)) { $0 + chipWidth(for: $1) + ChipLayout.gap }
-        if rowWidth + w > usableW, !rows.last!.isEmpty {
-            rows.append([genre])
-        } else {
-            rows[rows.count - 1].append(genre)
-        }
-    }
-    return rows
-}
-
 final class ChipNode: SKNode {
 
     let genreName: String
@@ -100,6 +85,10 @@ final class GravityScene: SKScene {
 
     var genres: [Genre] = []
     var onSelectionChanged: (([Genre]) -> Void)?
+    // Fires once, after this scene has actually drawn its first frame —
+    // see `GravityView.init` for why the view stays hidden until then.
+    var onFirstFrameRendered: (() -> Void)?
+    private var hasRenderedFirstFrame = false
     private var selectionMap: [String: Bool] = [:]
 
     // Chips stay this far clear of the canvas edges — below the title, above
@@ -107,29 +96,42 @@ final class GravityScene: SKScene {
     // when the device is flipped upside down, and the pile never overlaps
     // either neighbor.
     private let edgePadding: CGFloat = 16
+    private var ceilingAdded = false
 
     override func didMove(to view: SKView) {
         backgroundColor = .clear
-        physicsWorld.gravity = CGVector(dx: 0, dy: -14)
+        physicsWorld.gravity = CGVector(dx: 0, dy: -6)
 
         let floorY = edgePadding
-        let ceilingY = size.height - edgePadding
 
         addEdge(from: CGPoint(x: 0, y: floorY),
                 to:   CGPoint(x: size.width, y: floorY),
                 friction: 1.0, restitution: 0.05)
 
+        // The ceiling collider is added later, once chips have finished
+        // falling (see `enableCeilingCollider`) — adding it now would catch
+        // chips spawned above it (off the top of the screen) before they
+        // ever fall into view.
+        addEdge(from: CGPoint(x: ChipLayout.hPad / 2, y: floorY),
+                to:   CGPoint(x: ChipLayout.hPad / 2, y: size.height))
+
+        addEdge(from: CGPoint(x: size.width - ChipLayout.hPad / 2, y: floorY),
+                to:   CGPoint(x: size.width - ChipLayout.hPad / 2, y: size.height))
+
+        dropChips()
+    }
+
+    // Called once chips have had time to land — see `GravityView`'s settle
+    // delay. Lets the device-tilt gravity flip use the floor as a ceiling
+    // when the phone is upside down, without stranding freshly spawned
+    // chips above it during the initial drop.
+    func enableCeilingCollider() {
+        guard !ceilingAdded else { return }
+        ceilingAdded = true
+        let ceilingY = size.height - edgePadding
         addEdge(from: CGPoint(x: 0, y: ceilingY),
                 to:   CGPoint(x: size.width, y: ceilingY),
                 friction: 1.0, restitution: 0.05)
-
-        addEdge(from: CGPoint(x: ChipLayout.hPad / 2, y: floorY),
-                to:   CGPoint(x: ChipLayout.hPad / 2, y: ceilingY))
-
-        addEdge(from: CGPoint(x: size.width - ChipLayout.hPad / 2, y: floorY),
-                to:   CGPoint(x: size.width - ChipLayout.hPad / 2, y: ceilingY))
-
-        dropChips()
     }
 
     private func addEdge(from a: CGPoint, to b: CGPoint,
@@ -142,44 +144,55 @@ final class GravityScene: SKScene {
     }
 
     private func dropChips() {
-        let rows    = buildRows(genres: genres, canvasWidth: size.width)
-        let usableW = size.width - ChipLayout.hPad * 2
-        let ceilingY = size.height - edgePadding
-        var index   = 0
+        let minX = ChipLayout.hPad
+        let maxX = size.width - ChipLayout.hPad
 
-        for row in rows {
-            let rowW   = row.reduce(CGFloat(0)) { $0 + chipWidth(for: $1) + ChipLayout.gap } - ChipLayout.gap
-            var cursor = ChipLayout.hPad + (usableW - rowW) / 2
+        for genre in genres {
+            let w = chipWidth(for: genre)
+            let halfW = w / 2
+            // Independent random X per chip — not a precomputed, centered
+            // row layout — so chips rain down evenly across the full width
+            // instead of clustering toward the middle.
+            let spawnX = CGFloat.random(in: min(minX + halfW, maxX - halfW)...max(minX + halfW, maxX - halfW))
+            // Above the top of the screen, not just near it — chips fall
+            // in from outside the visible frame, like rain, rather than
+            // materializing already inside it.
+            let spawnY = size.height + CGFloat.random(in: 20...160)
+            // Randomized per-chip delay (not a strict left-to-right order)
+            // keeps the "rain" look — chips arrive scattered in time as well
+            // as in position.
+            let delay = Double.random(in: 0...(Double(genres.count) * 0.06))
+            let angularImpulse = CGFloat.random(in: -0.3...0.3)
 
-            for genre in row {
-                let w       = chipWidth(for: genre)
-                let targetX = cursor + w / 2
-                cursor     += w + ChipLayout.gap
-
-                let delay  = Double(index) * 0.09
-                let spawnX = targetX + CGFloat.random(in: -12...12)
-                // Just under the ceiling edge, not above it — the ceiling is a
-                // solid collider now, so spawning past it would strand chips
-                // there instead of letting them fall to the floor.
-                let spawnY = ceilingY - CGFloat.random(in: 0...60)
-                // Give each chip a small random angular impulse so they
-                // arrive at different resting angles — not all the same tilt.
-                let angularImpulse = CGFloat.random(in: -0.3...0.3)
-                index += 1
-
-                run(SKAction.wait(forDuration: delay)) { [weak self] in
-                    guard let self else { return }
-                    let chip = ChipNode(genre: genre)
-                    chip.position = CGPoint(x: spawnX, y: spawnY)
-                    chip.physicsBody?.velocity = CGVector(
-                        dx: CGFloat.random(in: -25...25),
-                        dy: CGFloat.random(in: -10...0)
-                    )
-                    chip.physicsBody?.applyAngularImpulse(angularImpulse)
-                    self.addChild(chip)
-                }
+            run(SKAction.wait(forDuration: delay)) { [weak self] in
+                guard let self else { return }
+                let chip = ChipNode(genre: genre)
+                chip.position = CGPoint(x: spawnX, y: spawnY)
+                chip.physicsBody?.velocity = CGVector(
+                    dx: CGFloat.random(in: -6...6),
+                    dy: 0
+                )
+                chip.physicsBody?.applyAngularImpulse(angularImpulse)
+                // Chips used to pop into existence at full size the
+                // instant physics took over — fading and scaling them in
+                // over the same beat makes each arrival read as one
+                // continuous motion instead of a sudden appearance.
+                chip.alpha = 0
+                chip.setScale(0.6)
+                let fadeIn = SKAction.fadeIn(withDuration: 0.22)
+                let scaleIn = SKAction.scale(to: 1.0, duration: 0.22)
+                fadeIn.timingMode = .easeOut
+                scaleIn.timingMode = .easeOut
+                chip.run(.group([fadeIn, scaleIn]))
+                self.addChild(chip)
             }
         }
+    }
+
+    override func didFinishUpdate() {
+        guard !hasRenderedFirstFrame else { return }
+        hasRenderedFirstFrame = true
+        onFirstFrameRendered?()
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -205,22 +218,65 @@ final class GravityView: SKView {
     private weak var gravityScene: GravityScene?
     private let motionManager = CMMotionManager()
 
+    // SKView defaults to an opaque background until told otherwise; setting
+    // that in `layoutSubviews()` left one frame — right as this view is
+    // first laid out during the push transition — where it briefly showed
+    // its default (grey) color instead of the screen behind it.
+    //
+    // Beyond that, SpriteKit's own Metal pipeline renders an opaque grey
+    // frame while it initializes, independent of `backgroundColor` — a known
+    // SKView quirk, worst on a view's very first appearance. Staying
+    // invisible until that first frame is actually drawn (see
+    // `presentScene`'s completion below) hides it entirely instead of
+    // fading it.
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor     = .clear
+        allowsTransparency  = true
+        ignoresSiblingOrder = true
+        alpha               = 0
+    }
+
+    required init?(coder: NSCoder) { fatalError() }
+
     override func layoutSubviews() {
         super.layoutSubviews()
         guard !sceneCreated, bounds.width > 0, bounds.height > 0 else { return }
         sceneCreated        = true
-        backgroundColor     = .clear
-        allowsTransparency  = true
-        ignoresSiblingOrder = true
 
         let scene = GravityScene(size: bounds.size)
         scene.scaleMode          = .resizeFill
         scene.genres             = genres
         scene.onSelectionChanged = onSelectionChanged
+        scene.onFirstFrameRendered = { [weak self] in
+            // One more runloop tick: `didFinishUpdate` fires once SpriteKit's
+            // update pass is done, just before that frame is actually handed
+            // to the display — revealing right on this callback could still
+            // race the real grey-to-content swap by a hair.
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 0.15) {
+                    self?.alpha = 1
+                }
+            }
+        }
         presentScene(scene)
         gravityScene = scene
 
-        startFollowingDeviceTilt()
+        // Chips should all fall straight down and settle first — only then
+        // does the ceiling collider engage and gravity start following the
+        // device's tilt. Enabling either immediately raced the drop
+        // animation: a chip could still be spawning above the (not yet
+        // existing) ceiling, or the whole pile could veer sideways mid-drop
+        // if the device wasn't held perfectly level.
+        let maxSpawnDelay = Double(genres.count) * 0.06
+        // The board now spans the full screen (chips fall from behind the
+        // title instead of a shorter strip below it), so each chip has
+        // further to drop — give it more time to actually land.
+        let settleBuffer = 2.4
+        DispatchQueue.main.asyncAfter(deadline: .now() + maxSpawnDelay + settleBuffer) { [weak self] in
+            self?.gravityScene?.enableCeilingCollider()
+            self?.startFollowingDeviceTilt()
+        }
     }
 
     // Points gravity toward whichever edge is physically "down" — upright falls
@@ -231,7 +287,7 @@ final class GravityView: SKView {
         motionManager.accelerometerUpdateInterval = 1.0 / 60.0
         motionManager.startAccelerometerUpdates(to: .main) { [weak self] data, _ in
             guard let self, let acceleration = data?.acceleration else { return }
-            let magnitude: CGFloat = 14
+            let magnitude: CGFloat = 6
             self.gravityScene?.physicsWorld.gravity = CGVector(
                 dx: CGFloat(acceleration.x) * magnitude,
                 dy: CGFloat(acceleration.y) * magnitude

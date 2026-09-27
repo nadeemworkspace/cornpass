@@ -17,45 +17,58 @@ struct GenrePickerView: View {
             Color.black
                 .ignoresSafeArea()
             VStack(spacing: 0) {
-                HStack {
-                    Spacer()
-                    Button("Skip") {
-                        viewModel.navigateToHome(.skip)
+                // Board fills everything above the button — chips spawn off
+                // the top edge and fall the full height of the screen, with
+                // the title floating over them rather than boxing them into
+                // a shorter strip below it.
+                ZStack {
+                    // Ignoring the top safe area here (not on the title below)
+                    // is what actually lets chips fall from the physical top
+                    // edge of the screen instead of stopping at the status
+                    // bar / notch inset.
+                    GeometryReader { geo in
+                        GravityBoard(genres: viewModel.genres) {
+                            viewModel.genres = $0
+                        }
+                        .frame(width: geo.size.width, height: geo.size.height)
                     }
-                    .font(AppFont.medium.font(size: 16))
-                    .foregroundStyle(.gray)
-                    .padding(.horizontal)
-                }
-                .padding(.top, 8)
-                // Title
-                VStack(spacing: 6) {
-                    Text("Have Favorit Genres?")
-                        .font(AppFont.medium.font(size: 12))
-                    Text("Select Them Here 😁")
-                        .font(AppFont.semiBold.font(size: 22))
-                }
-                .padding(.vertical, 18)
-                .foregroundColor(.white)
-
-                // Fills all remaining space between the title and the button;
-                // GravityScene keeps chips 16pt clear of both edges.
-                GeometryReader { geo in
-                    GravityBoard(genres: viewModel.genres) {
-                        viewModel.genres = $0
+                    .ignoresSafeArea(edges: .top)
+                    VStack(spacing: 0) {
+                        HStack {
+                            Spacer()
+                            Button("Skip") {
+                                viewModel.finishOnboarding(.skip)
+                            }
+                            .font(AppFont.medium.font(size: 16))
+                            .foregroundStyle(.gray)
+                            .padding(.horizontal)
+                        }
+                        .padding(.top, 8)
+                        // Title — hit-testing off so taps fall through to the
+                        // chips underneath; Skip above stays tappable since
+                        // this only covers the text block, not the whole VStack.
+                        VStack(spacing: 6) {
+                            Text("Have Favorit Genres?")
+                                .font(AppFont.medium.font(size: 12))
+                            Text("Select Them Here 😁")
+                                .font(AppFont.semiBold.font(size: 22))
+                        }
+                        .padding(.vertical, 18)
+                        .foregroundColor(.white)
+                        .allowsHitTesting(false)
+                        Spacer()
                     }
-                    .frame(width: geo.size.width, height: geo.size.height)
                 }
                 // Primary Button
                 PrimaryButton(title: viewModel.selectedCount > 0 ? "Continue  ·  \(viewModel.selectedCount) selected" : "Select favorit genres") {
-                    viewModel.navigateToHome(.save)
+                    viewModel.finishOnboarding(.save)
                 }
                 .padding(.horizontal)
+                .padding(.bottom, 8)
             }
         }
         .navigationBarBackButtonHidden(true)
-        .navigationDestination(isPresented: $viewModel.navigateToHome) {
-            TabViewContainer()
-        }
+        .toolbar(.hidden, for: .navigationBar)
         .task {
             await viewModel.loadGenres()
         }

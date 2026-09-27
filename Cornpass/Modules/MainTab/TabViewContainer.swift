@@ -8,49 +8,48 @@
 import SwiftUI
 
 enum TabItem: Hashable {
-    case home, feed, tickets, profile
+    case home, search, tickets, profile
 }
 
 struct TabViewContainer: View {
 
     @State private var selectedTab: TabItem = .home
 
-    init() {
-        let appearance = UITabBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .black
-        UITabBar.appearance().standardAppearance = appearance
-        UITabBar.appearance().scrollEdgeAppearance = appearance
-    }
-
     var body: some View {
         TabView(selection: $selectedTab) {
-            // Home
             Tab(value: .home) {
-                HomeView()
+                NavigationStack {
+                    HomeView()
+                }
             } label: {
-                Image(selectedTab == .home ? TabImage.tab_home_fill.rawValue : TabImage.tab_home.rawValue)
+                Image(.home)
             }
             // Search
-            Tab(value: .feed) {
-                SearchView()
+            Tab(value: .search) {
+                NavigationStack {
+                    SearchView()
+                }
             } label: {
-                Image(selectedTab == .feed ? TabImage.tab_feed_fill.rawValue : TabImage.tab_feed.rawValue)
+                Image(.search)
             }
             // Ticket
             Tab(value: .tickets) {
-                MyTicketListView()
+                NavigationStack {
+                    MyTicketListView()
+                }
             } label: {
-                Image(selectedTab == .tickets ? TabImage.tab_ticket_fill.rawValue : TabImage.tab_ticket.rawValue)
+                Image(.ticket)
             }
             // Profile
-            Tab(value: .profile) {
-                ProfileView()
+            Tab(value: .profile, role: .search) {
+                NavigationStack {
+                    ProfileView()
+                }
             } label: {
-                Image(selectedTab == .profile ? TabImage.tab_profile_fill.rawValue : TabImage.tab_profile.rawValue)
+                Image(.profile)
             }
         }
-        .navigationBarBackButtonHidden(true)
+        .tint(.white)
     }
 }
 

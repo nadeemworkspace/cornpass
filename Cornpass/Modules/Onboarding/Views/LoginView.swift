@@ -87,6 +87,7 @@ struct LoginView: View {
             .padding(.horizontal)
         }
         .navigationBarBackButtonHidden(true)
+        .toolbar(.hidden, for: .navigationBar)
         .navigationDestination(isPresented: $viewModel.navigateToGenrePicker) {
             GenrePickerView()
         }

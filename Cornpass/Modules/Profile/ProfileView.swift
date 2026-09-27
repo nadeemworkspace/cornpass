@@ -12,7 +12,7 @@ struct ProfileView: View {
         VStack {
             Text("TODO: PROFILE")
             Button {
-                UserDefaults.standard.set(false, forKey: UserDefaultKeys.userLoggedIn.rawValue)
+                AppEntryManager.shared.isUserLoggedIn = false
             } label: {
                 Text("Logout")
                     .foregroundStyle(.red)

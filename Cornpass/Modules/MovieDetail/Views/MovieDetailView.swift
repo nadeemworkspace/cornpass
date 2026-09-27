@@ -80,15 +80,31 @@ struct MovieDetailView: View {
                                 }
                             }
                             Spacer()
-                            // Play Button
-                            NavigationLink {
-                                VideoPlayerView(movie: detail)
-                            } label: {
-                                Image(systemName: "play.fill")
-                                    .foregroundStyle(.white)
-                                    .padding()
-                                    .background(.gray.opacity(0.5))
-                                    .clipShape(Circle())
+                            HStack(spacing: 10) {
+                                // Notify Button
+                                if detail.comingSoon {
+                                    Button {
+                                      print("TODO: Notify")
+                                    } label: {
+                                        Image(systemName: "bell")
+                                            .foregroundStyle(.white)
+                                            .padding()
+                                            .frame(width: 50, height: 50)
+                                            .glassEffect(.clear)
+                                            .clipShape(Circle())
+                                    }
+                                }
+                                // Play Button
+                                NavigationLink {
+                                    VideoPlayerView(movie: detail)
+                                } label: {
+                                    Image(systemName: "play.fill")
+                                        .foregroundStyle(.white)
+                                        .padding()
+                                        .frame(width: 50, height: 50)
+                                        .glassEffect(.clear.tint(.red))
+                                        .clipShape(Circle())
+                                }
                             }
                         }
                     }
@@ -212,30 +228,23 @@ struct MovieDetailView: View {
             .coordinateSpace(name: "movieDetailScroll")
             .ignoresSafeArea(edges: .top)
         }
-        .overlay(alignment: .top) {
-            headerView
-        }
         .navigationBarBackButtonHidden(true)
+        .toolbar(.hidden, for: .tabBar)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                ToolbarIconButton(systemImage: "chevron.backward") {
+                    dismiss()
+                }
+            }
+        }
         .task(id: movie.id) {
             async let fullDetail = MovieRepository.shared.detail(for: movie.id)
             async let similar = MovieRepository.shared.similarMovies(to: movie.id)
             if let fullDetail = try? await fullDetail {
-                detail = fullDetail
+                detail = fullDetail.preservingComingSoon(from: movie)
             }
             recommendations = (try? await similar) ?? []
         }
-    }
-    
-    @ViewBuilder
-    private var headerView: some View {
-        HStack {
-            // Back Button
-            ToolbarActionButton(image: "arrow_left") {
-                dismiss()
-            }
-            Spacer()
-        }
-        .padding(.horizontal)
     }
     
     @ViewBuilder

@@ -17,14 +17,3 @@ enum AppFont: String {
         .custom(rawValue, size: size)
     }
 }
-
-enum TabImage: String {
-    case tab_home_fill
-    case tab_home
-    case tab_feed_fill
-    case tab_feed
-    case tab_profile_fill
-    case tab_profile
-    case tab_ticket_fill
-    case tab_ticket
-}

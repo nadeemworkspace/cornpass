@@ -12,6 +12,15 @@ struct FeaturedMovieView: View {
     let movie: Movie
 
     var body: some View {
+        NavigationLink {
+            MovieDetailView(movie: movie)
+        } label: {
+            cardBody
+        }
+        .buttonStyle(.plain)
+    }
+
+    private var cardBody: some View {
         ZStack(alignment: .bottom) {
             GeometryReader { proxy in
                 RemoteImage(url: movie.backdropURL, contentMode: .fill)
@@ -48,20 +57,7 @@ struct FeaturedMovieView: View {
             .minimumScaleFactor(0.5)
             .foregroundStyle(.white)
             .padding()
-            .background(
-                ZStack {
-                    VariableBlurView(
-                        maxBlurRadius: 10,
-                        direction: .blurredBottomClearTop,
-                        startOffset: 10
-                    )
-                    LinearGradient(
-                        colors: [.clear, Color(red: 0.08, green: 0.32, blue: 0.55).opacity(0.55)],
-                        startPoint: .top,
-                        endPoint: .bottom
-                    )
-                }
-            )
+            .glassEffect(.regular, in: .rect)
         }
         .overlay(alignment: .topLeading) {
             HStack(alignment: .center, spacing: 5) {

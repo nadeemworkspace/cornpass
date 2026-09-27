@@ -39,13 +39,11 @@ struct HomeView: View {
                             ComingSoonSection(
                                 movies: movies.comingSoonMovies
                             )
-                            // Genre
-                            GenreSection(
-                                genres: viewModel.genres
-                            )
                             // Featured Movie
                             if let featuredMovie = viewModel.featuredMovie {
                                 FeaturedMovieView(movie: featuredMovie)
+                                    .id(featuredMovie.id)
+                                    .transition(.opacity)
                             }
                             // Animated Movies
                             HorizontalMovieSection(
@@ -56,7 +54,7 @@ struct HomeView: View {
                                 showBadge: false
                             )
                             // Branding
-                            brandingView
+                            TMBDAttributionView()
                         }
                         .padding(.top, 20)
                         .padding(.bottom, 40)
@@ -88,6 +86,9 @@ struct HomeView: View {
         .navigationBarBackButtonHidden(true)
         .task {
             await viewModel.load()
+        }
+        .task(id: viewModel.featuredMovies.count) {
+            await viewModel.rotateFeaturedMovie()
         }
     }
 }
