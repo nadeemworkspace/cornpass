@@ -21,9 +21,11 @@ struct GenreSection: View {
             .padding(.horizontal)
 
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 8) {
-                    ForEach(genres) { genre in
-                        genreChip(genre: genre)
+                GlassEffectContainer(spacing: 8) {
+                    HStack(spacing: 8) {
+                        ForEach(genres) { genre in
+                            genreChip(genre: genre)
+                        }
                     }
                 }
                 .padding(.horizontal)
@@ -32,20 +34,22 @@ struct GenreSection: View {
     }
 
     func genreChip(genre: Genre) -> some View {
-        Text(genre.name)
-            .foregroundStyle(selectedGenres.contains(genre.name) ? .black : .white)
-            .font(AppFont.medium.font(size: 16))
-            .padding(.vertical)
-            .padding(.horizontal, 20)
-            .background(selectedGenres.contains(genre.name) ? .white : Color(hex: "#14181B"))
-            .clipShape(Capsule())
-            .onTapGesture {
-                if selectedGenres.contains(genre.name) {
-                    selectedGenres.remove(genre.name)
-                } else {
-                    selectedGenres.insert(genre.name)
-                }
+        let isSelected = selectedGenres.contains(genre.name)
+        return Button {
+            if isSelected {
+                selectedGenres.remove(genre.name)
+            } else {
+                selectedGenres.insert(genre.name)
             }
-            .animation(.spring, value: selectedGenres)
+        } label: {
+            Text(genre.name)
+                .foregroundStyle(isSelected ? .black : .white)
+                .font(AppFont.medium.font(size: 16))
+                .padding(.vertical)
+                .padding(.horizontal, 20)
+        }
+        .buttonStyle(.plain)
+        .glassEffect(isSelected ? .regular.tint(.white).interactive() : .regular.interactive(), in: .capsule)
+        .animation(.spring, value: selectedGenres)
     }
 }

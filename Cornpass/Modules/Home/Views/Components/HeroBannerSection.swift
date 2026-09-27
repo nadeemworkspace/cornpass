@@ -94,5 +94,15 @@ struct HeroBannerSection: View {
             }
         }
         .frame(height: heroHeight)
+        // Keyed on heroIndex so a manual swipe restarts the 4s countdown.
+        // Cancelled automatically when the view disappears.
+        .task(id: heroIndex) {
+            guard movies.count > 1 else { return }
+            try? await Task.sleep(for: .seconds(4))
+            guard !Task.isCancelled else { return }
+            withAnimation {
+                heroIndex = (heroIndex + 1) % movies.count
+            }
+        }
     }
 }

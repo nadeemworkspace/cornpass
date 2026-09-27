@@ -20,7 +20,7 @@ struct TMBDAttributionView: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal)
-        .padding(.top, 20)
+        .padding(.top)
     }
 }
 

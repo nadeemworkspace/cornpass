@@ -81,18 +81,16 @@ struct MovieDetailView: View {
                             }
                             Spacer()
                             HStack(spacing: 10) {
-                                // Notify Button
-                                if detail.comingSoon {
-                                    Button {
-                                      print("TODO: Notify")
-                                    } label: {
-                                        Image(systemName: "bell")
-                                            .foregroundStyle(.white)
-                                            .padding()
-                                            .frame(width: 50, height: 50)
-                                            .glassEffect(.clear)
-                                            .clipShape(Circle())
-                                    }
+                                // Favorite Button
+                                Button {
+                                    print("TODO: Add to favorite")
+                                } label: {
+                                    Image(systemName: "heart")
+                                        .foregroundStyle(.white)
+                                        .padding()
+                                        .frame(width: 50, height: 50)
+                                        .glassEffect(.clear)
+                                        .clipShape(Circle())
                                 }
                                 // Play Button
                                 NavigationLink {
