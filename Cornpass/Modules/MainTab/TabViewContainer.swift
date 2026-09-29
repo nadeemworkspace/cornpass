@@ -42,7 +42,7 @@ struct TabViewContainer: View {
                 Image(.profile)
             }
             // Search
-            Tab(value: .search, role: .search) {
+            Tab(value: .search, role: .prominent) {
                 NavigationStack {
                     SearchView()
                 }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TicketShape: Shape {
+nonisolated struct TicketShape: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
 
