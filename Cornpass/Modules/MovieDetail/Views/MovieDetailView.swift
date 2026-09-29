@@ -73,7 +73,7 @@ struct MovieDetailView: View {
                                         .foregroundStyle(.white)
                                 }
                                 HStack {
-                                    MovieAgeRatingView(rating: detail.ageBadge, forgroundColor: .black, backgroundColor: .white)
+                                    MovieAgeRatingView(rating: detail.ageBadge, foregroundColor: .black, backgroundColor: .white)
                                     ForEach(detail.languageTags, id: \.self) { tag in
                                         MovieLanguageView(language: tag, accentColor: .white)
                                     }
@@ -109,7 +109,7 @@ struct MovieDetailView: View {
                     .padding(.horizontal)
                     // Rating Section
                     HStack(alignment: .center) {
-                        ratingView(provider: "IMBD", imageName: "imdb_rating", rating: detail.imdbRating)
+                        ratingView(provider: "IMDB", imageName: "imdb_rating", rating: detail.imdbRating)
                         Spacer()
                         Rectangle()
                             .fill(.gray)
@@ -198,7 +198,7 @@ struct MovieDetailView: View {
                             HStack(spacing: 8) {
                                 MovieAgeRatingView(
                                     rating: detail.rating,
-                                    forgroundColor: .black,
+                                    foregroundColor: .black,
                                     backgroundColor: .white
                                 )
                                 ForEach(detail.languageTags, id: \.self) { tag in

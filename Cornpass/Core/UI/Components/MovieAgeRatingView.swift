@@ -9,18 +9,18 @@ import SwiftUI
 
 struct MovieAgeRatingView: View {
     let rating: String
-    let forgroundColor: Color
+    let foregroundColor: Color
     let backgroundColor: Color
 
-    init(rating: String, forgroundColor: Color = .white, backgroundColor: Color = .gray) {
+    init(rating: String, foregroundColor: Color = .white, backgroundColor: Color = .gray) {
         self.rating = rating
-        self.forgroundColor = forgroundColor
+        self.foregroundColor = foregroundColor
         self.backgroundColor = backgroundColor
     }
 
     var body: some View {
         Text(rating)
-            .foregroundStyle(forgroundColor)
+            .foregroundStyle(foregroundColor)
             .font(AppFont.bold.font(size: 10))
             .fixedSize(horizontal: true, vertical: false)
             .frame(height: 22)

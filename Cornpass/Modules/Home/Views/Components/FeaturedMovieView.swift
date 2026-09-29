@@ -48,7 +48,7 @@ struct FeaturedMovieView: View {
                     }
                     // Rating - Language
                     HStack(alignment: .center) {
-                        MovieAgeRatingView(rating: movie.rating, forgroundColor: .black, backgroundColor: .white)
+                        MovieAgeRatingView(rating: movie.rating, foregroundColor: .black, backgroundColor: .white)
                         MovieLanguageView(language: movie.languageTags.first ?? "EN", accentColor: .white)
                     }
                 }
