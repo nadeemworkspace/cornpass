@@ -77,13 +77,11 @@ struct CustomTextField: View {
     }
 }
 
-struct Preview: PreviewProvider {
-    static var previews: some View {
-        CustomTextField(
-            title: "Email",
-            text: .constant("muhammednadeem989@gmail.com"),
-            isSecured: true
-        )
-        .previewLayout(.sizeThatFits)
-    }
+// MARK: PREVIEW
+#Preview(traits: .sizeThatFitsLayout) {
+    CustomTextField(
+        title: "Email",
+        text: .constant("muhammednadeem989@gmail.com"),
+        isSecured: true
+    )
 }

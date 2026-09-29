@@ -68,11 +68,7 @@ struct SearchView: View {
     @ViewBuilder
     private var content: some View {
         if viewModel.trimmedQuery.isEmpty {
-            ContentUnavailableView(
-                "Search Movies",
-                systemImage: "film.stack",
-                description: Text("Find movies by title.")
-            )
+            initialStateView
         } else if viewModel.isLoading && viewModel.results.isEmpty {
             ProgressView()
                 .tint(.white)
@@ -100,6 +96,32 @@ struct SearchView: View {
                 .padding(.bottom)
             }
             .scrollDismissesKeyboard(.immediately)
+        }
+    }
+    
+    @ViewBuilder
+    private var initialStateView: some View {
+        GeometryReader { proxy in
+            VStack(spacing: 0) {
+                Spacer()
+                    .frame(height: proxy.size.height * 0.2)
+                Image(.searchIllustration)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 180, height: 220)
+                    .padding(.bottom, 24)
+                Text("What are you in the mood for?")
+                    .font(AppFont.bold.font(size: 22))
+                    .foregroundStyle(.white)
+                    .multilineTextAlignment(.center)
+                Text("Search for a movie, actor, or genre and discover your next favorite.")
+                    .font(AppFont.regular.font(size: 15))
+                    .foregroundStyle(.white.opacity(0.65))
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 40)
+                    .padding(.top, 5)
+                Spacer()
+            }
         }
     }
 }

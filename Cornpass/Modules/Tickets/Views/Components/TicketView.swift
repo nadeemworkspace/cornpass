@@ -72,10 +72,8 @@ struct TicketView: View {
 
 }
 
-struct TicketViewPreview: PreviewProvider {
-    static var previews: some View {
-        TicketView(ticket: .tickets.first!)
-            .previewLayout(.fixed(width: 345, height: 130))
-            .background(.black)
-    }
+// MARK: PREVIEW
+#Preview(traits: .fixedLayout(width: 345, height: 130)) {
+    TicketView(ticket: .tickets.first!)
+        .background(.black)
 }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MainTicketShape: Shape {
+nonisolated struct MainTicketShape: Shape {
     func path(in rect: CGRect) -> Path {
         let sx = rect.width / 345.0
         let sy = rect.height / 465.0

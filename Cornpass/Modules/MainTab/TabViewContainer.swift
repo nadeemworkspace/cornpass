@@ -17,20 +17,13 @@ struct TabViewContainer: View {
 
     var body: some View {
         TabView(selection: $selectedTab) {
+            // Home
             Tab(value: .home) {
                 NavigationStack {
                     HomeView()
                 }
             } label: {
                 Image(.home)
-            }
-            // Search
-            Tab(value: .search) {
-                NavigationStack {
-                    SearchView()
-                }
-            } label: {
-                Image(.search)
             }
             // Ticket
             Tab(value: .tickets) {
@@ -41,12 +34,20 @@ struct TabViewContainer: View {
                 Image(.ticket)
             }
             // Profile
-            Tab(value: .profile, role: .search) {
+            Tab(value: .profile) {
                 NavigationStack {
                     ProfileView()
                 }
             } label: {
                 Image(.profile)
+            }
+            // Search
+            Tab(value: .search, role: .prominent) {
+                NavigationStack {
+                    SearchView()
+                }
+            } label: {
+                Image(.search)
             }
         }
         .tint(.white)
