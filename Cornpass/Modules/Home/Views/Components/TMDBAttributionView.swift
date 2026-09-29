@@ -1,5 +1,5 @@
 //
-//  TMBDAttributionView.swift
+//  TMDBAttributionView.swift
 //  Cornpass
 //
 //  Created by Nadeem M A, Muhammed on 26/09/26.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TMBDAttributionView: View {
+struct TMDBAttributionView: View {
     var body: some View {
         HStack {
             Text("Powered by The Movie Database")
@@ -25,5 +25,5 @@ struct TMBDAttributionView: View {
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
-    TMBDAttributionView()
+    TMDBAttributionView()
 }

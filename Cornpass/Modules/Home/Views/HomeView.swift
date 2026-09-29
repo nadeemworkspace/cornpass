@@ -22,7 +22,7 @@ struct HomeView: View {
                         if !movies.heroMovies.isEmpty {
                             HeroBannerSection(
                                 movies: movies.heroMovies,
-                                heroIndex: $viewModel.currentPosterIndex
+                                heroIndex: $viewModel.currentHeroIndex
                             )
                         }
                         // Sections
@@ -54,7 +54,7 @@ struct HomeView: View {
                                 showBadge: false
                             )
                             // Branding
-                            TMBDAttributionView()
+                            TMDBAttributionView()
                         }
                         .padding(.top, 20)
                         .padding(.bottom, 40)

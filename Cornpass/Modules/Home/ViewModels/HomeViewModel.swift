@@ -15,7 +15,7 @@ class HomeViewModel {
     var featuredMovies: [Movie] = []
     var currentFeaturedIndex: Int = 0
     var genres: [Genre] = Genre.fallback
-    var currentPosterIndex: Int = 0
+    var currentHeroIndex: Int = 0
     var isLoading = false
     var loadError: String?
 

@@ -12,7 +12,7 @@ import SpriteKit
 @Observable
 class GenrePickerViewModel {
 
-    enum GPAction {
+    enum Action {
         case skip, save
     }
 
@@ -25,7 +25,7 @@ class GenrePickerViewModel {
         }
     }
 
-    func finishOnboarding(_ action: GPAction) {
+    func finishOnboarding(_ action: Action) {
         // Save selected if action is .save
         // Flipping this (rather than pushing TabViewContainer onto this
         // onboarding NavigationStack) lets ContentView swap its whole root,

@@ -66,13 +66,13 @@ struct MyTicketListView: View {
             showSearchBar = false
         }
         .onChange(of: searchText) { _, new in
-            let seachText = new.trimmed
+            let trimmedSearchText = new.trimmed
             let allTickets = Ticket.tickets
-            if seachText.isEmpty {
+            if trimmedSearchText.isEmpty {
                 tickets = allTickets
             } else {
                 tickets = allTickets.filter {
-                    $0.movieTitle.localizedCaseInsensitiveContains(seachText)
+                    $0.movieTitle.localizedCaseInsensitiveContains(trimmedSearchText)
                 }
             }
         }
